@@ -1,6 +1,6 @@
 ﻿namespace Anteproyecto.Domain
 {
-    internal class AsesorMetodologico : Usuario
+    public class AsesorMetodologico : Usuario
     {
         public AsesorMetodologico(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña)
         {

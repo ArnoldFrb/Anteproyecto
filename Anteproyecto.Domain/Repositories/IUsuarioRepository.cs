@@ -5,9 +5,7 @@ using Anteproyecto.Domain.Contracts;
 
 namespace Anteproyecto.Domain.Repositories
 {
-    public interface IUsuarioRepository : IGenericRepository<Estudiante>
+    public interface IUsuarioRepository : IGenericRepository<Usuario>
     {
-
-
     }
 }

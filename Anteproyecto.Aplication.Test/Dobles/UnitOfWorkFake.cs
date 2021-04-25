@@ -25,6 +25,10 @@ namespace Anteproyecto.Aplication.Test.Dobles
             }
         }
 
+        public IProyectoRepository ProyectoRepository => throw new NotImplementedException();
+
+        public IConvocatoriaRepository ConvocatoriaRepository => throw new NotImplementedException();
+
         public int Commit()
         {
             Console.WriteLine("Se confirman cambios en la base de datos");

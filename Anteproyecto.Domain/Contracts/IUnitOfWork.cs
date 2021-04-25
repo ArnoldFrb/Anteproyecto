@@ -9,6 +9,10 @@ namespace Anteproyecto.Domain.Contracts
     {
         IUsuarioRepository UsuarioRepository { get; }
 
+        IProyectoRepository ProyectoRepository { get; }
+
+        IConvocatoriaRepository ConvocatoriaRepository { get; }
+
         int Commit();
     }
 }

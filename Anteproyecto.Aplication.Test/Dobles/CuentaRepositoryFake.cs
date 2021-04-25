@@ -13,59 +13,57 @@ namespace Anteproyecto.Aplication.Test.Dobles
     class CuentaRepositoryFake : IUsuarioRepository
     {
 
-        List<Estudiante> estudiantes = new List<Estudiante>();
-
+        List<Usuario> usuarios = new List<Usuario>();
         
-        public void Add(Estudiante entity)
+        public void Add(Usuario entity)
         {
             throw new NotImplementedException();
         }
 
-        public void AddRange(List<Estudiante> entities)
+        public void AddRange(List<Usuario> entities)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Estudiante entity)
+        public void Delete(Usuario entity)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteRange(List<Estudiante> entities)
+        public void DeleteRange(List<Usuario> entities)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(Estudiante entity)
+        public void Edit(Usuario entity)
         {
             throw new NotImplementedException();
         }
 
-        public Estudiante Find(object id)
+        public Usuario Find(object id)
         {
             return new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "123344444");
         }
 
-        public IEnumerable<Estudiante> FindBy(Expression<Func<Estudiante, bool>> predicate)
+        public IEnumerable<Usuario> FindBy(Expression<Func<Usuario, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Estudiante> FindBy(Expression<Func<Estudiante, bool>> filter = null, Func<IQueryable<Estudiante>, IOrderedQueryable<Estudiante>> orderBy = null, string includeProperties = "")
+        public IEnumerable<Usuario> FindBy(Expression<Func<Usuario, bool>> filter = null, Func<IQueryable<Usuario>, IOrderedQueryable<Usuario>> orderBy = null, string includeProperties = "")
         {
             throw new NotImplementedException();
         }
 
  
-        public Estudiante FindFirstOrDefault(Expression<Func<Estudiante, bool>> predicate)
+        public Usuario FindFirstOrDefault(Expression<Func<Usuario, bool>> predicate)
         {
             return new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "123344444");
         }
 
-        public IEnumerable<Estudiante> GetAll()
+        public IEnumerable<Usuario> GetAll()
         {
-          
-            return new List<Estudiante>();   
+            return new List<Usuario>();   
         }
     }
 }

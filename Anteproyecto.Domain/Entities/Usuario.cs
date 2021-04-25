@@ -1,4 +1,5 @@
 ﻿using System;
+using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 
 namespace Anteproyecto.Domain
