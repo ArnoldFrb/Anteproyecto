@@ -1,4 +1,10 @@
-﻿namespace Anteproyecto.Domain
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
+
+
+namespace Anteproyecto.Domain.Entities
 {
     public class AsesorMetodologico : Usuario
     {

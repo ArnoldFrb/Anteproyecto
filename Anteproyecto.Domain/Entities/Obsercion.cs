@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Anteproyecto.Domain
+namespace Anteproyecto.Domain.Entities
 {
-    public class Obsercion
+    public class Obsercion : Entity<int>
     {
-        private string Nombre { get; set; }
-        private string Comentario { get; set; }
+        public string Nombre { get; private set; }
+        public string Comentario { get; private set; }
 
         public Obsercion(string nombre, string comentario)
         {

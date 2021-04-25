@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Anteproyecto.Domain
+namespace Anteproyecto.Domain.Entities
 {
     public class Proyecto : Entity<int>, IAggregateRoot
     {

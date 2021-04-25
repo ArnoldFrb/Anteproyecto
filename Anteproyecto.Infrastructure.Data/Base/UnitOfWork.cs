@@ -18,70 +18,9 @@ namespace Infrastructure.Data.Repositories
             _dbContext = context;
         }
 
-        public IUsuarioRepository _UsuarioRepository;
-
-        public IUsuarioRepository UsuarioRepository
+        public void Commit()
         {
-            get
-            {
-                if (_UsuarioRepository == null)
-                {
-                   return _UsuarioRepository = new UsuarioRepository(_dbContext);
-                }
-                return _UsuarioRepository;
-            }
+            _dbContext.SaveChanges();
         }
-
-        public IProyectoRepository _ProyectoRepository;
-
-        public IProyectoRepository ProyectoRepository
-        {
-            get
-            {
-                if (_ProyectoRepository == null)
-                {
-                    return _ProyectoRepository = new ProyectoRepisitory(_dbContext);
-                }
-                return _ProyectoRepository;
-            }
-        }
-
-        public IConvocatoriaRepository _ConvocatoriaRepository;
-
-        public IConvocatoriaRepository ConvocatoriaRepository
-        {
-            get
-            {
-                if (_ConvocatoriaRepository == null)
-                {
-                    return _ConvocatoriaRepository = new ConvocatoriaRepository(_dbContext);
-                }
-                return _ConvocatoriaRepository;
-            }
-        }
-
-        public int Commit()
-        {
-            return _dbContext.SaveChanges();
     }
-
-        public void Dispose()
-        {
-              Dispose(true);
-        }
-
-        /// <summary>
-        /// Disposes all external resources.
-        /// </summary>
-        /// <param name="disposing">The dispose indicator.</param>
-        private void Dispose(bool disposing)
-        {
-            if (disposing && _dbContext != null)
-            {
-                ((DbContext)_dbContext).Dispose();
-                _dbContext = null;
-            }
-        }
-
-}
 }

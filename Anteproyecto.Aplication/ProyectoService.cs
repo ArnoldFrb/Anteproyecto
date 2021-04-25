@@ -1,5 +1,5 @@
-﻿using Anteproyecto.Domain;
-using Anteproyecto.Domain.Contracts;
+﻿using Anteproyecto.Domain.Contracts;
+using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    class ProyectoService
+    public class ProyectoService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IProyectoRepository _proyectoRepository;
@@ -22,36 +22,36 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public MensageResponse ValidarNombre(ProyectoRequest request)
+        public MensageProyectoResponse ValidarNombre(ProyectoRequest request)
         {
-            var proyecto = _unitOfWork.ProyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+            var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
 
             if (proyecto != null)
             {
                 proyecto.ValidarNombre(request.Nombre);
                 _unitOfWork.Commit();
-                return new MensageResponse() { Mensaje = "El nombre ingresado es correcto" };
+                return new MensageProyectoResponse() { Mensaje = "El nombre ingresado es correcto" };
             }
             else
             {
-                return new MensageResponse() { Mensaje = "El nombre ingresado es incorrecta" };
+                return new MensageProyectoResponse() { Mensaje = "El nombre ingresado es incorrecta" };
             }
         }
 
-        public MensageResponse ValidarResumen(ProyectoRequest request)
+        public MensageProyectoResponse ValidarResumen(ProyectoRequest request)
         {
 
-            var proyecto = _unitOfWork.ProyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+            var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
 
             if (proyecto != null)
             {
                 proyecto.ValidarResumen(request.Resumen);
                 _unitOfWork.Commit();
-                return new MensageResponse() { Mensaje = "El resumen ingresado es correcto" };
+                return new MensageProyectoResponse() { Mensaje = "El resumen ingresado es correcto" };
             }
             else
             {
-                return new MensageResponse() { Mensaje = "El resumen ingresado es incorrecta" };
+                return new MensageProyectoResponse() { Mensaje = "El resumen ingresado es incorrecta" };
             }
 
         }
@@ -67,7 +67,7 @@ namespace Anteproyecto.Aplication
             public AsesorMetodologico AsesorMetodologico { get; private set; }
         }
 
-        public class MensageResponse
+        public class MensageProyectoResponse
         {
             public string Mensaje { get; set; }
         }

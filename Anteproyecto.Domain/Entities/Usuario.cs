@@ -2,7 +2,7 @@
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 
-namespace Anteproyecto.Domain
+namespace Anteproyecto.Domain.Entities
 {
     public abstract class Usuario : Entity<string>, IServicioUsuario
     {

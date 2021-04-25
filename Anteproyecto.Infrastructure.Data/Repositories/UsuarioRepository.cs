@@ -1,4 +1,5 @@
 ﻿using Anteproyecto.Domain;
+using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
 using Infrastructure.Data.Base;
 

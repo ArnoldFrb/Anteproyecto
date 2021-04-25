@@ -21,51 +21,51 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public MensageResponse ModificarConvocatoria(ConvocatoriaRequest request)
+        public MensageConvocatoriaResponse ModificarConvocatoria(ConvocatoriaRequest request)
         {
-            var convocatoria = _unitOfWork.ConvocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
+            var convocatoria = _convocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
 
             if (convocatoria != null)
             {
                 convocatoria.ModificarConvocatoria(request.FechaInicio, request.FechaCierre);
                 _unitOfWork.Commit();
-                return new MensageResponse() { Mensaje = "La convovatoria ha sido modificada correctamente" };
+                return new MensageConvocatoriaResponse() { Mensaje = "La convovatoria ha sido modificada correctamente" };
             }
             else
             {
-                return new MensageResponse() { Mensaje = "Error al modificar la convocatoria" };
+                return new MensageConvocatoriaResponse() { Mensaje = "Error al modificar la convocatoria" };
             }
         }
 
-        public MensageResponse ActivarCargaProyectos(ConvocatoriaRequest request)
+        public MensageConvocatoriaResponse ActivarCargaProyectos(ConvocatoriaRequest request)
         {
-            var convocatoria = _unitOfWork.ConvocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
+            var convocatoria = _convocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
 
             if (convocatoria != null)
             {
                 convocatoria.ActivarCargaProyectos();
                 _unitOfWork.Commit();
-                return new MensageResponse() { Mensaje = "La carga de proyectos ha sido activada" };
+                return new MensageConvocatoriaResponse() { Mensaje = "La carga de proyectos ha sido activada" };
             }
             else
             {
-                return new MensageResponse() { Mensaje = "Error al activar la carga de proyectos" };
+                return new MensageConvocatoriaResponse() { Mensaje = "Error al activar la carga de proyectos" };
             }
         }
 
-        public MensageResponse DesactivarCargaProyectos(ConvocatoriaRequest request)
+        public MensageConvocatoriaResponse DesactivarCargaProyectos(ConvocatoriaRequest request)
         {
-            var convocatoria = _unitOfWork.ConvocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
+            var convocatoria = _convocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
 
             if (convocatoria != null)
             {
                 convocatoria.DesactivarCargaProyectos();
                 _unitOfWork.Commit();
-                return new MensageResponse() { Mensaje = "La carga de proyectos ha sido desactivada" };
+                return new MensageConvocatoriaResponse() { Mensaje = "La carga de proyectos ha sido desactivada" };
             }
             else
             {
-                return new MensageResponse() { Mensaje = "Error al desactivada la carga de proyectos" };
+                return new MensageConvocatoriaResponse() { Mensaje = "Error al desactivada la carga de proyectos" };
             }
         }
 
@@ -77,7 +77,7 @@ namespace Anteproyecto.Aplication
             public bool CargarProyectos { get; set; }
         }
 
-        public class MensageResponse
+        public class MensageConvocatoriaResponse
         {
             public string Mensaje { get; set; }
         }

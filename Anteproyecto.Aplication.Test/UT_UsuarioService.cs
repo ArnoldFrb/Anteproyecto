@@ -1,5 +1,6 @@
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Domain;
+using Anteproyecto.Domain.Entities;
 using Anteproyecto.Infrastructure.Data.Base;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;

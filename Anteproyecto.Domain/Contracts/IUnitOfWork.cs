@@ -5,14 +5,8 @@ using Anteproyecto.Domain.Repositories;
 
 namespace Anteproyecto.Domain.Contracts
 {
-    public interface IUnitOfWork: IDisposable
+    public interface IUnitOfWork
     {
-        IUsuarioRepository UsuarioRepository { get; }
-
-        IProyectoRepository ProyectoRepository { get; }
-
-        IConvocatoriaRepository ConvocatoriaRepository { get; }
-
-        int Commit();
+        void Commit();
     }
 }

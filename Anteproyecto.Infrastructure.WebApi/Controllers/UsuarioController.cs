@@ -1,5 +1,5 @@
 ﻿using Anteproyecto.Aplication;
-using Anteproyecto.Domain;
+using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -26,10 +26,9 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
             _usuarioRepository = usuarioRepository;
             _mailServer = mailServer;
 
-
             if (!usuarioRepository.GetAll().Any())
             {
-                var cuenta = new Estudiante("Jose Carlos", "Oñate Oñate", "123456789", "cliente@bancoacme.com", "1234567");
+                var cuenta = new Estudiante("Jose Carlos", "Oñate Oñate", "123456789", "usuario@user.com", "1234567");
                 usuarioRepository.Add(cuenta);
                 unitOfWork.Commit();
             }

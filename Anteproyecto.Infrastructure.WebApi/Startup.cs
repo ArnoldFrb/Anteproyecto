@@ -1,5 +1,6 @@
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Repositories;
+using Anteproyecto.Infrastructure.Data.Repositories;
 using GestionProyectos.Infrastructure.Systems;
 using Infrastructure.Data;
 using Infrastructure.Data.Base;
@@ -39,6 +40,8 @@ namespace Anteproyecto.Infrastructure.WebApi
             //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0#register-additional-services-with-extension-methods
             services.AddScoped<IUnitOfWork, UnitOfWork>(); //Crear Instancia por peticion
             services.AddScoped<IUsuarioRepository, UsuarioRepository>(); //Crear Instancia por peticion
+            services.AddScoped<IProyectoRepository, ProyectoRepository>(); //Crear Instancia por peticion
+            services.AddScoped<IConvocatoriaRepository, ConvocatoriaRepository>(); //Crear Instancia por peticion
             services.AddScoped<IDbContext, ProyectoContext>(); //Crear Instancia por peticion
             services.AddScoped<IMailServer, MailServer>(); //Crear Instancia por peticion
 

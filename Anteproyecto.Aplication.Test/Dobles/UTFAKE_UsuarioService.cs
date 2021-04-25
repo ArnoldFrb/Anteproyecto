@@ -1,4 +1,5 @@
 ﻿using Anteproyecto.Domain;
+using Anteproyecto.Domain.Entities;
 using NUnit.Framework;
 using static Anteproyecto.Aplication.UsuarioService;
 

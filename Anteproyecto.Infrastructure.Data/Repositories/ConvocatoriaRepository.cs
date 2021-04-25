@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Infrastructure.Data.Repositories
 {
-    class ConvocatoriaRepository : GenericRepository<Convocatoria>, IConvocatoriaRepository
+    public class ConvocatoriaRepository : GenericRepository<Convocatoria>, IConvocatoriaRepository
     {
         public ConvocatoriaRepository(IDbContext context) : base(context)
         {

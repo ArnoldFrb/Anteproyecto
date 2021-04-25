@@ -23,8 +23,6 @@ namespace Anteproyecto.Infrastructure.Data.Base
         {
             Entry(entity).State = EntityState.Modified;
         }
-
-
     }
 
 }

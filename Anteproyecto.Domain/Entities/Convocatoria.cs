@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Anteproyecto.Domain.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Domain.Entities
 {
-    public class Convocatoria : Entity<int>
+    public class Convocatoria : Entity<int>, IAggregateRoot
     {
         public DateTime FechaInicio { get; private set; }
         public DateTime FechaCierre { get; private set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Anteproyecto.Domain
+namespace Anteproyecto.Domain.Entities
 {
     public class MiembroComite : Usuario
     {
