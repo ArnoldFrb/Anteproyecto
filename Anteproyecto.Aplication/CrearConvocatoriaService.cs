@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    class CrearConvocatoriaService
+    public class CrearConvocatoriaService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
@@ -22,7 +22,7 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public string CrearCuentaBancaria(ProyectoRequest request)
+        public string CrearConvocatoria(CrearConvocatoriaRequest request)
         {
             Convocatoria convocatoria = ConvocatoriaNueva.EstablerConvocatoria(request.FechaInicio, request.FechaCierre);
             if (convocatoria != null)
@@ -37,7 +37,7 @@ namespace Anteproyecto.Aplication
             }
         }
 
-        public class ProyectoRequest
+        public class CrearConvocatoriaRequest
         {
             public DateTime FechaInicio { get; set; }
             public DateTime FechaCierre { get; set; }
