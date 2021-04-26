@@ -14,11 +14,9 @@ namespace Infrastructure.Data
 
         public ProyectoContext() : base()
         {
-
         }
         public ProyectoContext(DbContextOptions options) : base(options)
         {
-
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
