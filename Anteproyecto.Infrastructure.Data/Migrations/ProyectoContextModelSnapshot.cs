@@ -84,11 +84,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AsesorMetodologicoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("AsesorMetodologicoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("AsesorTematicoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("AsesorTematicoId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("EvaluacionId")
                         .HasColumnType("INTEGER");
@@ -112,8 +112,9 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Usuario", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("TEXT");

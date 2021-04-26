@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Anteproyecto.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProyectoContext))]
-    [Migration("20210425194823_InitialCreate")]
+    [Migration("20210426031900_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,11 +86,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AsesorMetodologicoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("AsesorMetodologicoId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("AsesorTematicoId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("AsesorTematicoId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("EvaluacionId")
                         .HasColumnType("INTEGER");
@@ -114,8 +114,9 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Usuario", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("TEXT");

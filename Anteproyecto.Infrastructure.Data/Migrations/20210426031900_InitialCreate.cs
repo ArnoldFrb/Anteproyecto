@@ -41,7 +41,8 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 name: "Usuarios",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nombres = table.Column<string>(type: "TEXT", nullable: true),
                     Apellidos = table.Column<string>(type: "TEXT", nullable: true),
                     NumeroIdentificacion = table.Column<string>(type: "TEXT", nullable: true),
@@ -63,8 +64,8 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     Nombre = table.Column<string>(type: "TEXT", nullable: true),
                     Resumen = table.Column<string>(type: "TEXT", nullable: true),
                     EvaluacionId = table.Column<int>(type: "INTEGER", nullable: true),
-                    AsesorTematicoId = table.Column<string>(type: "TEXT", nullable: true),
-                    AsesorMetodologicoId = table.Column<string>(type: "TEXT", nullable: true)
+                    AsesorTematicoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    AsesorMetodologicoId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {

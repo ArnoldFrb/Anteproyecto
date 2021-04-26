@@ -4,7 +4,7 @@ using Anteproyecto.Domain.Entities;
 
 namespace Anteproyecto.Domain.Entities
 {
-    public abstract class Usuario : Entity<string>, IServicioUsuario
+    public abstract class Usuario : Entity<int>, IServicioUsuario
     {
         public string Nombres { get; private set; }
         public string Apellidos { get; private set; }

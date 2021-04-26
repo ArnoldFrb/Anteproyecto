@@ -39,7 +39,7 @@ namespace Anteproyecto.Aplication.Test
             var service = new UsuarioService(new UnitOfWork(_contex), new UsuarioRepository(_contex), new MailServerSpy());
 
              //Act
-            var _user = new UsuarioRequest { Id = "00110", Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest { Id = 00110, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
             var response = service.ModificarContraseña(_user);
 
             //Assert
@@ -65,7 +65,7 @@ namespace Anteproyecto.Aplication.Test
             var service = new UsuarioService(new UnitOfWork(_contex), new UsuarioRepository(_contex), new MailServerSpy());
 
             //Act
-            var _user = new UsuarioRequest { Id = "200", Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "Comoestaspedro@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest { Id = 200, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "Comoestaspedro@gmail.com", Contraseña = "cambieperro" };
             var response = service.ModificarCorreo(_user);
 
             //Assert

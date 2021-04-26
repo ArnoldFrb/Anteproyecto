@@ -52,8 +52,7 @@ namespace Anteproyecto.Aplication
 
         public class UsuarioRequest
         {
-             
-            public string Id { get;   set; }
+            public int Id { get;   set; }
             
             public string Nombres { get;   set; }
            
