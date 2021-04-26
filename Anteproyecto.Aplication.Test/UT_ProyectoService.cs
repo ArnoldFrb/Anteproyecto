@@ -55,13 +55,13 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseña = "123344444"};
-            var proyecto = new Proyecto("Poryecto1", "Este proyecto es importane");
+            var proyecto = new Proyecto("Poryecto5", "Este proyecto es importane");
              
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
              
             //Act
-            var _proyecto = new ProyectoRequest { Id = 0003, Nombre = "proyecto2", Resumen = "Este es un proyecto" };
+            var _proyecto = new ProyectoRequest { Id = 0001, Nombre = "proyecto8", Resumen = "Este es un proyecto" };
             var response = _proyectoService.ValidarResumen(_proyecto);
 
             //Assert

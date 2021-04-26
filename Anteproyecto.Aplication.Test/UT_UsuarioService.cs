@@ -28,22 +28,22 @@ namespace Anteproyecto.Aplication.Test
         }
 
         [Test]
-        public void ModificarContrase�aTest()
+        public void ModificarContraseaTest()
         {
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contrase�a = "123344444"};
-            var user = new Estudiante("Jose Carlo","Santander Pimienta","0123456789","hola@gmail.com","123344444");
+            var user = new Estudiante("Jose Carlo","Santander Pimienta","0123456781","hola@gmail.com","123344444");
 
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();
 
              //Act
-            var _user = new UsuarioRequest {Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "hola@gmail.com", Contrase�a = "cambieperro" };
-            var response = _usuarioService.ModificarContrase�a(_user);
+            var _user = new UsuarioRequest {Id= 0003,Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456781", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
+            var response = _usuarioService.ModificarContraseña(_user);
 
             //Assert
-            Assert.AreEqual("La contrase�a a sido modificada satifctoriamente", response.Mensaje);
+            Assert.AreEqual("La contraseña a sido modificada satifctoriamente", response.Mensaje);
 
             _dbContext.Usuarios.Remove(user);
             _dbContext.SaveChanges();
@@ -56,13 +56,13 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contrase�a = "123344444"};
-            var user = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "123344444");
+            var user = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456783", "hola@gmail.com", "123344444");
             
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();
 
             //Act
-            var _user = new UsuarioRequest {Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "Comoestaspedro@gmail.com", Contrase�a = "cambieperro" };
+            var _user = new UsuarioRequest {Id= 0003, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456783", Correo = "Comoestaspedro@gmail.com", Contraseña = "cambieperro" };
             var response = _usuarioService.ModificarCorreo(_user);
 
             //Assert
