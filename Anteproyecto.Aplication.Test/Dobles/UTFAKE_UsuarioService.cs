@@ -21,9 +21,7 @@ namespace Anteproyecto.Aplication.Test.Dobles
             var service = new UsuarioService(new UnitOfWorkFake(), new CuentaRepositoryFake(), new MailServerSpy());
              
             //Act 
-            var _user = new UsuarioRequest { 
-                Id = "10", 
-                Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest {Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
             
             var response = service.ModificarContraseña(_user);
 

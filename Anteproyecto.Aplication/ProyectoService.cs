@@ -59,12 +59,12 @@ namespace Anteproyecto.Aplication
         public class ProyectoRequest
         {
             public int Id { get; set; }
-            public string Nombre { get; private set; }
-            public string Resumen { get; private set; }
-            public List<Obsercion> Obsercion { get; private set; }
-            public Evaluacion Evaluacion { get; private set; }
-            public AsesorTematico AsesorTematico { get; private set; }
-            public AsesorMetodologico AsesorMetodologico { get; private set; }
+            public string Nombre { get; set; }
+            public string Resumen { get; set; }
+            public List<Obsercion> Obsercion { get; set; }
+            public Evaluacion Evaluacion { get; set; }
+            public AsesorTematico AsesorTematico { get; set; }
+            public AsesorMetodologico AsesorMetodologico { get; set; }
         }
 
         public class MensageProyectoResponse

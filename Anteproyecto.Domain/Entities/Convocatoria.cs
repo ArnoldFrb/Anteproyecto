@@ -11,7 +11,7 @@ namespace Anteproyecto.Domain.Entities
     {
         public DateTime FechaInicio { get; private set; }
         public DateTime FechaCierre { get; private set; }
-        public bool CargarProyectos { get; private set; }
+        public bool CargarProyectos { get; private set; } 
 
         public Convocatoria(DateTime fechaInicio, DateTime fechaCierre)
         {
