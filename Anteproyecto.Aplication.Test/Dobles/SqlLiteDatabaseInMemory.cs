@@ -12,7 +12,7 @@ namespace Anteproyecto.Aplication.Test.Dobles
     {
         public static DbConnection CreateConnection()
         {
-            var connection = new SqliteConnection("Filename=:AnteProyecto:");
+            var connection = new SqliteConnection("Filename=:memory:");
 
             connection.Open();
 

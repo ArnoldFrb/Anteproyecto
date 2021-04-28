@@ -38,7 +38,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
-            var _proyecto = new CrearProyectoRequest {Nombre = "proyecto2", Resumen = "Este es un proyecto" };
+            var _proyecto = new CrearProyectoRequest {Nombre = "proyecto1", Resumen = "Este es un proyecto" };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
             //Assert

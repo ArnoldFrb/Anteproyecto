@@ -40,8 +40,9 @@ namespace Anteproyecto.Aplication
 
         public MensageProyectoResponse ValidarResumen(ProyectoRequest request)
         {
-
-            var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+            //validar duda
+            //var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+            var proyecto = new Proyecto(request.Nombre, request.Resumen);
 
             if (proyecto != null)
             {

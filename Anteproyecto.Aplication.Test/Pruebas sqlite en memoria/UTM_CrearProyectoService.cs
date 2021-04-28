@@ -22,13 +22,14 @@ namespace Anteproyecto.Aplication.Test
            .UseSqlite(SqlLiteDatabaseInMemory.CreateConnection())
            .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
+            _dbContext.Database.EnsureCreated();
 
             _CrearProyectoService = new CrearProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
 
         }
 
         [Test]
-        public void CargaProyectosTest()
+        public void CargaProyectosInMemoryTest()
         {
 
             //Arrange
