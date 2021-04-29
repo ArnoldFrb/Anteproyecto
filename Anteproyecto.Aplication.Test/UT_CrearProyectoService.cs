@@ -1,5 +1,6 @@
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Domain.Entities;
+using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Anteproyecto.Infrastructure.Data.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
@@ -32,7 +33,7 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var proyecto = new Proyecto("Poryecto1", "Este proyecto es importane");
+            var proyecto = ProyectoMother.crearProyecto("Poryecto1");
 
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges(); 

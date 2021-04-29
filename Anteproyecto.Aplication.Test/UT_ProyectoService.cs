@@ -1,5 +1,6 @@
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Domain.Entities;
+using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Anteproyecto.Infrastructure.Data.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
@@ -32,13 +33,13 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var proyecto = new Proyecto("Poryecto1","Este proyecto es importane");
-
+            var proyecto = ProyectoMother.crearProyecto("proyecto2");
+                 
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges(); 
 
              //Act
-            var _proyecto = new ProyectoRequest {Id = 0002, Nombre="proyecto2", Resumen="Este es un proyecto"};
+            var _proyecto = new ProyectoRequest {Id = 0001, Nombre="proyecto2", Resumen="Este es un proyecto"};
             var response = _proyectoService.ValidarNombre(_proyecto);
 
             //Assert
@@ -55,8 +56,8 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseña = "123344444"};
-            var proyecto = new Proyecto("Poryecto5", "Este proyecto es importane");
-             
+            var proyecto = ProyectoMother.crearProyecto("proyecto5");
+
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
              

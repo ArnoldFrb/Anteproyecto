@@ -1,5 +1,6 @@
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Domain.Entities;
+using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Anteproyecto.Infrastructure.Data.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
@@ -33,8 +34,8 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var convocatoria = new Convocatoria(new DateTime(2021, 1, 1), new DateTime(2021, 3, 1));
-
+            var convocatoria = CrearConvocatoriaMother.CrearConvocatoria();
+            
             _dbContext.Convocatorias.Add(convocatoria);
             _dbContext.SaveChanges(); 
 
