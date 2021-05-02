@@ -40,7 +40,11 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
+<<<<<<< Updated upstream
             var _convocatoria = new ConvocatoriaRequest {Id = 009, FechaInicio= new DateTime(2021,1,1) , FechaCierre = new DateTime(2021, 3, 1) };
+=======
+            var _convocatoria = new ConvocatoriaRequest {Id = 4, FechaInicio= new DateTime(2021,1,1) , FechaCierre = new DateTime(2021, 3, 1) };
+>>>>>>> Stashed changes
             var response = _convocatoriaService.ActivarCargaProyectos(_convocatoria);
 
             //Assert
