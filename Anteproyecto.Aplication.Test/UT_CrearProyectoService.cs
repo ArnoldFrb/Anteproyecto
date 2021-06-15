@@ -1,3 +1,4 @@
+
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Infrastructure.Data.ObjectMother;
@@ -33,17 +34,17 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var proyecto = ProyectoMother.crearProyecto("Poryecto1");
+            var proyecto = ProyectoMother.crearProyecto("Poryecto4");
 
             _dbContext.Proyectos.Add(proyecto);
-            _dbContext.SaveChanges(); 
+            _dbContext.SaveChanges();
 
-             //Act
-            var _proyecto = new CrearProyectoRequest {Nombre = "proyecto2", Resumen = "Este es un proyecto" };
+            //Act
+            var _proyecto = new ProyectoRequest { Nombre = "proyecto4", Resumen = "Este es un proyecto" };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
             //Assert
-            Assert.AreEqual("Se agrego con exito el proyecto: proyecto2.", response);
+            Assert.AreEqual("Se agrego con exito el proyecto: proyecto4.", response);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
@@ -61,7 +62,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges();
 
             //Act
-            var _proyecto = new CrearProyectoRequest { Nombre = "proyecto2", Resumen = "Este es un proyecto" };
+            var _proyecto = new ProyectoRequest { Nombre = "proyecto2", Resumen = "Este es un proyecto" };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
             //Assert

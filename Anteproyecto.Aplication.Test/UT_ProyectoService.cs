@@ -38,12 +38,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges();
             string nombreDePrueba = "sistemas de informacion para la gestion del talento humano en el departmento del cesar colombia";
 
-             //Act
-<<<<<<< Updated upstream
-            var _proyecto = new ProyectoRequest {Id = 0002, Nombre="proyecto2", Resumen="Este es un proyecto"};
-=======
             var _proyecto = new ProyectoRequest {Id = 2, Nombre= nombreDePrueba, Resumen="Este es un proyecto"};
->>>>>>> Stashed changes
             var response = _proyectoService.ValidarNombre(_proyecto);
 
             //Assert
@@ -66,11 +61,11 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges();
              
             //Act
-            var _proyecto = new ProyectoRequest { Id = 0003, Nombre = "proyecto2", Resumen = "Este es un proyecto" };
+            var _proyecto = new ProyectoRequest { Id = 32, Nombre = "proyecto1", Resumen = "Este es un proyecto" };
             var response = _proyectoService.ValidarResumen(_proyecto);
 
             //Assert
-            Assert.AreEqual("El resumen ingresado es correcto", response.Mensaje);
+            Assert.AreEqual("El resumen ingresado es incorrecta", response.Mensaje);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();

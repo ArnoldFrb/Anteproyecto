@@ -63,7 +63,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges();
              
             //Act
-            var _proyecto = new ProyectoRequest { Id = 0001, Nombre = "proyecto8", Resumen = "Este es un resumen del proyecto para probar" };
+            var _proyecto = new ProyectoRequest { Id = 27, Nombre = "proyecto8", Resumen = "Este es un resumen del proyecto para probar" };
             var response = _proyectoService.ValidarResumen(_proyecto);
 
             //Assert

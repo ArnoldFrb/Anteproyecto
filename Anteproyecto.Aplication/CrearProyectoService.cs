@@ -19,7 +19,7 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public string CrearCuentaBancaria(ProyectoRequest request)
+        public string CrearProyecto(ProyectoRequest request)
         {
             Proyecto proyecto = _proyectoRepository.FindFirstOrDefault(t => t.Nombre == request.Nombre);
             if (proyecto == null)
@@ -37,8 +37,8 @@ namespace Anteproyecto.Aplication
 
         public class ProyectoRequest
         {
-            public string Nombre { get; private set; }
-            public string Resumen { get; private set; }
+            public string Nombre { get; set; }
+            public string Resumen { get; set; }
             public List<Obsercion> Obsercion { get; private set; }
             public Evaluacion Evaluacion { get; private set; }
             public AsesorTematico AsesorTematico { get; private set; }

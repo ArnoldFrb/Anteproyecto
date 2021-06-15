@@ -6,6 +6,7 @@ using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
+using static Anteproyecto.Aplication.ConvocatoriaService;
 using static Anteproyecto.Aplication.CrearConvocatoriaService;
 
 namespace Anteproyecto.Aplication.Test

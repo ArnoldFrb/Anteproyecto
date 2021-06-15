@@ -39,7 +39,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges();
 
              //Act
-            var _user = new UsuarioRequest {Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest {Id=1, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
             var response = _usuarioService.ModificarContraseña(_user);
 
             //Assert
@@ -62,7 +62,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges();
 
             //Act
-            var _user = new UsuarioRequest {Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "Comoestaspedro@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest {Id = 1, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456789", Correo = "Comoestaspedro@gmail.com", Contraseña = "cambieperro" };
             var response = _usuarioService.ModificarCorreo(_user);
 
             //Assert

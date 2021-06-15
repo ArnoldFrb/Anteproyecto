@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static Anteproyecto.Aplication.ConvocatoriaService;
+using static Anteproyecto.Aplication.CrearConvocatoriaService;
 
 namespace Anteproyecto.Infrastructure.WebApi.Controllers
 {
@@ -26,11 +27,19 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
             _mailServer = mailServer;
         }
 
-        [HttpPost]
+        [HttpPost("modificar-convocatoria")]
         public MensageConvocatoriaResponse PostValidarNombre(ConvocatoriaRequest convocatoriaRequest)
         {
             var service = new ConvocatoriaService(_unitOfWork, _convocatoriaRepository, _mailServer);
             var response = service.ModificarConvocatoria(convocatoriaRequest);
+            return response;
+        }
+
+        [HttpPost]
+        public MensageCrearConvocatoriaResponse CrearConvocatoria(CrearConvocatoriaRequest convocatoriaRequest)
+        {
+            var service = new CrearConvocatoriaService(_unitOfWork, _convocatoriaRepository, _mailServer);
+            var response = service.CrearConvocatoria(convocatoriaRequest);
             return response;
         }
     }

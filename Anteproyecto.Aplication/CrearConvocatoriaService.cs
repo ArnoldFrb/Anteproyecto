@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    class CrearConvocatoriaService
+    public class CrearConvocatoriaService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
@@ -22,26 +22,31 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public string CrearCuentaBancaria(ProyectoRequest request)
+        public MensageCrearConvocatoriaResponse CrearConvocatoria(CrearConvocatoriaRequest request)
         {
             Convocatoria convocatoria = ConvocatoriaNueva.EstablerConvocatoria(request.FechaInicio, request.FechaCierre);
             if (convocatoria != null)
             {
                 _convocatoriaRepository.Add(convocatoria);
                 _unitOfWork.Commit();
-                return $"Se ha añadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio} / Fin: {convocatoria.FechaCierre}.";
+                return new MensageCrearConvocatoriaResponse() { Mensaje = $"Se ha añadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio} / Fin: {convocatoria.FechaCierre}." };
             }
             else
             {
-                return $"Error al establecer la convocatoria";
+                return new MensageCrearConvocatoriaResponse() { Mensaje = $"Error al establecer la convocatoria" };
             }
         }
 
-        public class ProyectoRequest
+        public class CrearConvocatoriaRequest
         {
             public DateTime FechaInicio { get; set; }
             public DateTime FechaCierre { get; set; }
             public bool CargarProyectos { get; set; }
+        }
+
+        public class MensageCrearConvocatoriaResponse
+        {
+            public string Mensaje { get; set; }
         }
 
         public static class ConvocatoriaNueva
