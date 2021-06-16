@@ -46,7 +46,10 @@ namespace Anteproyecto.Aplication
 
             if (proyecto != null)
             {
-                proyecto.ValidarResumen(request.Resumen);
+                if (proyecto.ValidarResumen(request.Resumen) == "Registro Exitozo, Se ha registrado el nuevo Resumen")
+                {
+
+                }
                 _unitOfWork.Commit();
                 return new MensageProyectoResponse() { Mensaje = "El resumen ingresado es correcto" };
             }

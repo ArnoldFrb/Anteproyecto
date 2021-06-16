@@ -38,11 +38,11 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
-            var _proyecto = new ProyectoRequest {Id = 0002, Nombre="proyecto2", Resumen="Este es un proyecto"};
+            var _proyecto = new ProyectoRequest {Id = 1, Nombre="proyecto1", Resumen="Este es un proyecto"};
             var response = _proyectoService.ValidarNombre(_proyecto);
 
             //Assert
-            Assert.AreEqual("El nombre ingresado es incorrecta", response.Mensaje);
+            Assert.AreEqual("El nombre ingresado es correcto", response.Mensaje);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
@@ -55,13 +55,13 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseña = "123344444"};
-            var proyecto = new Proyecto("Poryecto8", "Este es un resumen del proyecto para probar");
+            var proyecto = new Proyecto("Aplicativo Web Para la Gestión, seguimiento y evaluación de los anteproyectos del programa de Psicología de la Universidad Popular del Cesar", "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicología en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda");
              
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
              
             //Act
-            var _proyecto = new ProyectoRequest { Id = 0001, Nombre = "proyecto8", Resumen = "Este es un resumen del proyecto para probar" };
+            var _proyecto = new ProyectoRequest { Id = 1, Nombre = "proyecto8", Resumen = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicología en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda" };
             var response = _proyectoService.ValidarResumen(_proyecto);
 
             //Assert
