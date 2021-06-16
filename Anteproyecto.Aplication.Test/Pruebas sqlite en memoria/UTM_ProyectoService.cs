@@ -32,13 +32,13 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var proyecto = new Proyecto("Poryecto1","Este proyecto es importane");
+            var proyecto = new Proyecto("proyecto1", "Este proyecto es importane");
 
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges(); 
 
              //Act
-            var _proyecto = new ProyectoRequest {Id = 1, Nombre="proyecto1", Resumen="Este es un proyecto"};
+            var _proyecto = new ProyectoRequest {Id = proyecto.Id, Nombre="proyecto1", Resumen="Este es un proyecto"};
             var response = _proyectoService.ValidarNombre(_proyecto);
 
             //Assert

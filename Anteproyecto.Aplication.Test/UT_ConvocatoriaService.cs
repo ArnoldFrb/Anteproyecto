@@ -41,7 +41,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
-            var _convocatoria = new ConvocatoriaRequest {Id = 2, FechaInicio= new DateTime(2021,1,1) , FechaCierre = new DateTime(2021, 3, 1) };
+            var _convocatoria = new ConvocatoriaRequest {Id = convocatoria.Id, FechaInicio= new DateTime(2021,1,1) , FechaCierre = new DateTime(2021, 3, 1) };
             var response = _convocatoriaService.ActivarCargaProyectos(_convocatoria);
 
             //Assert
@@ -64,7 +64,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges();
 
             //Act
-            var _convocatoria = new ConvocatoriaRequest { Id = 2, FechaInicio = new DateTime(2022, 1, 1), FechaCierre = new DateTime(2022, 3, 1) };
+            var _convocatoria = new ConvocatoriaRequest { Id = convocatoria.Id, FechaInicio = new DateTime(2022, 1, 1), FechaCierre = new DateTime(2022, 3, 1) };
             var response = _convocatoriaService.DesactivarCargaProyectos(_convocatoria);
 
             //Assert

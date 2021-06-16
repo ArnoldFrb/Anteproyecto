@@ -42,8 +42,6 @@ namespace Anteproyecto.Aplication.Test
             var _proyecto = new CrearProyectoRequest {Nombre = "proyecto", Resumen = "Este es un proyecto" };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
-
-
             //Assert
             Assert.AreEqual("Se agrego con exito el proyecto: proyecto.", response);
 
