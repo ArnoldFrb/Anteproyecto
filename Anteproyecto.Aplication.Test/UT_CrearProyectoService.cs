@@ -39,11 +39,13 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
-            var _proyecto = new CrearProyectoRequest {Nombre = "proyecto6", Resumen = "Este es un proyecto" };
+            var _proyecto = new CrearProyectoRequest {Nombre = "proyecto", Resumen = "Este es un proyecto" };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
+
+
             //Assert
-            Assert.AreEqual("Se agrego con exito el proyecto: proyecto6.", response);
+            Assert.AreEqual("Se agrego con exito el proyecto: proyecto.", response);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
