@@ -42,7 +42,7 @@ namespace Anteproyecto.Aplication.Test
             var response = _proyectoService.ValidarNombre(_proyecto);
 
             //Assert
-            Assert.AreEqual("El nombre ingresado es correcto", response.Mensaje);
+            Assert.AreEqual("El nombre ingresado es incorrecta", response.Mensaje);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
