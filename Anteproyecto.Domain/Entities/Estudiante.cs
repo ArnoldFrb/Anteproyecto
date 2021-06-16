@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace Anteproyecto.Domain
+namespace Anteproyecto.Domain.Entities
 {
     public class Estudiante : Usuario
     {

@@ -1,4 +1,5 @@
 ﻿using Anteproyecto.Domain;
+using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
 using Infrastructure.Data.Base;
 using System;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Infrastructure.Data.Repositories
 {
-    class ProyectoRepisitory : GenericRepository<Proyecto>, IProyectoRepository
+    public class ProyectoRepository : GenericRepository<Proyecto>, IProyectoRepository
     {
-        public ProyectoRepisitory(IDbContext context) : base(context)
+        public ProyectoRepository(IDbContext context) : base(context)
         {
         }
     }

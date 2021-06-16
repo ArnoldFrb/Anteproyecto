@@ -3,17 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Anteproyecto.Domain
+namespace Anteproyecto.Domain.Entities
 {
     public class Proyecto : Entity<int>, IAggregateRoot
     {
         public string Nombre  { get; private set; }
         public string Resumen { get; private set; }
 
-        private List<Obsercion> Obsercion;
-        private Evaluacion Evaluacion;
-        private AsesorTematico AsesorTematico;
-        private AsesorMetodologico AsesorMetodologico;
+        public List<Obsercion> Obsercion { get; private set; }
+        public Evaluacion Evaluacion { get; private set; }
+        public AsesorTematico AsesorTematico { get; private set; }
+        public AsesorMetodologico AsesorMetodologico { get; private set; }
 
         public Proyecto(string nombre, string resumen)
         {

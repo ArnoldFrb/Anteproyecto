@@ -10,7 +10,6 @@ namespace Anteproyecto.Aplication
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMailServer _mailServer;
 
-
         public UsuarioService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
@@ -20,8 +19,7 @@ namespace Anteproyecto.Aplication
 
         public ModificarContrasenaResponse ModificarContraseña(UsuarioRequest request)
         { 
-            
-            var usuario = _unitOfWork.UsuarioRepository.FindFirstOrDefault(user => user.NumeroIdentificacion == request.NumeroIdentificacion);
+            var usuario = _usuarioRepository.FindFirstOrDefault(user => user.NumeroIdentificacion == request.NumeroIdentificacion);
 
             if (usuario != null)
             {
@@ -31,16 +29,13 @@ namespace Anteproyecto.Aplication
             }
             else
             {
-            return new ModificarContrasenaResponse() { Mensaje = "La identificacion del usuario es incorrecta" };
-
+                return new ModificarContrasenaResponse() { Mensaje = "La identificacion del usuario es incorrecta" };
             }
-            
         }
 
         public ModificarContrasenaResponse ModificarCorreo(UsuarioRequest request)
         {
-
-            var usuario = _unitOfWork.UsuarioRepository.FindFirstOrDefault(user => user.NumeroIdentificacion == request.NumeroIdentificacion);
+            var usuario = _usuarioRepository.FindFirstOrDefault(user => user.NumeroIdentificacion == request.NumeroIdentificacion);
 
             if (usuario != null)
             {
@@ -53,15 +48,11 @@ namespace Anteproyecto.Aplication
                 return new ModificarContrasenaResponse() { Mensaje = "La identificacion del usuario es incorrecta" };
 
             }
-
         }
-
-
 
         public class UsuarioRequest
         {
-             
-            public string Id { get;   set; }
+            public int Id { get;   set; }
             
             public string Nombres { get;   set; }
            
@@ -73,8 +64,6 @@ namespace Anteproyecto.Aplication
            
             public string Contraseña { get;   set; }
         }
-
-
 
         public class ModificarContrasenaResponse
         {

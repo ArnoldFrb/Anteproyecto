@@ -1,3 +1,4 @@
+using Anteproyecto.Domain.Entities;
 using NUnit.Framework;
 
 namespace Anteproyecto.Domain.Test
