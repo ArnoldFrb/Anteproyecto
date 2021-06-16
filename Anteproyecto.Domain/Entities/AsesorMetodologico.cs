@@ -6,7 +6,7 @@
         {
         }
 
-        public override string ModificarContraseña(string contraseña)
+        public override string ModificarContrasena(string contraseña)
         {
             throw new System.NotImplementedException();
         }

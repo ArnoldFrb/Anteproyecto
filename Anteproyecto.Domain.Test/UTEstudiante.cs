@@ -20,12 +20,12 @@ namespace Anteproyecto.Domain.Test
             Entonces El sistema presentará el mensaje. “No puede ingresar una contraseña igual a la registrada, pruebe de nuevo”
         */
         [Test]
-        public void NoPuedeIngresarContraseñaIgualALaAnterior()
+        public void NoPuedeIngresarContrasenaIgualALaAnterior()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
             var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarContraseña("@#Hl1g2l34");
+            var resultado = estudiante.ModificarContrasena("@#Hl1g2l34");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("No puede ingresar contraseña igual a la registrada, pruebe de nuevo", resultado);
         }
@@ -41,12 +41,12 @@ namespace Anteproyecto.Domain.Test
             Entonces El sistema presentará el mensaje. “Su nueva contraseña es correcta”
         */
         [Test]
-        public void PuedeIngresarContraseñaMayorOIgualA10Caracteres()
+        public void PuedeIngresarContrasenaMayorOIgualA10Caracteres()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
             var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarContraseña("g2l34@#Hl1");
+            var resultado = estudiante.ModificarContrasena("g2l34@#Hl1");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("Su nueva contraseña es correcta", resultado);
         }

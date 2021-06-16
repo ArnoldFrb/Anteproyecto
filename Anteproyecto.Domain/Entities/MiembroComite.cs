@@ -11,7 +11,7 @@ namespace Anteproyecto.Domain
         {
         }
 
-        public override string ModificarContraseña(string contraseña)
+        public override string ModificarContrasena(string contraseña)
         {
             if (Contraseña.Equals(contraseña))
             {

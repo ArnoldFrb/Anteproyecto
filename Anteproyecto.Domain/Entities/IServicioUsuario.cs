@@ -14,7 +14,7 @@ namespace Anteproyecto.Domain.Entities
 
 
         string ModificarCorreo(string correo);
-        string ModificarContraseña(string contraseña);
+        string ModificarContrasena(string contraseña);
     }
 
     }

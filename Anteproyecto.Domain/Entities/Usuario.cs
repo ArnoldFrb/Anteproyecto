@@ -21,6 +21,6 @@ namespace Anteproyecto.Domain
         }
 
         public abstract string ModificarCorreo(string correo);
-        public abstract string ModificarContraseña(string contraseña);
+        public abstract string ModificarContrasena(string contraseña);
     }
 }
