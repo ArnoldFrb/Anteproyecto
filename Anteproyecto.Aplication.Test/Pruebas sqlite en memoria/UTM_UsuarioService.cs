@@ -2,7 +2,6 @@ using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Domain;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Infrastructure.Data.Base;
-using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,7 @@ using static Anteproyecto.Aplication.UsuarioService;
 
 namespace Anteproyecto.Aplication.Test
 {
-    public class UsurioServiceTests
+    public class UsurioServiceInMemoryTests
     {
 
         private ProyectoContext _dbContext;
@@ -21,25 +20,26 @@ namespace Anteproyecto.Aplication.Test
         public void Setup()
         {
             var optionsSqlite = new DbContextOptionsBuilder<ProyectoContext>()
-           .UseSqlite(@"Data Source=C:\\BD\\AnteProyecto.db")
-           .Options;
+          .UseSqlite(@"Data Source=C:\\BD\\AnteProyecto.db")
+          .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
 
             _usuarioService = new UsuarioService(new UnitOfWork(_dbContext), new UsuarioRepository(_dbContext), new MailServerSpy());
         }
 
         [Test]
-        public void ModificarContraseaTest()
+        public void ModificarContraseaInMemoryTest()
         {
 
             //Arrange
-            var user = UsuarioMother.crearUsuarioEstudiante("0123456783");
-      
+            //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contrase�a = "123344444"};
+            var user = new Estudiante("Jose Carlo","Santander Pimienta","0123456781","hola@gmail.com","123344444");
+
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();
 
              //Act
-            var _user = new UsuarioRequest {Id= 0003,Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456783", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest {Id= 0003,Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456781", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
             var response = _usuarioService.ModificarContraseña(_user);
 
             //Assert
@@ -51,19 +51,18 @@ namespace Anteproyecto.Aplication.Test
         }
 
         [Test]
-        public void ModificarCorreoTest()
+        public void ModificarCorreoInMemoryTest()
         {
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contrase�a = "123344444"};
-            var user = UsuarioMother.crearUsuarioEstudiante("0123456711");
-            
+            var user = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456783", "hola@gmail.com", "123344444");
             
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();
 
             //Act
-            var _user = new UsuarioRequest {Id= 0003, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456711", Correo = "Comoestaspedro@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest {Id= 0003, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456783", Correo = "Comoestaspedro@gmail.com", Contraseña = "cambieperro" };
             var response = _usuarioService.ModificarCorreo(_user);
 
             //Assert

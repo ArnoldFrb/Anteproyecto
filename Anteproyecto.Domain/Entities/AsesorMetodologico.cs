@@ -1,6 +1,12 @@
-﻿namespace Anteproyecto.Domain
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
+
+
+namespace Anteproyecto.Domain.Entities
 {
-    internal class AsesorMetodologico : Usuario
+    public class AsesorMetodologico : Usuario
     {
         public AsesorMetodologico(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña)
         {

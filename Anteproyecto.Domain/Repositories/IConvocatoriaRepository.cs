@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Domain.Repositories
 {
-    public interface IProyectoRepository : IGenericRepository<Proyecto>
+    public interface IConvocatoriaRepository : IGenericRepository<Convocatoria>
     {
     }
 }

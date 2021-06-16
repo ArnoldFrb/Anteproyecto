@@ -8,6 +8,6 @@ namespace Anteproyecto.Domain.Contracts
 {
     public interface IMailServer
     {
-        void Send(string v, string email);
+        void Send(string message, string email);
     }
 }
