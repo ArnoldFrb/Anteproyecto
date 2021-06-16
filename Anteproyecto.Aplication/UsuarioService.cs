@@ -23,7 +23,7 @@ namespace Anteproyecto.Aplication
 
             if (usuario != null)
             {
-                usuario.ModificarContraseña(request.Contraseña);
+                usuario.ModificarContrasena(request.Contraseña);
                 _unitOfWork.Commit();
                 return new ModificarContrasenaResponse() { Mensaje = "La contraseña a sido modificada satifctoriamente"};
             }
