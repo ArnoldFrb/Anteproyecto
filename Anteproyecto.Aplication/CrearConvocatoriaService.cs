@@ -29,7 +29,7 @@ namespace Anteproyecto.Aplication
             {
                 _convocatoriaRepository.Add(convocatoria);
                 _unitOfWork.Commit();
-                return $"Se ha añadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio} / Fin: {convocatoria.FechaCierre}.";
+                return $"Se ha añadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio} / Fin: {convocatoria.FechaCierre}";
             }
             else
             {
@@ -39,6 +39,7 @@ namespace Anteproyecto.Aplication
 
         public class CrearConvocatoriaRequest
         {
+            public int Id { get; set; }
             public DateTime FechaInicio { get; set; }
             public DateTime FechaCierre { get; set; }
             public bool CargarProyectos { get; set; }

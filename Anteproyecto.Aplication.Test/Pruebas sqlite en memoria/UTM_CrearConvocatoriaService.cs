@@ -40,12 +40,12 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
-            var _convocatoria = new CrearConvocatoriaRequest { FechaInicio= new DateTime(2021,1,1,12,0,0) , FechaCierre = new DateTime(2021,3,1,12,0,0), CargarProyectos = true };
+            var _convocatoria = new CrearConvocatoriaRequest { Id=1, FechaInicio= new DateTime(2021,1,1,12,0,0) , FechaCierre = new DateTime(2021,3,1,12,0,0), CargarProyectos = true };
             var response = _crearconvocatoriaService.CrearConvocatoria(_convocatoria);
 
             //Assert
           
-            Assert.AreEqual("Se ha añadido la sigiente convocatoria, Inicio: 01/01/2021 12:00:00 p. m. / Fin: 01/03/2021 12:00:00 p. m..", response);
+            Assert.AreEqual("Se ha añadido la sigiente convocatoria, Inicio: 1/01/2021 12:00:00 p. m. / Fin: 1/03/2021 12:00:00 p. m.", response);
 
             _dbContext.Convocatorias.Remove(convocatoria);
             _dbContext.SaveChanges();
