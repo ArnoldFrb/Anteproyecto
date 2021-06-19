@@ -33,13 +33,13 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var user = UsuarioMother.crearUsuarioEstudiante("0123456783");
+            var user = UsuarioMother.crearUsuarioEstudiante("0123456780");
       
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();
 
              //Act
-            var _user = new UsuarioRequest {Id= 0003,Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456783", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
+            var _user = new UsuarioRequest {Id= 0003,Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "0123456780", Correo = "hola@gmail.com", Contraseña = "cambieperro" };
             var response = _usuarioService.ModificarContraseña(_user);
 
             //Assert

@@ -22,32 +22,36 @@ namespace Anteproyecto.Aplication.Test
             var optionsSqlite = new DbContextOptionsBuilder<ProyectoContext>()
            .UseSqlite(@"Data Source=C:\\BD\\AnteProyecto.db")
            .Options;
+             
             _dbContext = new ProyectoContext(optionsSqlite);
+            _dbContext.Database.EnsureDeleted();
+            _dbContext.Database.EnsureCreated();
 
             _CrearProyectoService = new CrearProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
 
         }
 
         [Test]
-        public void CargaProyectosTest()
+        public void verificarProyectosCargadosTest()
         {
 
             //Arrange
-            var proyecto = ProyectoMother.crearProyecto("proyecto1");
+            var proyecto = ProyectoMother.crearProyecto("proyectos9");
 
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges(); 
 
              //Act
-            var _proyecto = new CrearProyectoRequest {Nombre = "proyecto", Resumen = "Este es un proyecto" };
+            var _proyecto = new CrearProyectoRequest {Nombre = proyecto.Nombre, Resumen = proyecto.Resumen };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
-            //Assert
-            Assert.AreEqual("Se agrego con exito el proyecto: proyecto.", response);
+            //Assert 
+            Assert.AreEqual("El Nombre del proyecto ya ha sido registrado", response);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
 
-        } 
+        }
+         
     }
 }

@@ -29,7 +29,7 @@ namespace Anteproyecto.Aplication
             {
                 _convocatoriaRepository.Add(convocatoria);
                 _unitOfWork.Commit();
-                return $"Se ha anadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio} / Fin: {convocatoria.FechaCierre}";
+                return $"Se ha anadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio.ToLongDateString()} / Fin: {convocatoria.FechaCierre.ToLongDateString()}";
             }
             else
             {

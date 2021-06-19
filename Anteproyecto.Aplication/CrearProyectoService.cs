@@ -21,7 +21,7 @@ namespace Anteproyecto.Aplication
 
         public string CrearProyecto(CrearProyectoRequest request)
         {
-            Proyecto proyecto = _proyectoRepository.FindFirstOrDefault(t => t.Nombre == request.Nombre);
+            Proyecto proyecto = _proyectoRepository.FindFirstOrDefault(t => t.Nombre == request.Nombre.ToString());
             if (proyecto == null)
             {
                 Proyecto proyectoNueva = ProyectoNuevo.CrearProyecto(request.Nombre, request.Resumen);

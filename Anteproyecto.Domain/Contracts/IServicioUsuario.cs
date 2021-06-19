@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Anteproyecto.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,8 @@ namespace Anteproyecto.Domain.Contracts
 
         string ModificarCorreo(string correo);
         string ModificarContrasena(string contraseña);
+
+        string ValidarUsuario(Usuario usuario);
     }
 
     }

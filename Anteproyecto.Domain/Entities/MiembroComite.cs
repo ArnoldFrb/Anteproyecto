@@ -44,5 +44,10 @@ namespace Anteproyecto.Domain.Entities
             }
             throw new NotImplementedException();
         }
+
+        public override string ValidarUsuario(Usuario usuario)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
