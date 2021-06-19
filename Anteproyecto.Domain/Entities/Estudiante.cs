@@ -49,7 +49,14 @@ namespace Anteproyecto.Domain.Entities
 
         public override string ValidarUsuario(Usuario usuario)
         {
-            throw new NotImplementedException();
+            if (usuario.Nombres == null || usuario.Apellidos == null || usuario.NumeroIdentificacion == null || usuario.Correo == null || usuario.Contraseña == null)
+            {
+                return "Digite los campos primordiales para el registro";
+            }
+            else
+            {
+                return "Usuario registrado correctamente";
+            }
         }
     }
 }
