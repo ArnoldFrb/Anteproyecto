@@ -7,7 +7,7 @@ namespace Anteproyecto.Domain.Entities
 {
     public class MiembroComite : Usuario
     {
-        public MiembroComite(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña)
+        public MiembroComite(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña, int semestre, int edad, bool estado) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña, semestre, edad, estado)
         {
         }
 

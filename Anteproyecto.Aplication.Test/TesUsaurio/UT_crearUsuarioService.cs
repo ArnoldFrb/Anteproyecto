@@ -34,17 +34,17 @@ namespace Anteproyecto.Aplication.Test.TesUsaurio
         {
 
             //Arrange
-            var user = UsuarioMother.crearUsuarioEstudiante("0123456780");
+            var user = UsuarioMother.crearUsuarioEstudiante("0123456781");
 
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();
 
             //Act
-            var _user = new crearUsuarioRequest { Nombres = user.Nombres, Apellidos = user.Apellidos, NumeroIdentificacion = "0123456710", Correo = user.NumeroIdentificacion, Contraseña = user.Contraseña};
+            var _user = new crearUsuarioRequest { Nombres = user.Nombres, Apellidos = user.Apellidos, NumeroIdentificacion = "0123456799", Correo = user.NumeroIdentificacion, Contraseña = user.Contraseña, Semestre = 10,Edad = user.Edad , Estado = user.Estado};
             var response = _crearusuarioService.CrearCuentaBancaria(_user);
 
             //Assert
-            Assert.AreEqual("Se ha creado un nuevo usuario con la identificacion: 0123456710", response.Mensaje);
+            Assert.AreEqual("Se ha creado un nuevo usuario con la identificacion: 0123456799", response.Mensaje);
 
             _dbContext.Usuarios.Remove(user);
             _dbContext.SaveChanges();

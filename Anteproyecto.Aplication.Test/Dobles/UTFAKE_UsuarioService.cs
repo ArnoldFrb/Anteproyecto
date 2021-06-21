@@ -17,7 +17,7 @@ namespace Anteproyecto.Aplication.Test.Dobles
         [Test]
         public void ModificarContraseñaFakeTest()
         {
-            var user = new Estudiante("Jose Carlo", "Santander Pimienta", "23456789", "hola@gmail.com", "123344444");
+            var user = new Estudiante("Jose Carlo", "Santander Pimienta", "23456789", "hola@gmail.com", "123344444",9,23,true);
             var service = new UsuarioService(new UnitOfWorkFake(), new CuentaRepositoryFake(), new MailServerSpy());
              
             //Act 

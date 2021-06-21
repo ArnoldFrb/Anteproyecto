@@ -12,24 +12,24 @@ namespace Anteproyecto.Infrastructure.Data.ObjectMother
        public static Estudiante crearUsuarioEstudiante(string NumeroIdentificacion)
         {
 
-            return new Estudiante("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444");
+            return new Estudiante("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444",9,23,true);
         }
 
         public static MiembroComite crearUsuarioMiembroComite(string NumeroIdentificacion)
         {
 
-            return new MiembroComite("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444");
+            return new MiembroComite("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444", 9, 23, true);
         }
         public static AsesorMetodologico crearUsuarioAsesorMetodologico(string NumeroIdentificacion)
         {
 
-            return new AsesorMetodologico("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444");
+            return new AsesorMetodologico("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444",0,29,true);
         }
 
         public static AsesorTematico crearUsuarioAsesorTematico(string NumeroIdentificacion)
         {
 
-            return new AsesorTematico("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444");
+            return new AsesorTematico("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444", 0, 29, true);
         }
 
     }

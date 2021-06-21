@@ -24,7 +24,7 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarContraseñaIgualALaAnterior()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,29,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = user.ModificarContrasena("@#Hl1g2l34");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -45,7 +45,7 @@ namespace Anteproyecto.Domain.Test
         public void PuedeIngresarContraseñaMayorOIgualA10Caracteres()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,29,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = user.ModificarContrasena("g2l34@#Hl1");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -66,7 +66,7 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarCorreosConEspacios()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,23,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = user.ModificarCorreo("hol @gmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -87,7 +87,7 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarCorreosSinArroba()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,23,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = user.ModificarCorreo("holagmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -108,7 +108,7 @@ namespace Anteproyecto.Domain.Test
         public void PuedeIngresarCorreosConEstructuraAdecuada()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,20,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = user.ModificarCorreo("mundo@gmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN

@@ -33,7 +33,7 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contrase�a = "123344444"};
-            var user = new Estudiante("Jose Carlo","Santander Pimienta","0123456781","hola@gmail.com","123344444");
+            var user = new Estudiante("Jose Carlo","Santander Pimienta","0123456781","hola@gmail.com","123344444",8,23,true);
 
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();
@@ -56,7 +56,7 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contrase�a = "123344444"};
-            var user = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456781", "hola@gmail.com", "123344444");
+            var user = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456781", "hola@gmail.com", "123344444",8,24,true);
             
             _dbContext.Usuarios.Add(user);
             _dbContext.SaveChanges();

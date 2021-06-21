@@ -28,7 +28,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
 
             if (!usuarioRepository.GetAll().Any())
             {
-                var cuenta = new Estudiante("Jose Carlos", "Oñate Oñate", "123456789", "usuario@user.com", "1234567");
+                var cuenta = new Estudiante("Jose Carlos", "Oñate Oñate", "123456789", "usuario@user.com", "1234567",9,24,true);
                 usuarioRepository.Add(cuenta);
                 unitOfWork.Commit();
             }

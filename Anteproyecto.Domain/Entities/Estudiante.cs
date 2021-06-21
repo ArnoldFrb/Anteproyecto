@@ -9,7 +9,7 @@ namespace Anteproyecto.Domain.Entities
     public class Estudiante : Usuario
     {
         public Proyecto Proyecto { get; protected set; }
-        public Estudiante(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña)
+        public Estudiante(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña, int semestre, int edad, bool estado) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña, semestre, edad, estado)
         {
         }
 
@@ -49,7 +49,8 @@ namespace Anteproyecto.Domain.Entities
 
         public override string ValidarUsuario(Usuario usuario)
         {
-            if (usuario.Nombres == null || usuario.Apellidos == null || usuario.NumeroIdentificacion == null || usuario.Correo == null || usuario.Contraseña == null)
+            if (usuario.Nombres == null || usuario.Apellidos == null || usuario.NumeroIdentificacion == null || usuario.Correo == null || usuario.Contraseña == null
+                || usuario.Semestre <= 0 || usuario.Edad == 0 )
             {
                 return "Digite los campos primordiales para el registro";
             }

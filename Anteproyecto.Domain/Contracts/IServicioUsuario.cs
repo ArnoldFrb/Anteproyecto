@@ -12,7 +12,9 @@ namespace Anteproyecto.Domain.Contracts
         string NumeroIdentificacion { get; }
         string Correo { get; }
         string Contraseña { get;  }
-
+        int Semestre { get;}
+        int Edad { get;  }
+        bool Estado { get; }
 
         string ModificarCorreo(string correo);
         string ModificarContrasena(string contraseña);

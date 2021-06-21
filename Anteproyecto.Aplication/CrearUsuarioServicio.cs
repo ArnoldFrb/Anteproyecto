@@ -27,7 +27,7 @@ namespace Anteproyecto.Aplication
             Usuario user = _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.NumeroIdentificacion.ToString());
             if (user == null)
             {
-                Estudiante us = new Estudiante(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Contraseña);
+                Estudiante us = new Estudiante(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Contraseña, request.Semestre,request.Edad,true);
                 
                 if (us.ValidarUsuario(us) == "Usuario registrado correctamente")
                 {
@@ -56,6 +56,10 @@ namespace Anteproyecto.Aplication
             public string NumeroIdentificacion { get; set; }
             public string Correo { get; set; }
             public string Contraseña { get; set; }
+            public int Semestre { get; set; }
+            public int Edad { get;  set; }
+            public bool Estado { get; set; }
+
         }
 
 

@@ -8,7 +8,7 @@ namespace Anteproyecto.Domain.Entities
 {
     public class AsesorMetodologico : Usuario
     {
-        public AsesorMetodologico(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña)
+        public AsesorMetodologico(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña, int semestre, int edad, bool estado) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña, semestre, edad, estado)
         {
         }
 
