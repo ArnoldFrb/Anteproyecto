@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Anteproyecto.Domain.Entities
 {
-    public class Obsercion : Entity<int>
+    public class Observacion : Entity<int>
     {
         public string Nombre { get; private set; }
         public string Comentario { get; private set; }
 
-        public Obsercion(string nombre, string comentario)
+        public Observacion(string nombre, string comentario)
         {
             Nombre = nombre;
             Comentario = comentario;

@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Anteproyecto.Aplication.ProyectoService;
+using static Anteproyecto.Aplication.ValidarNombreProyectoService;
 
 namespace Anteproyecto.Infrastructure.WebApi.Controllers
 {
@@ -29,7 +29,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         [HttpPost]
         public MensageProyectoResponse PostValidarNombre(ProyectoRequest proyectoRequest)
         {
-            var service = new ProyectoService(_unitOfWork, _proyectoRepository, _mailServer);
+            var service = new ValidarNombreProyectoService(_unitOfWork, _proyectoRepository, _mailServer);
             var response = service.ValidarNombre(proyectoRequest);
             return response;
         }

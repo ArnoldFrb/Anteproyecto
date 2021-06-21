@@ -35,17 +35,17 @@ namespace Anteproyecto.Aplication.Test
         public void verificarProyectosCargadosTest()
         {
 
-            //Arrange
-            var proyecto = ProyectoMother.crearProyecto("proyectos9");
+            //ARRANGE //PREPARAR // DADO // GIVEN
+            var proyecto = ProyectoMother.CrearProyecto();
 
             _dbContext.Proyectos.Add(proyecto);
-            _dbContext.SaveChanges(); 
+            _dbContext.SaveChanges();
 
-             //Act
+            // ACT // ACCION // CUANDO // WHEN
             var _proyecto = new CrearProyectoRequest {Nombre = proyecto.Nombre, Resumen = proyecto.Resumen };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
-            //Assert 
+            //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual("El Nombre del proyecto ya ha sido registrado", response);
 
             _dbContext.Proyectos.Remove(proyecto);

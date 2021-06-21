@@ -6,11 +6,11 @@ namespace Anteproyecto.Domain.Entities
 {
     public abstract class Usuario : Entity<int>, IServicioUsuario
     {
-        public string Nombres { get; private set; }
-        public string Apellidos { get; private set; }
-        public string NumeroIdentificacion { get; private set; }
-        public string Correo { get; private set; }
-        public string Contraseña { get; private set; }
+        public string Nombres { get; protected set; }
+        public string Apellidos { get; protected set; }
+        public string NumeroIdentificacion { get; protected set; }
+        public string Correo { get; protected set; }
+        public string Contraseña { get; protected set; }
 
         protected Usuario(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña)
         {

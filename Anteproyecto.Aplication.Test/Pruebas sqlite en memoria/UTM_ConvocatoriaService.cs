@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
 using static Anteproyecto.Aplication.ConvocatoriaService;
-using static Anteproyecto.Aplication.ProyectoService;
+using static Anteproyecto.Aplication.ValidarNombreProyectoService;
 
 namespace Anteproyecto.Aplication.Test
 {

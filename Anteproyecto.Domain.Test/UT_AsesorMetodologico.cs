@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Anteproyecto.Domain.Test
 {
-    class UTMiembroComite
+    class UT_AsesorMetodologico
     {
         [SetUp]
         public void Setup()

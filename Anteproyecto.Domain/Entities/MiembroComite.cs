@@ -19,6 +19,7 @@ namespace Anteproyecto.Domain.Entities
             }
             if (!Contraseña.Equals(contraseña) && contraseña.Length >= 10)
             {
+                Contraseña = contraseña;
                 return "Su nueva contraseña es correcta";
             }
             throw new NotImplementedException();
@@ -31,7 +32,8 @@ namespace Anteproyecto.Domain.Entities
             {
                 if (Regex.Replace(correo, expresion, String.Empty).Length == 0)
                 {
-                    return "El correo ingresado es valido";
+                    Correo = correo;
+                    return $"El correo ingresado es valido {correo}";
                 }
                 else
                 {

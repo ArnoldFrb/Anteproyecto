@@ -7,10 +7,11 @@ namespace Anteproyecto.Domain.Entities
 {
     public class Proyecto : Entity<int>, IAggregateRoot
     {
+
         public string Nombre  { get; private set; }
         public string Resumen { get; private set; }
 
-        public List<Obsercion> Obsercion { get; private set; }
+        public List<Observacion> Obsercion { get; private set; }
         public Evaluacion Evaluacion { get; private set; }
         public AsesorTematico AsesorTematico { get; private set; }
         public AsesorMetodologico AsesorMetodologico { get; private set; }
@@ -19,6 +20,17 @@ namespace Anteproyecto.Domain.Entities
         {
             Nombre = nombre;
             Resumen = resumen;
+            Obsercion = new List<Observacion>();
+        }
+
+        public Proyecto(string nombre, string resumen, List<Observacion> obsercion, Evaluacion evaluacion, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico)
+        {
+            Nombre = nombre;
+            Resumen = resumen;
+            Obsercion = obsercion;
+            Evaluacion = evaluacion;
+            AsesorTematico = asesorTematico;
+            AsesorMetodologico = asesorMetodologico;
         }
 
         public string ValidarNombre(string nombre)
@@ -34,7 +46,7 @@ namespace Anteproyecto.Domain.Entities
             if (nombre.Length >= 100)
             {
                 Nombre = nombre;
-                return "Registro Exitozo, Se ha registrado el nuevo Nombre";
+                return $"Registro Exitozo, Se ha registrado el nuevo {Nombre}";
             }
             throw new NotImplementedException();
         }
@@ -51,32 +63,40 @@ namespace Anteproyecto.Domain.Entities
             }
             if (resumen.Length >= 300)
             {
-                Nombre = resumen;
+                Resumen = resumen;
                 return "Registro Exitozo, Se ha registrado el nuevo Resumen";
             }
             throw new NotImplementedException();
         }
 
-        public string Observar(List<Obsercion> obsercion)
+        public string AgregarObservar(List<Observacion> obsercion)
         {
             Obsercion = obsercion;
-            return "Nueva Observacon";
+            return $"Se han agregado las op";
+        }
+
+        public string Observar(Observacion obsercion)
+        {
+            Obsercion.Add(obsercion);
+            return $"Nueva Observacon: {obsercion.Nombre}";
         }
 
         public string Evaluar(Evaluacion evaluacion)
         {
             Evaluacion = evaluacion;
-            return "Nueva Evaluacion";
+            return $"Nueva Evaluacion: {Evaluacion.Nombre}";
         }
 
-        public string AsignarAsesorTematico()
+        public string AsignarAsesorTematico(AsesorTematico asesorTematico)
         {
-            throw new NotImplementedException();
+            AsesorTematico = asesorTematico;
+            return $"Se ha asignado el Asesor Tematico {AsesorTematico.Nombres}";
         }
 
-        public string AsignarAsesorMetodologico()
+        public string AsignarAsesorMetodologico(AsesorMetodologico asesorMetodologico)
         {
-            throw new NotImplementedException();
+            AsesorMetodologico = asesorMetodologico;
+            return $"Se ha asignado el Asesor Metodologico {AsesorMetodologico.Nombres}";
         }
     }
 }

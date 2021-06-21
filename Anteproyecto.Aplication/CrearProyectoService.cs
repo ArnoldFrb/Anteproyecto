@@ -39,7 +39,7 @@ namespace Anteproyecto.Aplication
         {
             public string Nombre { get; set; }
             public string Resumen { get; set; }
-            public List<Obsercion> Obsercion { get; set; }
+            public List<Observacion> Obsercion { get; set; }
             public Evaluacion Evaluacion { get; set; }
             public AsesorTematico AsesorTematico { get; set; }
             public AsesorMetodologico AsesorMetodologico { get; set; }

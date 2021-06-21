@@ -6,7 +6,7 @@ using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using static Anteproyecto.Aplication.ProyectoService;
+using static Anteproyecto.Aplication.ValidarNombreProyectoService;
 
 namespace Anteproyecto.Aplication.Test
 {
@@ -14,7 +14,7 @@ namespace Anteproyecto.Aplication.Test
     {
 
         private ProyectoContext _dbContext;
-        private ProyectoService _proyectoService;
+        private ValidarNombreProyectoService _proyectoService;
 
         [SetUp]
         public void Setup()
@@ -24,7 +24,7 @@ namespace Anteproyecto.Aplication.Test
            .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
 
-            _proyectoService = new ProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
+            _proyectoService = new ValidarNombreProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
 
         }
 
@@ -33,7 +33,7 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var proyecto = ProyectoMother.crearProyecto("proyecto2");
+            var proyecto = ProyectoMother.CrearProyecto();
                  
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges(); 
@@ -56,7 +56,7 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseña = "123344444"};
-            var proyecto = ProyectoMother.crearProyecto("proyecto5");
+            var proyecto = ProyectoMother.CrearProyecto();
 
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();

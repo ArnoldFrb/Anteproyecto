@@ -10,6 +10,14 @@ namespace Anteproyecto.Domain.Entities
         public string Comentario { get; private set; }
         public bool Estado { get; private set; }
 
+        public Evaluacion(int id, string nombre, string comentario, bool estado)
+        {
+            Id = id;
+            Nombre = nombre;
+            Comentario = comentario;
+            Estado = estado;
+        }
+
         public Evaluacion(string nombre, string comentario, bool estado)
         {
             Nombre = nombre;
@@ -23,10 +31,10 @@ namespace Anteproyecto.Domain.Entities
             {
                 return "Registro Fallido, El Dato recibido se encuantra vacio";
             }
-            if (nombre.Length > 0 && nombre.Length >= 35)
+            if (nombre.Length > 10)
             {
                 Nombre = nombre;
-                return "Registro Exitozo, Se ha registrado el nuevo Nombre";
+                return $"Registro Exitozo: {Nombre}";
             }
             throw new NotImplementedException();
         }
@@ -40,7 +48,7 @@ namespace Anteproyecto.Domain.Entities
             if (comentario.Length > 0 && comentario.Length >= 100)
             {
                 Comentario = comentario;
-                return "Registro Exitozo, Se ha registrado el nuevo Comentario";
+                return $"Registro Exitozo: {Comentario}";
             }
             throw new NotImplementedException();
         }
