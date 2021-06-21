@@ -46,7 +46,7 @@ namespace Anteproyecto.Domain.Entities
             if (nombre.Length >= 100)
             {
                 Nombre = nombre;
-                return $"Registro Exitozo, Se ha registrado el nuevo {Nombre}";
+                return $"Registro Exitozo: {Nombre}";
             }
             throw new NotImplementedException();
         }
@@ -64,7 +64,7 @@ namespace Anteproyecto.Domain.Entities
             if (resumen.Length >= 300)
             {
                 Resumen = resumen;
-                return "Registro Exitozo, Se ha registrado el nuevo Resumen";
+                return $"Registro Exitozo: {Resumen}";
             }
             throw new NotImplementedException();
         }
