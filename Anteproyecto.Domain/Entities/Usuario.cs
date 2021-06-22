@@ -5,8 +5,7 @@ using Anteproyecto.Domain.Entities;
 namespace Anteproyecto.Domain.Entities
 {
     public abstract class Usuario : Entity<int>, IServicioUsuario
-    {
-      
+    { 
 
         public string Nombres { get; protected set; }
         public string Apellidos { get; protected set; }

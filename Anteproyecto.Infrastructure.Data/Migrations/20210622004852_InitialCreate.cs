@@ -48,6 +48,9 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     NumeroIdentificacion = table.Column<string>(type: "TEXT", nullable: true),
                     Correo = table.Column<string>(type: "TEXT", nullable: true),
                     Contraseña = table.Column<string>(type: "TEXT", nullable: true),
+                    Semestre = table.Column<int>(type: "INTEGER", nullable: false),
+                    Edad = table.Column<int>(type: "INTEGER", nullable: false),
+                    Estado = table.Column<bool>(type: "INTEGER", nullable: false),
                     Discriminator = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -91,7 +94,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Obsercion",
+                name: "Observacion",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -102,9 +105,9 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Obsercion", x => x.Id);
+                    table.PrimaryKey("PK_Observacion", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Obsercion_Proyectos_ProyectoId",
+                        name: "FK_Observacion_Proyectos_ProyectoId",
                         column: x => x.ProyectoId,
                         principalTable: "Proyectos",
                         principalColumn: "Id",
@@ -112,8 +115,8 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Obsercion_ProyectoId",
-                table: "Obsercion",
+                name: "IX_Observacion_ProyectoId",
+                table: "Observacion",
                 column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
@@ -138,7 +141,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 name: "Convocatorias");
 
             migrationBuilder.DropTable(
-                name: "Obsercion");
+                name: "Observacion");
 
             migrationBuilder.DropTable(
                 name: "Proyectos");

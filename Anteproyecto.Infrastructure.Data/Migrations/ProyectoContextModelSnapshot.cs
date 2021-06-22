@@ -14,7 +14,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.5");
+                .HasAnnotation("ProductVersion", "5.0.7");
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Convocatoria", b =>
                 {
@@ -56,7 +56,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.ToTable("Evaluacion");
                 });
 
-            modelBuilder.Entity("Anteproyecto.Domain.Entities.Obsercion", b =>
+            modelBuilder.Entity("Anteproyecto.Domain.Entities.Observacion", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
 
                     b.HasIndex("ProyectoId");
 
-                    b.ToTable("Obsercion");
+                    b.ToTable("Observacion");
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Proyecto", b =>
@@ -129,11 +129,20 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Edad")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Nombres")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NumeroIdentificacion")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Semestre")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -156,7 +165,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasDiscriminator().HasValue("AsesorTematico");
                 });
 
-            modelBuilder.Entity("Anteproyecto.Domain.Entities.Obsercion", b =>
+            modelBuilder.Entity("Anteproyecto.Domain.Entities.Observacion", b =>
                 {
                     b.HasOne("Anteproyecto.Domain.Entities.Proyecto", null)
                         .WithMany("Obsercion")
