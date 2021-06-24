@@ -8,7 +8,8 @@ namespace Anteproyecto.Domain.Entities
     {
         public string Nombre { get; private set; }
         public string Comentario { get; private set; }
-
+        public Proyecto proyecto { get; private set; }
+        public DateTime Date { get; set; }
         public Observacion(string nombre, string comentario)
         {
             Nombre = nombre;

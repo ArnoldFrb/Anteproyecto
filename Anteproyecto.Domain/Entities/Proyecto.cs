@@ -10,27 +10,35 @@ namespace Anteproyecto.Domain.Entities
 
         public string Nombre  { get; private set; }
         public string Resumen { get; private set; }
-
-        public List<Observacion> Obsercion { get; private set; }
-        public Evaluacion Evaluacion { get; private set; }
+        public string Url_Archive { get; set; }
+        public string Focus { get; set; }
+        public int Cut { get; set; }
+        public string Line { get; set; }
+        public DateTime Date { get; set; }
+        public int State { get; set; }
         public AsesorTematico AsesorTematico { get; private set; }
         public AsesorMetodologico AsesorMetodologico { get; private set; }
+        public Estudiante estudiante1 { get; private set; }
+        public Estudiante estudiante2 { get; private set; }
 
         public Proyecto(string nombre, string resumen)
         {
             Nombre = nombre;
             Resumen = resumen;
-            Obsercion = new List<Observacion>();
         }
 
-        public Proyecto(string nombre, string resumen, List<Observacion> obsercion, Evaluacion evaluacion, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico)
+        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Estudiante estudiante1, Estudiante estudiante2) : this(nombre, resumen)
         {
-            Nombre = nombre;
-            Resumen = resumen;
-            Obsercion = obsercion;
-            Evaluacion = evaluacion;
+            Url_Archive = url_Archive;
+            Focus = focus;
+            Cut = cut;
+            Line = line;
+            Date = date;
+            State = state;
             AsesorTematico = asesorTematico;
             AsesorMetodologico = asesorMetodologico;
+            this.estudiante1 = estudiante1;
+            this.estudiante2 = estudiante2;
         }
 
         public string ValidarNombre(string nombre)
@@ -69,23 +77,23 @@ namespace Anteproyecto.Domain.Entities
             throw new NotImplementedException();
         }
 
-        public string AgregarObservar(List<Observacion> obsercion)
-        {
-            Obsercion = obsercion;
-            return $"Se han agregado las op";
-        }
+        //public string AgregarObservar(List<Observacion> obsercion)
+        //{
+        //    Obsercion = obsercion;
+        //    return $"Se han agregado las op";
+        //}
 
-        public string Observar(Observacion obsercion)
-        {
-            Obsercion.Add(obsercion);
-            return $"Nueva Observacon: {obsercion.Nombre}";
-        }
+        //public string Observar(Observacion obsercion)
+        //{
+        //    Obsercion.Add(obsercion);
+        //    return $"Nueva Observacon: {obsercion.Nombre}";
+        //}
 
-        public string Evaluar(Evaluacion evaluacion)
-        {
-            Evaluacion = evaluacion;
-            return $"Nueva Evaluacion: {Evaluacion.Nombre}";
-        }
+        //public string Evaluar(Evaluacion evaluacion)
+        //{
+        //    Evaluacion = evaluacion;
+        //    return $"Nueva Evaluacion: {Evaluacion.Nombre}";
+        //}
 
         public string AsignarAsesorTematico(AsesorTematico asesorTematico)
         {

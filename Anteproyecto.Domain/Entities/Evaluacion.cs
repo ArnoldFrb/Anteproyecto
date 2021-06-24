@@ -9,6 +9,8 @@ namespace Anteproyecto.Domain.Entities
         public string Nombre { get; private set; }
         public string Comentario { get; private set; }
         public bool Estado { get; private set; }
+        public Proyecto projecto { get; private set; }
+        public DateTime Date { get; set; }
 
         public Evaluacion(int id, string nombre, string comentario, bool estado)
         {
