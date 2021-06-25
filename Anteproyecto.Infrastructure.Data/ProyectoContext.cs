@@ -36,6 +36,8 @@ namespace Infrastructure.Data
             base.OnModelCreating(modelBuilder);
             SemillasUsuario(modelBuilder);
             SemillasProyecto(modelBuilder);
+            SemillasObservacion(modelBuilder);
+            SemillasEvaluacion(modelBuilder);
         }
 
 
@@ -74,6 +76,21 @@ namespace Infrastructure.Data
                 new { Id = 13, Nombre = "El proyecto de ley", Resumen = "resumen del proyecto", Url_Archive = "arriba/pero" , Focus= "arriva", Cut =2, Line= "investigacion" ,Date = DateTime.Now, State = 1 , AsesorTematicoId = 10, AsesorMetodologicoId = 7, estudiante1Id = 1 , estudiante2Id = 2 }
              );
         }
+
+        protected void SemillasObservacion(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Observacion>().HasData(
+                new { Id = 14, Nombre = "Correccion de objetivos", Comentario = "holaa mudnooo aqui", proyectoId = 13 , Date = DateTime.Now }
+             );
+        }
+
+        protected void SemillasEvaluacion(ModelBuilder modelBuilder)
+        { 
+            modelBuilder.Entity<Evaluacion>().HasData(
+                new { Id = 14, Nombre = "Correccion de objetivos", Comentario = "holaa mudnooo aqui",Estado = true, projectoId = 13, Date = DateTime.Now }
+             );
+        }
+
     }
 
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Anteproyecto.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProyectoContext))]
-    [Migration("20210625000601_InitialCreate")]
+    [Migration("20210625002316_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,17 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasIndex("projectoId");
 
                     b.ToTable("Evaluacion");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 14,
+                            Comentario = "holaa mudnooo aqui",
+                            Date = new DateTime(2021, 6, 24, 19, 23, 14, 979, DateTimeKind.Local).AddTicks(7824),
+                            Estado = true,
+                            Nombre = "Correccion de objetivos",
+                            projectoId = 13
+                        });
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Observacion", b =>
@@ -89,6 +100,16 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasIndex("proyectoId");
 
                     b.ToTable("Observacion");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 14,
+                            Comentario = "holaa mudnooo aqui",
+                            Date = new DateTime(2021, 6, 24, 19, 23, 14, 978, DateTimeKind.Local).AddTicks(8948),
+                            Nombre = "Correccion de objetivos",
+                            proyectoId = 13
+                        });
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Proyecto", b =>
@@ -152,7 +173,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             AsesorMetodologicoId = 7,
                             AsesorTematicoId = 10,
                             Cut = 2,
-                            Date = new DateTime(2021, 6, 24, 19, 6, 0, 160, DateTimeKind.Local).AddTicks(4136),
+                            Date = new DateTime(2021, 6, 24, 19, 23, 14, 975, DateTimeKind.Local).AddTicks(5320),
                             Focus = "arriva",
                             Line = "investigacion",
                             Nombre = "El proyecto de ley",
