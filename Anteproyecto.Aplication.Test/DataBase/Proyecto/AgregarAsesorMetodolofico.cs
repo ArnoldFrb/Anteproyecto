@@ -29,37 +29,37 @@ namespace Anteproyecto.Aplication.Test.DataBase
             _agregarAsesor = new AgregarAsesorMetodoloficoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new UsuarioRepository(_dbContext), new MailServerSpy());
         }
 
-        [Test]
-        public void AgregarAsesorMetodoloficoText()
-        {
+        //[Test]
+        //public void AgregarAsesorMetodoloficoText()
+        //{
 
-            //ARRANGE //PREPARAR // DADO // GIVEN
-            var proyecto = ProyectoMother.CrearProyecto();
-            var user = UsuarioMother.crearUsuarioAsesorMetodologico("123456789");
+        //    //ARRANGE //PREPARAR // DADO // GIVEN
+        //    var proyecto = ProyectoMother.CrearProyecto();
+        //    var user = UsuarioMother.crearUsuarioAsesorMetodologico("123456789");
 
-            _dbContext.Usuarios.Add(user);
-            _dbContext.Proyectos.Add(proyecto);
-            _dbContext.SaveChanges();
+        //    _dbContext.Usuarios.Add(user);
+        //    _dbContext.Proyectos.Add(proyecto);
+        //    _dbContext.SaveChanges();
 
-            // ACT // ACCION // CUANDO // WHEN
-            var reques = new AgregarAsesorMetodoloficoReques(
-                proyecto.Id,
-                proyecto.Nombre,
-                proyecto.Resumen,
-                proyecto.Obsercion,
-                proyecto.Evaluacion,
-                proyecto.AsesorTematico,
-                user
-            );
-            var response = _agregarAsesor.AgregarAsesor(reques);
+        //    // ACT // ACCION // CUANDO // WHEN
+        //    var reques = new AgregarAsesorMetodoloficoReques(
+        //        proyecto.Id,
+        //        proyecto.Nombre,
+        //        proyecto.Resumen,
+        //        proyecto.Obsercion,
+        //        proyecto.Evaluacion,
+        //        proyecto.AsesorTematico,
+        //        user
+        //    );
+        //    var response = _agregarAsesor.AgregarAsesor(reques);
 
-            //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual("Se ha asignado el Asesor Metodologico Jose Carlo", response.Mensaje);
+        //    //ASSERT //AFIRMACION //ENTONCES //THEN
+        //    Assert.AreEqual("Se ha asignado el Asesor Metodologico Jose Carlo", response.Mensaje);
 
-            _dbContext.Usuarios.Remove(user);
-            _dbContext.Proyectos.Remove(proyecto);
-            _dbContext.SaveChanges();
+        //    _dbContext.Usuarios.Remove(user);
+        //    _dbContext.Proyectos.Remove(proyecto);
+        //    _dbContext.SaveChanges();
 
-        }
+        //}
     }
 }

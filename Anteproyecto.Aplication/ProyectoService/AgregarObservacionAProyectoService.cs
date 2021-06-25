@@ -24,35 +24,35 @@ namespace Anteproyecto.Aplication.ProyectoService
             _mailServer = mailServer;
         }
 
-        public MensageObservacionAProyectoResponse AgregarObservacion(AgregarObservacionAProyectoReques request)
-        {
-            var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
-            if (proyecto != null)
-            {
-                var obser = _observacionRepository.FindFirstOrDefault(doc => doc.Id == request.Obsercion.Id);
-                if (obser != null)
-                {
-                    var res = proyecto.Observar(request.Obsercion);
-                    if (res.Equals($"Nueva Observacon: {request.Obsercion.Nombre}"))
-                    {
-                        _unitOfWork.Commit();
-                        return new MensageObservacionAProyectoResponse(res);
-                    }
-                    else
-                    {
-                        return new MensageObservacionAProyectoResponse(res);
-                    }
-                }
-                else
-                {
-                    return new MensageObservacionAProyectoResponse($"No existe el Obsercion: { request.Obsercion.Nombre}");
-                }
-            }
-            else
-            {
-                return new MensageObservacionAProyectoResponse($"No existe el Proyecto: {proyecto.Nombre}");
-            }
-        }
+        //public MensageObservacionAProyectoResponse AgregarObservacion(AgregarObservacionAProyectoReques request)
+        //{
+        //    var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+        //    if (proyecto != null)
+        //    {
+        //        var obser = _observacionRepository.FindFirstOrDefault(doc => doc.Id == request.Obsercion.Id);
+        //        if (obser != null)
+        //        {
+        //            var res = proyecto.Observar(request.Obsercion);
+        //            if (res.Equals($"Nueva Observacon: {request.Obsercion.Nombre}"))
+        //            {
+        //                _unitOfWork.Commit();
+        //                return new MensageObservacionAProyectoResponse(res);
+        //            }
+        //            else
+        //            {
+        //                return new MensageObservacionAProyectoResponse(res);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return new MensageObservacionAProyectoResponse($"No existe el Obsercion: { request.Obsercion.Nombre}");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return new MensageObservacionAProyectoResponse($"No existe el Proyecto: {proyecto.Nombre}");
+        //    }
+        //}
 
         public record AgregarObservacionAProyectoReques
         (

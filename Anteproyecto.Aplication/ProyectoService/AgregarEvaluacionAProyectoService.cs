@@ -22,27 +22,27 @@ namespace Anteproyecto.Aplication.ProyectoService
             _mailServer = mailServer;
         }
 
-        public MensageEvaluacionAProyectoResponse AgregarEvaluacion(AgregarEvaluacionAProyectoReques request)
-        {
-            var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
-            if (proyecto != null)
-            {
-                var res = proyecto.Evaluar(request.Evaluacion);
-                if (res.Equals($"Nueva Evaluacion: {request.Evaluacion.Nombre}"))
-                {
-                    _unitOfWork.Commit();
-                    return new MensageEvaluacionAProyectoResponse(res);
-                }
-                else
-                {
-                    return new MensageEvaluacionAProyectoResponse(res);
-                }
-            }
-            else
-            {
-                return new MensageEvaluacionAProyectoResponse($"No existe el Proyecto: {proyecto.Nombre}");
-            }
-        }
+        //public MensageEvaluacionAProyectoResponse AgregarEvaluacion(AgregarEvaluacionAProyectoReques request)
+        //{
+        //    var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+        //    if (proyecto != null)
+        //    {
+        //        var res = proyecto.Evaluar(request.Evaluacion);
+        //        if (res.Equals($"Nueva Evaluacion: {request.Evaluacion.Nombre}"))
+        //        {
+        //            _unitOfWork.Commit();
+        //            return new MensageEvaluacionAProyectoResponse(res);
+        //        }
+        //        else
+        //        {
+        //            return new MensageEvaluacionAProyectoResponse(res);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return new MensageEvaluacionAProyectoResponse($"No existe el Proyecto: {proyecto.Nombre}");
+        //    }
+        //}
 
         public record AgregarEvaluacionAProyectoReques
         (

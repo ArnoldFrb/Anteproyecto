@@ -10,25 +10,27 @@ namespace Anteproyecto.Domain.Entities
 
         public string Nombre  { get; private set; }
         public string Resumen { get; private set; }
-        public string Url_Archive { get; set; }
-        public string Focus { get; set; }
-        public int Cut { get; set; }
-        public string Line { get; set; }
-        public DateTime Date { get; set; }
-        public int State { get; set; }
+        public string Url_Archive { get; private set; }
+        public string Focus { get; private  set; }
+        public int Cut { get; private set; }
+        public string Line { get; private set; }
+        public DateTime Date { get; private set; }
+        public int State { get; private set; }
         public AsesorTematico AsesorTematico { get; private set; }
         public AsesorMetodologico AsesorMetodologico { get; private set; }
-        public Estudiante estudiante1 { get; private set; }
-        public Estudiante estudiante2 { get; private set; }
-
+        public Usuario estudiante1 { get; private set; }
+        public Usuario estudiante2 { get; private set; }
+         
         public Proyecto(string nombre, string resumen)
         {
             Nombre = nombre;
             Resumen = resumen;
         }
 
-        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Estudiante estudiante1, Estudiante estudiante2) : this(nombre, resumen)
+        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico)
         {
+            Nombre = nombre;
+            Resumen = resumen;
             Url_Archive = url_Archive;
             Focus = focus;
             Cut = cut;
@@ -36,9 +38,7 @@ namespace Anteproyecto.Domain.Entities
             Date = date;
             State = state;
             AsesorTematico = asesorTematico;
-            AsesorMetodologico = asesorMetodologico;
-            this.estudiante1 = estudiante1;
-            this.estudiante2 = estudiante2;
+            AsesorMetodologico = asesorMetodologico; 
         }
 
         public string ValidarNombre(string nombre)

@@ -29,7 +29,7 @@ namespace Anteproyecto.Infrastructure.WebApi
         {
             var connectionString = Configuration.GetConnectionString("ProyectoContext");//obtiene la configuracion del appsettitgs
 
-            services.AddDbContext<ProyectoContext>(opt => opt.UseSqlite(connectionString));
+            services.AddDbContext<ProyectoContext>(opt => opt.UseSqlite(connectionString).EnableSensitiveDataLogging(true));
 
             ///Inyección de dependencia Especifica
             //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0#register-additional-services-with-extension-methods

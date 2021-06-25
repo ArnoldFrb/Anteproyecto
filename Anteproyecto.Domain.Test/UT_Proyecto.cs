@@ -161,31 +161,31 @@ namespace Anteproyecto.Domain.Test
             Assert.AreEqual("Registro Exitozo: El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicología en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda", resultado);
         }
 
-        [Test]
-        public void PruedeIngresarEvaluacion()
-        {
-            //ARRANGE //PREPARAR // DADO // GIVEN
-            string nombre = "La justificacion no concuerda con el tema";
-            string resumen = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicología en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda";
-            var proyecto = new Proyecto(nombre, resumen);
-            // ACT // ACCION // CUANDO // WHEN
-            var resultado = proyecto.Evaluar(new Evaluacion(nombre, resumen, true));
-            //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual("Nueva Evaluacion: La justificacion no concuerda con el tema", resultado);
-        }
+        //[Test]
+        //public void PruedeIngresarEvaluacion()
+        //{
+        //    //ARRANGE //PREPARAR // DADO // GIVEN
+        //    string nombre = "La justificacion no concuerda con el tema";
+        //    string resumen = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicología en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda";
+        //    var proyecto = new Proyecto(nombre, resumen);
+        //    // ACT // ACCION // CUANDO // WHEN
+        //    var resultado = proyecto.Evaluar(new Evaluacion(nombre, resumen, true));
+        //    //ASSERT //AFIRMACION //ENTONCES //THEN
+        //    Assert.AreEqual("Nueva Evaluacion: La justificacion no concuerda con el tema", resultado);
+        //}
 
-        [Test]
-        public void PruedeIngresarObservacion()
-        {
-            //ARRANGE //PREPARAR // DADO // GIVEN
-            string nombre = "La justificacion no concuerda con el tema";
-            string resumen = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicología en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda";
-            var proyecto = new Proyecto(nombre, resumen);
-            // ACT // ACCION // CUANDO // WHEN
-            var resultado = proyecto.Observar(new Observacion(nombre, resumen));
-            //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual("Nueva Observacon: La justificacion no concuerda con el tema", resultado);
-        }
+        //[Test]
+        //public void PruedeIngresarObservacion()
+        //{
+        //    //ARRANGE //PREPARAR // DADO // GIVEN
+        //    string nombre = "La justificacion no concuerda con el tema";
+        //    string resumen = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicología en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda";
+        //    var proyecto = new Proyecto(nombre, resumen);
+        //    // ACT // ACCION // CUANDO // WHEN
+        //    var resultado = proyecto.Observar(new Observacion(nombre, resumen));
+        //    //ASSERT //AFIRMACION //ENTONCES //THEN
+        //    Assert.AreEqual("Nueva Observacon: La justificacion no concuerda con el tema", resultado);
+        //}
 
         [Test]
         public void PruedeAsignarAsesorTematico()
