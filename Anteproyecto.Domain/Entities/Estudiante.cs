@@ -19,6 +19,10 @@ namespace Anteproyecto.Domain.Entities
             {
                 return "No puede ingresar una contraseña igual a la registrada, pruebe de nuevo";
             }
+            if (!Contraseña.Equals(contraseña) && contraseña.Length < 10)
+            {
+                return "Su nueva contraseña es muy corta, pruebe de nuevo";
+            }
             if (!Contraseña.Equals(contraseña) && contraseña.Length >= 10)
             {
                 return "Su nueva contraseña es correcta";

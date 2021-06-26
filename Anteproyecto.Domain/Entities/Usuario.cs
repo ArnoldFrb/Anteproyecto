@@ -28,10 +28,8 @@ namespace Anteproyecto.Domain.Entities
             Estado = estado;
         }
 
-
         public abstract string ModificarCorreo(string correo);
         public abstract string ModificarContrasena(string contraseña);
-
         public abstract string ValidarUsuario(Usuario usuario);
         
     }
