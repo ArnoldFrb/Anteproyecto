@@ -39,21 +39,26 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
         {
 
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = UsuarioMother.crearUsuarioEstudiante("123456678");
-            var proyecto = ProyectoMother.CrearProyecto();
+            var estudiante1 = UsuarioMother.crearUsuarioEstudiante("92345117");
+            var estudiante2 = UsuarioMother.crearUsuarioEstudiante("913451118");
+            var asesorTematico = UsuarioMother.crearUsuarioAsesorTematico("323456116");
+            var asesorMetodologico = UsuarioMother.crearUsuarioAsesorMetodologico("456656116");
 
-            _dbContext.Usuarios.Add(estudiante);
+            var proyecto = ProyectoMother.CrearProyecto_();
+
+            _dbContext.Usuarios.Add(estudiante1);
+            _dbContext.Usuarios.Add(estudiante2);
+            _dbContext.Usuarios.Add(asesorTematico);
+            _dbContext.Usuarios.Add(asesorMetodologico);
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new CargarProyectoRequest(
-                estudiante.Id,
-                estudiante.Nombres,
-                estudiante.Apellidos,
-                estudiante.NumeroIdentificacion,
-                estudiante.Correo,
-                estudiante.Contraseña,
+                estudiante1.NumeroIdentificacion,
+                estudiante2.NumeroIdentificacion,
+                asesorTematico.NumeroIdentificacion,
+                asesorMetodologico.NumeroIdentificacion,
                 proyecto
             );
             var response = _proyectoService.CargarProyecto(request);
@@ -61,7 +66,10 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual($"Operacion exitoza: Se ha cargado el proyecto {request.Proyecto.Nombre}", response.Mensaje);
 
-            _dbContext.Usuarios.Remove(estudiante);
+            _dbContext.Usuarios.Remove(estudiante1);
+            _dbContext.Usuarios.Remove(estudiante2);
+            _dbContext.Usuarios.Remove(asesorTematico);
+            _dbContext.Usuarios.Remove(asesorMetodologico);
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
         }
@@ -71,33 +79,37 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
         {
 
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = UsuarioMother.crearUsuarioEstudiante("123456678");
+            var estudiante1 = UsuarioMother.crearUsuarioEstudiante("923456678");
+            var estudiante2 = UsuarioMother.crearUsuarioEstudiante("913456118");
+            var asesorTematico = UsuarioMother.crearUsuarioAsesorTematico("333456118");
+            var asesorMetodologico = UsuarioMother.crearUsuarioEstudiante("444456118");
+
             var proyecto = ProyectoMother.CrearProyecto();
             var proyecto2 = ProyectoMother.CrearProyecto2();
 
-            _dbContext.Usuarios.Add(estudiante);
+            _dbContext.Usuarios.Add(estudiante1);
+            _dbContext.Usuarios.Add(estudiante2);
+            _dbContext.Usuarios.Add(asesorTematico); 
+            _dbContext.Usuarios.Add(asesorMetodologico);
             _dbContext.Proyectos.Add(proyecto);
+
             _dbContext.SaveChanges();
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new CargarProyectoRequest(
-                estudiante.Id,
-                estudiante.Nombres,
-                estudiante.Apellidos,
-                estudiante.NumeroIdentificacion,
-                estudiante.Correo,
-                estudiante.Contraseña,
+                estudiante1.NumeroIdentificacion,
+                estudiante2.NumeroIdentificacion,
+                asesorTematico.NumeroIdentificacion,
+                asesorMetodologico.NumeroIdentificacion,
                 proyecto
             );
             _proyectoService.CargarProyecto(request);
 
             var request2 = new CargarProyectoRequest(
-                estudiante.Id,
-                estudiante.Nombres,
-                estudiante.Apellidos,
-                estudiante.NumeroIdentificacion,
-                estudiante.Correo,
-                estudiante.Contraseña,
+                estudiante1.NumeroIdentificacion,
+                estudiante2.NumeroIdentificacion,
+                asesorTematico.NumeroIdentificacion,
+                asesorMetodologico.NumeroIdentificacion,
                 proyecto2
             );
             var response = _proyectoService.CargarProyecto(request2);
@@ -105,7 +117,10 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual($"Operacion exitoza: Se ha cargado la correccion del proyecto {request.Proyecto.Nombre}", response.Mensaje);
 
-            _dbContext.Usuarios.Remove(estudiante);
+            _dbContext.Usuarios.Remove(estudiante1);
+            _dbContext.Usuarios.Remove(estudiante2);
+            _dbContext.Usuarios.Remove(asesorTematico);
+            _dbContext.Usuarios.Remove(asesorMetodologico);
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
         }

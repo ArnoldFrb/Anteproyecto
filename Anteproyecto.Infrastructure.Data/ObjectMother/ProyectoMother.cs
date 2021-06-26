@@ -27,17 +27,18 @@ namespace Anteproyecto.Infrastructure.Data.ObjectMother
 
         public static Proyecto CrearProyecto_()
         {
-            var list = new List<Observacion>();
+            //var list = new List<Observacion>();
 
-            list.Add(new Observacion("What is Lorem Ipsum?", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+            //list.Add(new Observacion("What is Lorem Ipsum?", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
 
-            var estudiante1 =  UsuarioMother.crearUsuarioEstudiante("122233233");
-            var estudiante2 =  UsuarioMother.crearUsuarioEstudiante("122233211");
+            //var estudiante1 =  UsuarioMother.crearUsuarioEstudiante("122233233");
+            //var estudiante2 =  UsuarioMother.crearUsuarioEstudiante("122233211");
 
-            var asesormetodologico =  UsuarioMother.crearUsuarioAsesorMetodologico("222233244");
-            var asesortematico =  UsuarioMother.crearUsuarioAsesorTematico("222233111");
+            //var asesormetodologico =  UsuarioMother.crearUsuarioAsesorMetodologico("222233244");
+            //var asesortematico =  UsuarioMother.crearUsuarioAsesorTematico("222233111");
 
-            return new Proyecto("Aaplicativo","resumenn","archivo/fef","focuss", 1 ,"lineaaa",DateTime.Now, 1,asesortematico, asesormetodologico);
+            return new Proyecto("Aplicativo Web Para la Gestión, seguimiento y evaluación de los anteproyectos del programa de Psicología de la Universidad Popular del Cesar",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "archivo/fef","focuss", 1 ,"lineaaa",DateTime.Now, 1);
           
 
             //return new Proyecto(

@@ -26,35 +26,69 @@ namespace Anteproyecto.Aplication.EstuduanteService
 
         public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request)
         {
-            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.NumeroIdentificacion.ToString());
-            if (user != null)
+
+            var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1.ToString());
+            if (user1 != null)
             {
-                var res = user.CargarProyecto(request.Proyecto);
-                if (res.Equals($"Operacion exitoza: Se ha cargado el proyecto {request.Proyecto.Nombre}")
-                    || res.Equals($"Operacion exitoza: Se ha cargado la correccion del proyecto {request.Proyecto.Nombre}"))
+                var user2 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante2.ToString());
+                if (user2 != null)
                 {
-                    _unitOfWork.Commit();
-                    return new CargarProyectoResponse(res);
+                    var AsesorTematico =(AsesorTematico) _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorTematico.ToString());                    
+                    if (AsesorTematico != null)
+                    {
+                        var AsesorMetodologico = (AsesorMetodologico) _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
+                        if (AsesorMetodologico != null)
+                        {
+                            var res = user1.CargarProyecto(request.Proyecto);
+                            if (res.Equals($"Operacion exitoza: Se ha cargado el proyecto {request.Proyecto.Nombre}"))
+                            {
+                                //string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state
+                                Proyecto proyectoCreado = new Proyecto(request.Proyecto.Nombre,
+                                    request.Proyecto.Resumen, request.Proyecto.Url_Archive, request.Proyecto.Focus,
+                                    request.Proyecto.Cut, request.Proyecto.Line, request.Proyecto.Date, request.Proyecto.State);
+
+                                proyectoCreado.AsignarEstudianteUno(user1);
+                                proyectoCreado.AsignarEstudianteDos(user2);
+                                proyectoCreado.AsignarAsesorTematico(AsesorTematico);
+                                proyectoCreado.AsignarAsesorMetodologico(AsesorMetodologico);
+
+
+                                _proyectoRepository.Add(proyectoCreado);
+                                _unitOfWork.Commit();
+                                return new CargarProyectoResponse(res);
+                            }
+                            else
+                            {
+                                return new CargarProyectoResponse($"El proyecto {request.Proyecto.Nombre} no tiene el formato valido.");
+                            }
+                        }
+                        else
+                        {
+                            return new CargarProyectoResponse($"El Asesor Metodologico identificado con la cedula {request.IdAsesorTematico} no existe.");
+                        }
+                    }
+                    else
+                    {
+                        return new CargarProyectoResponse($"El Asesor Tematico identificado con la cedula {request.IdAsesorMetodologico} no existe.");
+                    }
                 }
                 else
                 {
-                    return new CargarProyectoResponse(res);
+                    return new CargarProyectoResponse($"El Usuario identificado con la cedula {request.IdEstudiante1} no existe.");
                 }
             }
             else
             {
-                return new CargarProyectoResponse($"El Usuario {request.Nombres} no existe.");
+                return new CargarProyectoResponse($"El Usuario identificado con la cedula {request.IdEstudiante2} no existe.");
             }
         }
 
-        public record CargarProyectoRequest
+        public record CargarProyectoRequest 
         (
-            int Id,
-            string Nombres,
-            string Apellidos,
-            string NumeroIdentificacion,
-            string Correo,
-            string Contraseña,
+            string IdEstudiante1,
+            string IdEstudiante2,
+            string IdAsesorTematico,
+            string IdAsesorMetodologico,
             Proyecto Proyecto
         );
 

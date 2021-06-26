@@ -27,18 +27,14 @@ namespace Anteproyecto.Domain.Entities
             Resumen = resumen;
         }
 
-        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico)
+        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state) : this(nombre, resumen)
         {
-            Nombre = nombre;
-            Resumen = resumen;
             Url_Archive = url_Archive;
             Focus = focus;
             Cut = cut;
             Line = line;
             Date = date;
-            State = state;
-            AsesorTematico = asesorTematico;
-            AsesorMetodologico = asesorMetodologico; 
+            State = state; 
         }
 
         public string ValidarNombre(string nombre)
@@ -105,6 +101,18 @@ namespace Anteproyecto.Domain.Entities
         {
             AsesorMetodologico = asesorMetodologico;
             return $"Se ha asignado el Asesor Metodologico {AsesorMetodologico.Nombres}";
+        }
+
+        public string AsignarEstudianteUno(Estudiante estudiante)
+        {
+            estudiante1 = estudiante;
+            return $"Se ha asignado el Estudiante {estudiante1.Nombres}";
+        }
+
+        public string AsignarEstudianteDos(Estudiante estudiante)
+        {
+            estudiante2 = estudiante;
+            return $"Se ha asignado el Estudiante {estudiante2.Nombres}";
         }
     }
 }
