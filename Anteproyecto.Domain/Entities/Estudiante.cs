@@ -8,7 +8,6 @@ namespace Anteproyecto.Domain.Entities
 {
     public class Estudiante : Usuario
     {
-        public Proyecto Proyecto { get; protected set; }
         public Estudiante(string nombres, string apellidos, string numeroIdentificacion, string correo, string contraseña, int semestre, int edad, bool estado) : base(nombres, apellidos, numeroIdentificacion, correo, contraseña, semestre, edad, estado)
         {
         }
@@ -60,29 +59,6 @@ namespace Anteproyecto.Domain.Entities
             }
         }
         
-        public string CargarProyecto(Proyecto proyecto)
-        {
-            var mensaje = proyecto.ValidarNombre(proyecto.Nombre);
-            if (!mensaje.Equals($"Registro Exitozo: {proyecto.Nombre}"))
-            {
-                return mensaje;
-            }
-            mensaje = proyecto.ValidarResumen(proyecto.Resumen);
-            if (!mensaje.Equals($"Registro Exitozo: {proyecto.Resumen}"))
-            {
-                return mensaje;
-            }
-            if(Proyecto == null)
-            {
-                Proyecto = proyecto;
-                return $"Operacion exitoza: Se ha cargado el proyecto {Proyecto.Nombre}";
-            }
-            if (Proyecto != null)
-            {
-                Proyecto = proyecto;
-                return $"Operacion exitoza: Se ha cargado la correccion del proyecto {Proyecto.Nombre}";
-            }
-            throw new NotImplementedException();
-        }
+        
     }
 }

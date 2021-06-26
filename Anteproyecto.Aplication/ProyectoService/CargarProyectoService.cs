@@ -38,15 +38,14 @@ namespace Anteproyecto.Aplication.ProyectoService
                     {
                         var AsesorMetodologico = (AsesorMetodologico) _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
                         if (AsesorMetodologico != null)
-                        {
-                            var res = user1.CargarProyecto(request.Proyecto);
-                            if (res.Equals($"Operacion exitoza: Se ha cargado el proyecto {request.Proyecto.Nombre}"))
-                            {
-                                //string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state
-                                Proyecto proyectoCreado = new Proyecto(request.Proyecto.Nombre,
+                        { 
+                            Proyecto proyectoCreado = new Proyecto(request.Proyecto.Nombre,
                                     request.Proyecto.Resumen, request.Proyecto.Url_Archive, request.Proyecto.Focus,
                                     request.Proyecto.Cut, request.Proyecto.Line, request.Proyecto.Date, request.Proyecto.State);
 
+                            var res = proyectoCreado.CargarProyecto(request.Proyecto);
+                            if (res.Equals("Se cargo el archivo correctamento"))
+                            { 
                                 proyectoCreado.AsignarEstudianteUno(user1);
                                 proyectoCreado.AsignarEstudianteDos(user2);
                                 proyectoCreado.AsignarAsesorTematico(AsesorTematico);
@@ -55,11 +54,11 @@ namespace Anteproyecto.Aplication.ProyectoService
 
                                 _proyectoRepository.Add(proyectoCreado);
                                 _unitOfWork.Commit();
-                                return new CargarProyectoResponse(res);
+                                return new CargarProyectoResponse($"El proyecto {request.Proyecto.Nombre} Se cargo correctamento.");
                             }
                             else
                             {
-                                return new CargarProyectoResponse($"El proyecto {request.Proyecto.Nombre} no tiene el formato valido.");
+                                return new CargarProyectoResponse($"El proyecto {request.Proyecto.Nombre} Tiene la informcion incompleta.");
                             }
                         }
                         else

@@ -62,7 +62,8 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             var response = _proyectoService.CargarProyecto(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual($"Operacion exitoza: Se ha cargado el proyecto {request.Proyecto.Nombre}", response.Mensaje);
+            
+            Assert.AreEqual($"El proyecto {request.Proyecto.Nombre} Se cargo correctamento.", response.Mensaje);
 
             _dbContext.Usuarios.Remove(estudiante1);
             _dbContext.Usuarios.Remove(estudiante2);

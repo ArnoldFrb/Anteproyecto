@@ -68,7 +68,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         {
                             Id = 14,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 24, 19, 23, 14, 979, DateTimeKind.Local).AddTicks(7824),
+                            Date = new DateTime(2021, 6, 26, 1, 0, 5, 397, DateTimeKind.Local).AddTicks(4299),
                             Estado = true,
                             Nombre = "Correccion de objetivos",
                             projectoId = 13
@@ -104,7 +104,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         {
                             Id = 14,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 24, 19, 23, 14, 978, DateTimeKind.Local).AddTicks(8948),
+                            Date = new DateTime(2021, 6, 26, 1, 0, 5, 396, DateTimeKind.Local).AddTicks(9356),
                             Nombre = "Correccion de objetivos",
                             proyectoId = 13
                         });
@@ -171,7 +171,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             AsesorMetodologicoId = 7,
                             AsesorTematicoId = 10,
                             Cut = 2,
-                            Date = new DateTime(2021, 6, 24, 19, 23, 14, 975, DateTimeKind.Local).AddTicks(5320),
+                            Date = new DateTime(2021, 6, 26, 1, 0, 5, 394, DateTimeKind.Local).AddTicks(9542),
                             Focus = "arriva",
                             Line = "investigacion",
                             Nombre = "El proyecto de ley",
@@ -318,11 +318,6 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 {
                     b.HasBaseType("Anteproyecto.Domain.Entities.Usuario");
 
-                    b.Property<int?>("ProyectoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasIndex("ProyectoId");
-
                     b.HasDiscriminator().HasValue("Estudiante");
 
                     b.HasData(
@@ -452,15 +447,6 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.Navigation("estudiante1");
 
                     b.Navigation("estudiante2");
-                });
-
-            modelBuilder.Entity("Anteproyecto.Domain.Entities.Estudiante", b =>
-                {
-                    b.HasOne("Anteproyecto.Domain.Entities.Proyecto", "Proyecto")
-                        .WithMany()
-                        .HasForeignKey("ProyectoId");
-
-                    b.Navigation("Proyecto");
                 });
 #pragma warning restore 612, 618
         }
