@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anteproyecto.Aplication.EstuduanteService
+namespace Anteproyecto.Aplication.ProyectoService
 {
     public class CargarProyectoService
     {

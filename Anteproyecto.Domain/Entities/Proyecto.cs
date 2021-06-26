@@ -114,5 +114,11 @@ namespace Anteproyecto.Domain.Entities
             estudiante2 = estudiante;
             return $"Se ha asignado el Estudiante {estudiante2.Nombres}";
         }
+
+        public string actualizarArchivo(string url_archivo)
+        {
+            Url_Archive = url_archivo;
+            return "Actualizo archivo del proyecto";
+        }
     }
 }
