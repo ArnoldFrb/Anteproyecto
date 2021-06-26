@@ -1,11 +1,6 @@
 ﻿using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication.ProyectoService
 {
@@ -26,17 +21,16 @@ namespace Anteproyecto.Aplication.ProyectoService
 
         public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request)
         {
-
             var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1.ToString());
             if (user1 != null)
             {
                 var user2 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante2.ToString());
                 if (user2 != null)
                 {
-                    var AsesorTematico =(AsesorTematico) _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorTematico.ToString());                    
+                    var AsesorTematico = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorTematico.ToString());
                     if (AsesorTematico != null)
                     {
-                        var AsesorMetodologico = (AsesorMetodologico) _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
+                        var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
                         if (AsesorMetodologico != null)
                         { 
                             Proyecto proyectoCreado = new Proyecto(request.Proyecto.Nombre,
@@ -90,7 +84,6 @@ namespace Anteproyecto.Aplication.ProyectoService
             string IdAsesorMetodologico,
             Proyecto Proyecto
         );
-
 
         public record CargarProyectoResponse(string Mensaje);
     }

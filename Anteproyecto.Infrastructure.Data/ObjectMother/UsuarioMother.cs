@@ -12,7 +12,7 @@ namespace Anteproyecto.Infrastructure.Data.ObjectMother
        public static Estudiante crearUsuarioEstudiante(string NumeroIdentificacion)
         {
 
-            return new Estudiante("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444",9,23,true);
+            return new Estudiante("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444", 9, 23, true);
         }
 
         public static MiembroComite crearUsuarioMiembroComite(string NumeroIdentificacion)
