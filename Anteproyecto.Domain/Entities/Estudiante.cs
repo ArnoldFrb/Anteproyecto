@@ -60,10 +60,54 @@ namespace Anteproyecto.Domain.Entities
             }
             else
             {
-                return "Usuario registrado correctamente";
+                var res_1 = ModificarCorreo(usuario.Correo);
+                var res_2 = ModificarContrasena(usuario.Correo);
+
+                if (!res_1.Equals("El correo ingresado es valido"))
+                {
+                    return res_1;
+                }
+                if (!res_2.Equals("Su nueva contraseña es correcta"))
+                {
+                    return res_2;
+                }
+                return $"El Usuario {usuario.Nombres} ha sido registrado correctamente";
             }
         }
-        
+
+        public string Editar(Usuario usuario)
+        {
+            if (usuario.Nombres == null || usuario.Apellidos == null || usuario.NumeroIdentificacion == null || usuario.Correo == null || usuario.Contraseña == null
+                || usuario.Semestre <= 0 || usuario.Edad == 0)
+            {
+                return "Digite los campos primordiales para el registro";
+            }
+            else
+            {
+                var res_1 = ModificarCorreo(usuario.Correo);
+                var res_2 = ModificarContrasena(usuario.Correo);
+
+                if (!res_1.Equals("El correo ingresado es valido"))
+                {
+                    return res_1;
+                }
+                if (!res_2.Equals("Su nueva contraseña es correcta"))
+                {
+                    return res_2;
+                }
+
+                Nombres = usuario.Nombres;
+                Apellidos = usuario.Apellidos;
+                NumeroIdentificacion = usuario.NumeroIdentificacion;
+                Correo = usuario.Correo;
+                Contraseña = usuario.Contraseña;
+                Semestre = usuario.Semestre;
+                Edad = usuario.Edad;
+
+                return $"El Usuario {usuario.Nombres} ha sido modificado correctamente";
+            }
+        }
+
         public string CargarProyecto(Proyecto proyecto)
         {
             var mensaje = proyecto.ValidarNombre(proyecto.Nombre);
