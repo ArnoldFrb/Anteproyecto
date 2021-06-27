@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Anteproyecto.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProyectoContext))]
-    [Migration("20210626060006_InitialCreate")]
+    [Migration("20210627060745_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,12 +68,12 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 14,
+                            Id = 1,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 26, 1, 0, 5, 397, DateTimeKind.Local).AddTicks(4299),
+                            Date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             Estado = true,
                             Nombre = "Correccion de objetivos",
-                            projectoId = 13
+                            projectoId = 1
                         });
                 });
 
@@ -104,11 +104,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 14,
+                            Id = 1,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 26, 1, 0, 5, 396, DateTimeKind.Local).AddTicks(9356),
+                            Date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             Nombre = "Correccion de objetivos",
-                            proyectoId = 13
+                            proyectoId = 1
                         });
                 });
 
@@ -169,11 +169,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 13,
+                            Id = 1,
                             AsesorMetodologicoId = 7,
                             AsesorTematicoId = 10,
                             Cut = 2,
-                            Date = new DateTime(2021, 6, 26, 1, 0, 5, 394, DateTimeKind.Local).AddTicks(9542),
+                            Date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             Focus = "arriva",
                             Line = "investigacion",
                             Nombre = "El proyecto de ley",
@@ -235,7 +235,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 7,
+                            Id = 9,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -247,7 +247,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 10,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -259,7 +259,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 11,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -280,7 +280,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 10,
+                            Id = 12,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -292,7 +292,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 13,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -304,7 +304,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 14,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -338,7 +338,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Apellidos = "Santander Pimienta",
+                            Apellidos = "espinosa Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
                             Edad = 23,
@@ -350,13 +350,37 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 3,
-                            Apellidos = "Santander Pimienta",
+                            Apellidos = "romulo salamandra",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
                             Edad = 23,
                             Estado = true,
                             Nombres = "Pedro pepi",
                             NumeroIdentificacion = "1222222246",
+                            Semestre = 9
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Apellidos = "papeleta Piña",
+                            Contraseña = "123344444",
+                            Correo = "hola@gmail.com",
+                            Edad = 23,
+                            Estado = true,
+                            Nombres = "rodoldo pepi",
+                            NumeroIdentificacion = "3556222246",
+                            Semestre = 9
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Apellidos = "pepe de la hoz",
+                            Contraseña = "123344444",
+                            Correo = "hola@gmail.com",
+                            Edad = 23,
+                            Estado = true,
+                            Nombres = "san francisco",
+                            NumeroIdentificacion = "2346222246",
                             Semestre = 9
                         });
                 });
@@ -370,7 +394,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 4,
+                            Id = 6,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -382,7 +406,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 7,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -394,7 +418,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 8,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",

@@ -63,6 +63,10 @@ namespace Anteproyecto.Domain.Entities
             }
         }
         
-        
+        public string CambiarEstado(bool estado)
+        {
+            Estado = estado;
+            return "El estado del estudiante fue cambiado";
+        }
     }
 }

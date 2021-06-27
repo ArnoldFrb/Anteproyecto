@@ -25,7 +25,7 @@ namespace Anteproyecto.Domain.Entities
             Contraseña = contraseña;
             Semestre = semestre;
             Edad = edad;
-            Estado = estado;
+            Estado = true;
         }
 
         public abstract string ModificarCorreo(string correo);

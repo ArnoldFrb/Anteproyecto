@@ -1,6 +1,10 @@
 ﻿using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.IO;
+
 
 namespace Anteproyecto.Aplication.ProyectoService
 {
@@ -19,7 +23,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             _mailServer = mailServer;
         }
 
-        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request)
+        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request,string path)
         {
             var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1.ToString());
             if (user1 != null)
@@ -33,26 +37,37 @@ namespace Anteproyecto.Aplication.ProyectoService
                         var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
                         if (AsesorMetodologico != null)
                         { 
-                            Proyecto proyectoCreado = new Proyecto(request.Proyecto.Nombre,
-                                    request.Proyecto.Resumen, request.Proyecto.Url_Archive, request.Proyecto.Focus,
-                                    request.Proyecto.Cut, request.Proyecto.Line, request.Proyecto.Date, request.Proyecto.State);
 
-                            var res = proyectoCreado.CargarProyecto(request.Proyecto);
+                            Proyecto proyectoCreado = new Proyecto(request.Nombre,
+                                    request.Resumen, request.Focus,
+                                    request.Cut, request.Line, DateTime.Now,
+                                    AsesorTematico,AsesorMetodologico,user1,user2);
+
+                            var res = proyectoCreado.CargarProyecto(proyectoCreado);
                             if (res.Equals("Se cargo el archivo correctamento"))
-                            { 
-                                proyectoCreado.AsignarEstudianteUno(user1);
-                                proyectoCreado.AsignarEstudianteDos(user2);
-                                proyectoCreado.AsignarAsesorTematico(AsesorTematico);
-                                proyectoCreado.AsignarAsesorMetodologico(AsesorMetodologico);
+                            {
+                                FileInfo fi = new FileInfo(request.Archive.FileName);
+                                string nameFile = "Archivos/" + DateTime.Now.Ticks.ToString() + fi.Extension;
+                                string filepatch = Path.Combine(path, nameFile);
 
+                                proyectoCreado.actualizarArchivo(nameFile);
+                                user1.CambiarEstado(false);
+                                user2.CambiarEstado(false);
 
+                                using (var stream = System.IO.File.Create(filepatch))
+                                {
+                                    request.Archive.CopyTo(stream);
+                                }
+
+                                _usuarioRepository.Edit(user1);
+                                _usuarioRepository.Edit(user2);
                                 _proyectoRepository.Add(proyectoCreado);
                                 _unitOfWork.Commit();
-                                return new CargarProyectoResponse($"El proyecto {request.Proyecto.Nombre} Se cargo correctamento.");
+                                return new CargarProyectoResponse($"El proyecto {request.Nombre} Se cargo correctamento.");
                             }
                             else
                             {
-                                return new CargarProyectoResponse($"El proyecto {request.Proyecto.Nombre} Tiene la informcion incompleta.");
+                                return new CargarProyectoResponse($"El proyecto {request.Nombre} Tiene la informcion incompleta.");
                             }
                         }
                         else
@@ -78,11 +93,17 @@ namespace Anteproyecto.Aplication.ProyectoService
 
         public record CargarProyectoRequest 
         (
-            string IdEstudiante1,
-            string IdEstudiante2,
-            string IdAsesorTematico,
-            string IdAsesorMetodologico,
-            Proyecto Proyecto
+          string Nombre,
+          string Resumen,
+          string Focus, 
+          int Cut,
+          string Line,
+          IFormFile Archive,
+          string IdEstudiante1,
+          string IdEstudiante2,
+          string IdAsesorTematico,
+          string IdAsesorMetodologico
+          
         );
 
         public record CargarProyectoResponse(string Mensaje);

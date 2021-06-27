@@ -27,16 +27,19 @@ namespace Anteproyecto.Domain.Entities
             Resumen = resumen;
         }
 
-        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state) : this(nombre, resumen)
+        public Proyecto(string nombre, string resumen, string focus, int cut, string line, DateTime date, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Usuario estudiante1, Usuario estudiante2) : this(nombre, resumen)
         {
-            Url_Archive = url_Archive;
             Focus = focus;
             Cut = cut;
             Line = line;
             Date = date;
-            State = state; 
+            AsesorTematico = asesorTematico;
+            AsesorMetodologico = asesorMetodologico;
+            this.estudiante1 = estudiante1;
+            this.estudiante2 = estudiante2;
+            State = 1;
         }
-
+  
         public string ValidarNombre(string nombre)
         {
             if (nombre.Length == 0)
