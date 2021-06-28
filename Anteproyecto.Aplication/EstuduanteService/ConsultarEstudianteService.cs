@@ -24,18 +24,18 @@ namespace Anteproyecto.Aplication.EstuduanteService
 
         public ConsultarEstudianteResponse ConsultarEstudiante(ConsultarEstudianteRequest request)
         {
-            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Estudiante.Id);
+            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
                 return new ConsultarEstudianteResponse(user, $"Operacion Exitosa. Se encontro al usuario {user.Nombres}");
             }
             else
             {
-                return new ConsultarEstudianteResponse(user, $"El Usuario {request.Estudiante.Nombres} no existe.");
+                return new ConsultarEstudianteResponse(user, $"El Usuario identificado con {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record ConsultarEstudianteRequest(Estudiante Estudiante);
+        public record ConsultarEstudianteRequest(string NumeroIdentificacion);
 
         public record ConsultarEstudianteResponse(Estudiante Estudiante, string Mensaje);
     }

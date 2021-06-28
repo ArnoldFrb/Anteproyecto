@@ -39,15 +39,22 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             //ARRANGE //PREPARAR // DADO // GIVEN
             var estudiante = UsuarioMother.crearUsuarioEstudiante("1234566789");
             // ACT // ACCION // CUANDO // WHEN
-            var request = new RegistrarEstudianteRequest(estudiante);
+            var request = new RegistrarEstudianteRequest(
+                estudiante.Nombres,
+                estudiante.Apellidos,
+                estudiante.NumeroIdentificacion,
+                estudiante.Correo,
+                estudiante.Contraseña,
+                estudiante.Semestre,
+                estudiante.Edad,
+                estudiante.Estado
+            );
+
             var response = _estudianteService.RegistrarEstudiante(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual($"El Usuario {estudiante.Nombres} ha sido registrado correctamente", response.Mensaje);
 
-            estudiante.Id = 13;
-            _dbContext.Remove(estudiante);
-            _dbContext.SaveChanges();
         }
     }
 }

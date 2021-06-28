@@ -22,21 +22,21 @@ namespace Anteproyecto.Aplication.AsesorTemeticoService
             _mailServer = mailServer;
         }
 
-        public ConsultarEstudianteResponse ConsultarAsesorTematico(ConsultarEstudianteRequest request)
+        public ConsultarAsesorTematicoResponse ConsultarAsesorTematico(ConsultarAsesorTematicoRequest request)
         {
-            var user = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
-                return new ConsultarEstudianteResponse(user, $"Operacion Exitosa. Se encontro al usuario {user.Nombres}");
+                return new ConsultarAsesorTematicoResponse(user, $"Operacion Exitosa. Se encontro al usuario {user.Nombres}");
             }
             else
             {
-                return new ConsultarEstudianteResponse(user, $"El Usuario {request.Usuario.Nombres} no existe.");
+                return new ConsultarAsesorTematicoResponse(user, $"El Usuario {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record ConsultarEstudianteRequest(AsesorTematico Usuario);
+        public record ConsultarAsesorTematicoRequest(string NumeroIdentificacion);
 
-        public record ConsultarEstudianteResponse(AsesorTematico Usuario, string Mensaje);
+        public record ConsultarAsesorTematicoResponse(AsesorTematico Usuario, string Mensaje);
     }
 }

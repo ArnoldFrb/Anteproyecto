@@ -37,14 +37,20 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
         public void ConsultarEstudianteTest()
         {
             //ARRANGE // PREPARAR // DADO // GIVEN 1222222212 1234566789
-            var estudiante = UsuarioMother.crearUsuarioEstudiante("1222222212"); estudiante.Id = 1;
+            var estudiante = UsuarioMother.crearUsuarioEstudiante("1234566789");
+
+            _dbContext.Usuarios.Add(estudiante);
+            _dbContext.SaveChanges();
 
             // ACT // ACCION // CUANDO // WHEN
-            var request = new ConsultarEstudianteRequest(estudiante);
+            var request = new ConsultarEstudianteRequest(estudiante.NumeroIdentificacion);
             var response = _estudianteService.ConsultarEstudiante(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual($"Operacion Exitosa. Se encontro al usuario {estudiante.Nombres}", response.Mensaje);
+
+            _dbContext.Usuarios.Remove(estudiante);
+            _dbContext.SaveChanges();
         }
     }
 }

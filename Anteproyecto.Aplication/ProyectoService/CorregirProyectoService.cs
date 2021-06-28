@@ -24,7 +24,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.NumeroIdentificacion.ToString());
             if (user != null)
             {
-                var res = user.CargarProyecto(request.Proyecto);
+                var res = user.ModificarContrasena(request.Contraseña);
                 if (res.Equals($"Operacion exitoza: Se ha cargado la correccion del proyecto {request.Proyecto.Nombre}"))
                 {
                     _unitOfWork.Commit();

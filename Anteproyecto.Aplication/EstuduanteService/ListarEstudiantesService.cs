@@ -4,7 +4,7 @@ using Anteproyecto.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 
-namespace Anteproyecto.Aplication.ProyectoService
+namespace Anteproyecto.Aplication.EstuduanteService
 {
     public class ListarEstudiantesService
     {
@@ -49,18 +49,6 @@ namespace Anteproyecto.Aplication.ProyectoService
             }
         }
 
-        public record ListarEstudiantesRequest
-        (
-            int Id,
-            string Nombres,
-            string Apellidos,
-            string NumeroIdentificacion,
-            string Correo,
-            string Contraseña,
-            Proyecto Proyecto
-        );
-
-
-        public record ListarEstudiantesResponse(IEnumerable<Usuario> Estudiantes, string Mensaje);
+        public record ListarEstudiantesResponse(List<Estudiante> Estudiantes, string Mensaje);
     }
 }

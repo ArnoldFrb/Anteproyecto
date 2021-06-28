@@ -120,5 +120,30 @@ namespace Anteproyecto.Domain.Entities
             Url_Archive = url_archivo;
             return "Actualizo archivo del proyecto";
         }
+
+        public string CargarProyecto(Proyecto proyecto)
+        {
+            var mensaje = proyecto.ValidarNombre(proyecto.Nombre);
+            if (!mensaje.Equals($"Registro Exitozo: {proyecto.Nombre}"))
+            {
+                return mensaje;
+            }
+            mensaje = proyecto.ValidarResumen(proyecto.Resumen);
+            if (!mensaje.Equals($"Registro Exitozo: {proyecto.Resumen}"))
+            {
+                return mensaje;
+            }
+            if (Url_Archive == null)
+            {
+                Url_Archive = proyecto.Url_Archive;
+                return $"Operacion exitoza: Se ha cargado el proyecto {proyecto.Nombre}";
+            }
+            if (Url_Archive != null)
+            {
+                Url_Archive = proyecto.Url_Archive;
+                return $"Operacion exitoza: Se ha cargado la correccion del proyecto {proyecto.Nombre}";
+            }
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,13 +1,13 @@
-﻿using Anteproyecto.Aplication.SharedService;
+﻿using Anteproyecto.Aplication.UsuarioService;
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using static Anteproyecto.Aplication.SharedService.InicioDeSesionService;
+using static Anteproyecto.Aplication.UsuarioService.InicioDeSesionService;
 
-namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
+namespace Anteproyecto.Aplication.Test.DataBase.Usuario
 {
     public class InicioDeSesion
     {

@@ -24,21 +24,22 @@ namespace Anteproyecto.Aplication.AsesorMetodologicoService
 
         public EliminarAsesorMetodologicoResponse EliminarAsesorMetodologico(EliminarAsesorMetodologicoRequest request)
         {
-            var user = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
+
             if (user != null)
             {
                 _usuarioRepository.Delete(user);
                 _unitOfWork.Commit();
 
-                return new EliminarAsesorMetodologicoResponse($"El Usuario {request.Usuario.Nombres} fue eliminado.");
+                return new EliminarAsesorMetodologicoResponse($"El Usuario {user.Nombres} fue eliminado.");
             }
             else
             {
-                return new EliminarAsesorMetodologicoResponse($"El Usuario {request.Usuario.Nombres} no existe.");
+                return new EliminarAsesorMetodologicoResponse($"El Usuario {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record EliminarAsesorMetodologicoRequest(AsesorMetodologico Usuario);
+        public record EliminarAsesorMetodologicoRequest(string NumeroIdentificacion);
 
         public record EliminarAsesorMetodologicoResponse(string Mensaje);
     }

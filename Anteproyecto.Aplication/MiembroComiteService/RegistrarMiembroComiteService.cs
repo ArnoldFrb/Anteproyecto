@@ -22,20 +22,18 @@ namespace Anteproyecto.Aplication.MiembroComiteService
             _mailServer = mailServer;
         }
 
-        public RegistrarMiembroComiteResponse RegistrarEstudiante(RegistrarEstudianteRequest request)
+        public RegistrarMiembroComiteResponse RegistrarMiembroComite(RegistrarMiembroComiteRequest request)
         {
-            var user = _usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.Usuario.NumeroIdentificacion);
+            var user = _usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user == null)
             {
-                user = request.Usuario;
-                var res = user.ValidarUsuario(request.Usuario);
+                user = new MiembroComite(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Contraseña, request.Semestre, request.Edad, request.Estado);
+                var res = user.ValidarUsuario(user);
                 if (res.Equals($"El Usuario {user.Nombres} ha sido registrado correctamente"))
                 {
-                    var ID = _usuarioRepository.GetAll();
-                    user.Id = ID.Last().Id + 1;
-
                     _usuarioRepository.Add(user);
                     _unitOfWork.Commit();
+
                     return new RegistrarMiembroComiteResponse(res);
                 }
                 else
@@ -49,7 +47,7 @@ namespace Anteproyecto.Aplication.MiembroComiteService
             }
         }
 
-        public record RegistrarEstudianteRequest(MiembroComite Usuario);
+        public record RegistrarMiembroComiteRequest(string Nombres, string Apellidos, string NumeroIdentificacion, string Correo, string Contraseña, int Semestre, int Edad, bool Estado);
 
         public record RegistrarMiembroComiteResponse(string Mensaje);
     }

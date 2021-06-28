@@ -24,18 +24,18 @@ namespace Anteproyecto.Aplication.MiembroComiteService
 
         public ConsultarMiembroComiteResponse ConsultarMiembroComite(ConsultarMiembroComiteRequest request)
         {
-            var user = (MiembroComite)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (MiembroComite)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
                 return new ConsultarMiembroComiteResponse(user, $"Operacion Exitosa. Se encontro al usuario {user.Nombres}");
             }
             else
             {
-                return new ConsultarMiembroComiteResponse(user, $"El Usuario {request.Usuario.Nombres} no existe.");
+                return new ConsultarMiembroComiteResponse(user, $"El Usuario {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record ConsultarMiembroComiteRequest(MiembroComite Usuario);
+        public record ConsultarMiembroComiteRequest(string NumeroIdentificacion);
 
         public record ConsultarMiembroComiteResponse(MiembroComite Usuario, string Mensaje);
     }

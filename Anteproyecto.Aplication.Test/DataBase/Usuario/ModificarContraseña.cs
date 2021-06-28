@@ -1,13 +1,13 @@
-﻿using Anteproyecto.Aplication.SharedService;
+﻿using Anteproyecto.Aplication.UsuarioService;
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using static Anteproyecto.Aplication.SharedService.ModificarContraseñaService;
+using static Anteproyecto.Aplication.UsuarioService.ModificarContraseñaService;
 
-namespace Anteproyecto.Aplication.Test.DataBase.Shared
+namespace Anteproyecto.Aplication.Test.DataBase.Usuario
 {
     class ModificarContraseña
     {
@@ -34,7 +34,6 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
         [Test]
         public void ESTUDIANTE_MoficarContraseConContraseñaIgualALaAnterior()
         {
-
             //ARRANGE //PREPARAR // DADO // GIVEN
             var estudiante = UsuarioMother.crearUsuarioEstudiante("123456678");
 
@@ -43,7 +42,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -67,7 +66,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654r"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -91,7 +90,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -115,7 +114,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id + 1,
+                estudiante.NumeroIdentificacion + 1,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -142,7 +141,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -166,7 +165,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654r"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -190,7 +189,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -214,7 +213,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id + 1,
+                estudiante.NumeroIdentificacion + 1,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -241,7 +240,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -265,7 +264,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654r"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -289,7 +288,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -313,7 +312,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id + 1,
+                estudiante.NumeroIdentificacion + 1,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -340,7 +339,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -364,7 +363,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654r"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -388,7 +387,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id,
+                estudiante.NumeroIdentificacion,
                 "54bfd5654"
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);
@@ -412,7 +411,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Shared
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new ModificarContraseñaRequest(
-                estudiante.Id + 1,
+                estudiante.NumeroIdentificacion + 1,
                 estudiante.Contraseña
             );
             var response = _inicioDeSesionService.ModificarContraseña(request);

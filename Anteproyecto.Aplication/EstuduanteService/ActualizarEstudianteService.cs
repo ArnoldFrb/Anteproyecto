@@ -24,10 +24,10 @@ namespace Anteproyecto.Aplication.EstuduanteService
 
         public ActualizarEstudianteResponse ActualizarEstudiante(ActualizarEstudianteRequest request)
         {
-            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Estudiante.Id);
+            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
-                var res = user.Editar(request.Estudiante);
+                var res = user.Editar(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Semestre, request.Edad, request.Estado);
                 if (res.Equals($"El Usuario {user.Nombres} ha sido modificado correctamente"))
                 {
                     _unitOfWork.Commit();
@@ -40,11 +40,11 @@ namespace Anteproyecto.Aplication.EstuduanteService
             }
             else
             {
-                return new ActualizarEstudianteResponse($"El Usuario {request.Estudiante.Nombres} no existe.");
+                return new ActualizarEstudianteResponse($"El Usuario {request.Nombres} no existe.");
             }
         }
 
-        public record ActualizarEstudianteRequest(Estudiante Estudiante);
+        public record ActualizarEstudianteRequest(string Nombres, string Apellidos, string NumeroIdentificacion, string Correo, int Semestre, int Edad, bool Estado);
 
         public record ActualizarEstudianteResponse(string Mensaje);
     }

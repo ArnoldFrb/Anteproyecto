@@ -1,4 +1,4 @@
-﻿using Anteproyecto.Aplication.ProyectoService;
+﻿using Anteproyecto.Aplication.EstuduanteService;
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Infrastructure.Data;
@@ -37,14 +37,8 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
             var estudiante = UsuarioMother.crearUsuarioEstudiante("123456678");
-            var estudiant1 = UsuarioMother.crearUsuarioAsesorTematico("123456678");
-            var estudiant2 = UsuarioMother.crearUsuarioAsesorTematico("123456678");
-            var estudiant3 = UsuarioMother.crearUsuarioEstudiante("123456678");
 
             _dbContext.Usuarios.Add(estudiante);
-            _dbContext.Usuarios.Add(estudiant1);
-            _dbContext.Usuarios.Add(estudiant2);
-            _dbContext.Usuarios.Add(estudiant3);
             _dbContext.SaveChanges();
 
             // ACT // ACCION // CUANDO // WHEN
@@ -53,45 +47,12 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
 
             foreach (var doc in response.Estudiantes)
             {
-                Console.WriteLine(doc.Apellidos);
+                Console.WriteLine(doc.Nombres);
             }
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual("Lista de Usuarios", response.Mensaje);
 
             _dbContext.Usuarios.Remove(estudiante);
-            _dbContext.Usuarios.Remove(estudiant1);
-            _dbContext.Usuarios.Remove(estudiant2);
-            _dbContext.Usuarios.Remove(estudiant3);
-            _dbContext.SaveChanges();
-        }
-
-        [Test]
-        public void NoSePudoEncontrarUsuariosEstudiantes()
-        {
-            //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiant1 = UsuarioMother.crearUsuarioAsesorTematico("123456678");
-            var estudiant2 = UsuarioMother.crearUsuarioAsesorTematico("123456678");
-
-            _dbContext.Usuarios.Add(estudiant1);
-            _dbContext.Usuarios.Add(estudiant2);
-            _dbContext.SaveChanges();
-
-            // ACT // ACCION // CUANDO // WHEN
-
-            var response = _estudiantesService.ListarEstudiantes();
-
-            if (response.Estudiantes != null)
-            {
-                foreach (var doc in response.Estudiantes)
-                {
-                    Console.WriteLine(doc.Apellidos);
-                }
-            }
-            //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual("No se ncontraron Estudiantes registrados", response.Mensaje);
-
-            _dbContext.Usuarios.Remove(estudiant1);
-            _dbContext.Usuarios.Remove(estudiant2);
             _dbContext.SaveChanges();
         }
     }

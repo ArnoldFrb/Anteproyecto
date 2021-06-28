@@ -33,7 +33,7 @@ namespace Anteproyecto.Aplication.ProyectoService
                         var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
                         if (AsesorMetodologico != null)
                         {
-                            var res = user1.CargarProyecto(request.Proyecto);
+                            var res = request.Proyecto.CargarProyecto(request.Proyecto);
                             if (res.Equals($"Operacion exitoza: Se ha cargado el proyecto {request.Proyecto.Nombre}"))
                             {
                                 //string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state

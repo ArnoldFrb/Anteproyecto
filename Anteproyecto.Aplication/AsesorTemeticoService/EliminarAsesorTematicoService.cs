@@ -24,21 +24,21 @@ namespace Anteproyecto.Aplication.AsesorTemeticoService
 
         public EliminarAsesorTematicoResponse EliminarAsesorTematico(EliminarAsesorTematicoRequest request)
         {
-            var user = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
                 _usuarioRepository.Delete(user);
                 _unitOfWork.Commit();
 
-                return new EliminarAsesorTematicoResponse($"El Usuario {request.Usuario.Nombres} fue eliminado.");
+                return new EliminarAsesorTematicoResponse($"El Usuario {request.NumeroIdentificacion} fue eliminado.");
             }
             else
             {
-                return new EliminarAsesorTematicoResponse($"El Usuario {request.Usuario.Nombres} no existe.");
+                return new EliminarAsesorTematicoResponse($"El Usuario {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record EliminarAsesorTematicoRequest(AsesorTematico Usuario);
+        public record EliminarAsesorTematicoRequest(string NumeroIdentificacion);
 
         public record EliminarAsesorTematicoResponse(string Mensaje);
     }

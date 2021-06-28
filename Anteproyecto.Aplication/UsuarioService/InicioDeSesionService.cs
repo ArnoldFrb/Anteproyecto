@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anteproyecto.Aplication.SharedService
+namespace Anteproyecto.Aplication.UsuarioService
 {
     public class InicioDeSesionService
     {

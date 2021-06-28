@@ -19,7 +19,7 @@ namespace Anteproyecto.Aplication.MiembroComiteService
             _mailServer = mailServer;
         }
 
-        public ListarEstudiantesResponse ListarMiembroComite()
+        public ListarMiembroComitesResponse ListarMiembroComite()
         {
             var user = _usuarioRepository.GetAll();
             if (user != null)
@@ -34,18 +34,18 @@ namespace Anteproyecto.Aplication.MiembroComiteService
                 }
                 if (res.Count != 0)
                 {
-                    return new ListarEstudiantesResponse(res, "Lista de Usuarios");
+                    return new ListarMiembroComitesResponse(res, "Lista de Usuarios");
                 }
                 else
                 {
-                    return new ListarEstudiantesResponse(null, "No se ncontraron Miembros Comite registrados");
+                    return new ListarMiembroComitesResponse(null, "No se ncontraron Miembros Comite registrados");
                 }
             }
             else
             {
-                return new ListarEstudiantesResponse(null, "No existen usuarios en el sistema");
+                return new ListarMiembroComitesResponse(null, "No existen usuarios en el sistema");
             }
         }
-        public record ListarEstudiantesResponse(IEnumerable<MiembroComite> Usuario, string Mensaje);
+        public record ListarMiembroComitesResponse(List<MiembroComite> MiembroComites, string Mensaje);
     }
 }

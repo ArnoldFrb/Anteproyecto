@@ -24,21 +24,21 @@ namespace Anteproyecto.Aplication.EstuduanteService
 
         public EliminarEstudianteResponse EliminarEstudiante(EliminarEstudianteRequest request)
         {
-            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Estudiante.Id);
+            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
                 _usuarioRepository.Delete(user);
                 _unitOfWork.Commit();
 
-                return new EliminarEstudianteResponse($"El Usuario {request.Estudiante.Nombres} fue eliminado.");
+                return new EliminarEstudianteResponse($"El Usuario {request.NumeroIdentificacion} fue eliminado.");
             }
             else
             {
-                return new EliminarEstudianteResponse($"El Usuario {request.Estudiante.Nombres} no existe.");
+                return new EliminarEstudianteResponse($"El Usuario {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record EliminarEstudianteRequest(Estudiante Estudiante);
+        public record EliminarEstudianteRequest(string NumeroIdentificacion);
 
         public record EliminarEstudianteResponse(string Mensaje);
     }

@@ -24,10 +24,10 @@ namespace Anteproyecto.Aplication.MiembroComiteService
 
         public ActualizarMiembroComiteResponse ActualizarMiembroComite(ActualizarMiembroComiteRequest request)
         {
-            var user = (MiembroComite)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (MiembroComite)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
-                var res = user.Editar(request.Usuario);
+                var res = user.Editar(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Semestre, request.Edad, request.Estado);
                 if (res.Equals($"El Usuario {user.Nombres} ha sido modificado correctamente"))
                 {
                     _unitOfWork.Commit();
@@ -40,11 +40,11 @@ namespace Anteproyecto.Aplication.MiembroComiteService
             }
             else
             {
-                return new ActualizarMiembroComiteResponse($"El Usuario {request.Usuario.Nombres} no existe.");
+                return new ActualizarMiembroComiteResponse($"El Usuario {request.Nombres} no existe.");
             }
         }
 
-        public record ActualizarMiembroComiteRequest(MiembroComite Usuario);
+        public record ActualizarMiembroComiteRequest(string Nombres, string Apellidos, string NumeroIdentificacion, string Correo, int Semestre, int Edad, bool Estado);
 
         public record ActualizarMiembroComiteResponse(string Mensaje);
     }

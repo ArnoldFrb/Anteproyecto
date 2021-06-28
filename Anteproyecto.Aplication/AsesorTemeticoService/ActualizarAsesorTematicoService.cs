@@ -24,10 +24,10 @@ namespace Anteproyecto.Aplication.AsesorTemeticoService
 
         public ActualizarAsesorTematicoResponse ActualizarAsesorTematico(ActualizarAsesorTematicoRequest request)
         {
-            var user = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
-                var res = user.Editar(request.Usuario);
+                var res = user.Editar(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Semestre, request.Edad, request.Estado);
                 if (res.Equals($"El Usuario {user.Nombres} ha sido modificado correctamente"))
                 {
                     _unitOfWork.Commit();
@@ -40,11 +40,11 @@ namespace Anteproyecto.Aplication.AsesorTemeticoService
             }
             else
             {
-                return new ActualizarAsesorTematicoResponse($"El Usuario {request.Usuario.Nombres} no existe.");
+                return new ActualizarAsesorTematicoResponse($"El Usuario {request.Nombres} no existe.");
             }
         }
 
-        public record ActualizarAsesorTematicoRequest(AsesorTematico Usuario);
+        public record ActualizarAsesorTematicoRequest(string Nombres, string Apellidos, string NumeroIdentificacion, string Correo, int Semestre, int Edad, bool Estado);
 
         public record ActualizarAsesorTematicoResponse(string Mensaje);
     }

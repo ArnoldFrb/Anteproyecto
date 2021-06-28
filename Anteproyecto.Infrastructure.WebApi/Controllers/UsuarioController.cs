@@ -1,5 +1,4 @@
-﻿using Anteproyecto.Aplication;
-using Anteproyecto.Domain.Entities;
+﻿using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Anteproyecto.Aplication.UsuarioService;
+using Anteproyecto.Aplication.UsuarioService;
+using static Anteproyecto.Aplication.UsuarioService.ModificarContraseñaService;
+using static Anteproyecto.Aplication.UsuarioService.InicioDeSesionService;
 
 namespace Anteproyecto.Infrastructure.WebApi.Controllers
 {
@@ -21,7 +22,6 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         private readonly IMailServer _mailServer;
         public UsuarioController(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IMailServer mailServer)
         {
-
             _unitOfWork = unitOfWork;
             _usuarioRepository = usuarioRepository;
             _mailServer = mailServer;
@@ -34,11 +34,19 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
             }
         }
 
-        [HttpPost]
-        public ModificarContrasenaResponse PostModificarContraseña(UsuarioRequest usuarioRequest)
+        [HttpPost("ModificarContraseña")]
+        public ModificarContraseñaResponse PostModificarContraseña(ModificarContraseñaRequest request)
         {
-            var service = new UsuarioService(_unitOfWork, _usuarioRepository, _mailServer);
-            var response = service.ModificarContraseña(usuarioRequest);
+            var service = new ModificarContraseñaService(_unitOfWork, _usuarioRepository, _mailServer);
+            var response = service.ModificarContraseña(request);
+            return response;
+        }
+
+        [HttpPost("IniciosDeSesion")]
+        public InicioDeSesionResponse PostIniciosDeSesion(InicioDeSesionRequest request)
+        {
+            var service = new InicioDeSesionService(_unitOfWork, _usuarioRepository, _mailServer);
+            var response = service.IniciosDeSesion(request);
             return response;
         }
     }

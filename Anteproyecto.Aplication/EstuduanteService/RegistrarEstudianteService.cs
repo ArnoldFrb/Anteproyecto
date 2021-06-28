@@ -24,16 +24,13 @@ namespace Anteproyecto.Aplication.EstuduanteService
 
         public RegistrarEstudianteResponse RegistrarEstudiante(RegistrarEstudianteRequest request)
         {
-            var user = _usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.Estudiante.NumeroIdentificacion);
+            var user = _usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user == null)
             {
-                user = request.Estudiante;
-                var res = user.ValidarUsuario(request.Estudiante);
+                user = new Estudiante(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Contraseña, request.Semestre, request.Edad, request.Estado);
+                var res = user.ValidarUsuario(user);
                 if (res.Equals($"El Usuario {user.Nombres} ha sido registrado correctamente"))
                 {
-                    var ID = _usuarioRepository.GetAll();
-                    user.Id = ID.Last().Id + 1;
-
                     _usuarioRepository.Add(user);
                     _unitOfWork.Commit();
                     return new RegistrarEstudianteResponse(res);
@@ -45,11 +42,11 @@ namespace Anteproyecto.Aplication.EstuduanteService
             }
             else
             {
-                return new RegistrarEstudianteResponse($"El Usuario {user.Nombres} ya ha sido registrado.");
+                return new RegistrarEstudianteResponse($"El Usuario {user.Nombres} ya existe.");
             }
         }
 
-        public record RegistrarEstudianteRequest(Estudiante Estudiante);
+        public record RegistrarEstudianteRequest(string Nombres, string Apellidos, string NumeroIdentificacion, string Correo, string Contraseña, int Semestre, int Edad, bool Estado);
 
         public record RegistrarEstudianteResponse(string Mensaje);
     }

@@ -24,21 +24,21 @@ namespace Anteproyecto.Aplication.MiembroComiteService
 
         public EliminarMiembroComiteResponse EliminarMiembroComite(EliminarMiembroComiteRequest request)
         {
-            var user = (MiembroComite)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (MiembroComite)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
                 _usuarioRepository.Delete(user);
                 _unitOfWork.Commit();
 
-                return new EliminarMiembroComiteResponse($"El Usuario {request.Usuario.Nombres} fue eliminado.");
+                return new EliminarMiembroComiteResponse($"El Usuario {request.NumeroIdentificacion} fue eliminado.");
             }
             else
             {
-                return new EliminarMiembroComiteResponse($"El Usuario {request.Usuario.Nombres} no existe.");
+                return new EliminarMiembroComiteResponse($"El Usuario {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record EliminarMiembroComiteRequest(MiembroComite Usuario);
+        public record EliminarMiembroComiteRequest(string NumeroIdentificacion);
 
         public record EliminarMiembroComiteResponse(string Mensaje);
     }

@@ -47,6 +47,6 @@ namespace Anteproyecto.Aplication.AsesorTemeticoService
             }
         }
 
-        public record ListarAsesorTematicoResponse(IEnumerable<Usuario> Usuarios, string Mensaje);
+        public record ListarAsesorTematicoResponse(List<AsesorTematico> AsesorTematicos, string Mensaje);
     }
 }

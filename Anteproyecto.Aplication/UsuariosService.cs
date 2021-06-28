@@ -4,13 +4,13 @@ using Anteproyecto.Domain.Repositories;
 
 namespace Anteproyecto.Aplication
 {
-    public class UsuarioService
+    public class UsuariosService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMailServer _mailServer;
 
-        public UsuarioService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IMailServer mailServer)
+        public UsuariosService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _usuarioRepository = usuarioRepository;

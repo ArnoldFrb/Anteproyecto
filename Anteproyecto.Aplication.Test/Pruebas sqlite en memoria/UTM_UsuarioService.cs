@@ -6,7 +6,7 @@ using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using static Anteproyecto.Aplication.UsuarioService;
+using static Anteproyecto.Aplication.UsuariosService;
 
 namespace Anteproyecto.Aplication.Test
 {
@@ -14,7 +14,7 @@ namespace Anteproyecto.Aplication.Test
     {
 
         private ProyectoContext _dbContext;
-        private UsuarioService _usuarioService;
+        private UsuariosService _usuarioService;
 
         [SetUp]
         public void Setup()
@@ -24,7 +24,7 @@ namespace Anteproyecto.Aplication.Test
           .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
 
-            _usuarioService = new UsuarioService(new UnitOfWork(_dbContext), new UsuarioRepository(_dbContext), new MailServerSpy());
+            _usuarioService = new UsuariosService(new UnitOfWork(_dbContext), new UsuarioRepository(_dbContext), new MailServerSpy());
         }
 
         [Test]

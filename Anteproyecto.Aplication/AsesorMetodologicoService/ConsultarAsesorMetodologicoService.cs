@@ -24,18 +24,18 @@ namespace Anteproyecto.Aplication.AsesorMetodologicoService
 
         public ConsultarAsesorMetodologicoResponse ConsultarAsesorMetodologico(ConsultarAsesorMetodologicoRequest request)
         {
-            var user = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Usuario.Id);
+            var user = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
                 return new ConsultarAsesorMetodologicoResponse(user, $"Operacion Exitosa. Se encontro al usuario {user.Nombres}");
             }
             else
             {
-                return new ConsultarAsesorMetodologicoResponse(user, $"El Usuario {request.Usuario.Nombres} no existe.");
+                return new ConsultarAsesorMetodologicoResponse(user, $"El Usuario {request.NumeroIdentificacion} no existe.");
             }
         }
 
-        public record ConsultarAsesorMetodologicoRequest(AsesorMetodologico Usuario);
+        public record ConsultarAsesorMetodologicoRequest(string NumeroIdentificacion);
 
         public record ConsultarAsesorMetodologicoResponse(AsesorMetodologico Usuario, string Mensaje);
     }

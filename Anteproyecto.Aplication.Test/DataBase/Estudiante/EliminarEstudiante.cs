@@ -37,17 +37,17 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
         public void EliminarEstudianteTest()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN 1222222212 1234566789
-            var estudiante = UsuarioMother.crearUsuarioEstudiante("1222222212"); estudiante.Id = 13;
+            var estudiante = UsuarioMother.crearUsuarioEstudiante("1234566789");
 
-            _dbContext.Add(estudiante);
+            _dbContext.Usuarios.Add(estudiante);
             _dbContext.SaveChanges();
 
             // ACT // ACCION // CUANDO // WHEN
-            var request = new EliminarEstudianteRequest(estudiante);
+            var request = new EliminarEstudianteRequest(estudiante.NumeroIdentificacion);
             var response = _estudianteService.EliminarEstudiante(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual($"El Usuario {estudiante.Nombres} fue eliminado.", response.Mensaje);
+            Assert.AreEqual($"El Usuario {estudiante.NumeroIdentificacion} fue eliminado.", response.Mensaje);
         }
     }
 }

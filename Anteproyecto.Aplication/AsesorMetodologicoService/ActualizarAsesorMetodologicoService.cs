@@ -22,30 +22,30 @@ namespace Anteproyecto.Aplication.AsesorMetodologicoService
             _mailServer = mailServer;
         }
 
-        public ActualizarEstudianteResponse ActualizarAsesorMetodologico(ActualizarEstudianteRequest request)
+        public ActualizarAsesorMetodologicoResponse ActualizarAsesorMetodologico(ActualizarAsesorMetodologicoRequest request)
         {
-            var user = (Estudiante)_usuarioRepository.FindFirstOrDefault(doc => doc.Id == request.Estudiante.Id);
+            var user = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(doc => doc.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
-                var res = user.Editar(request.Estudiante);
+                var res = user.Editar(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Semestre, request.Edad, request.Estado);
                 if (res.Equals($"El Usuario {user.Nombres} ha sido modificado correctamente"))
                 {
                     _unitOfWork.Commit();
-                    return new ActualizarEstudianteResponse(res);
+                    return new ActualizarAsesorMetodologicoResponse(res);
                 }
                 else
                 {
-                    return new ActualizarEstudianteResponse(res);
+                    return new ActualizarAsesorMetodologicoResponse(res);
                 }
             }
             else
             {
-                return new ActualizarEstudianteResponse($"El Usuario {request.Estudiante.Nombres} no existe.");
+                return new ActualizarAsesorMetodologicoResponse($"El Usuario {request.Nombres} no existe.");
             }
         }
 
-        public record ActualizarEstudianteRequest(Estudiante Estudiante);
+        public record ActualizarAsesorMetodologicoRequest(string Nombres, string Apellidos, string NumeroIdentificacion, string Correo, int Semestre, int Edad, bool Estado);
 
-        public record ActualizarEstudianteResponse(string Mensaje);
+        public record ActualizarAsesorMetodologicoResponse(string Mensaje);
     }
 }

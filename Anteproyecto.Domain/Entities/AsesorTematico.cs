@@ -23,6 +23,7 @@ namespace Anteproyecto.Domain.Entities
             }
             if (!Contraseña.Equals(contraseña) && contraseña.Length >= 10)
             {
+                Contraseña = contraseña;
                 return "Su nueva contraseña es correcta";
             }
             throw new NotImplementedException();
@@ -57,36 +58,30 @@ namespace Anteproyecto.Domain.Entities
             }
         }
 
-        public string Editar(Usuario usuario)
+        public string Editar(string nombres, string apellidos, string numeroIdentificacion, string correo, int semestre, int edad, bool estado)
         {
-            if (usuario.Nombres == null || usuario.Apellidos == null || usuario.NumeroIdentificacion == null || usuario.Correo == null || usuario.Contraseña == null
-                || usuario.Semestre <= 0 || usuario.Edad == 0)
+            if (nombres == null || apellidos == null || numeroIdentificacion == null || correo == null || semestre <= 0 || edad == 0)
             {
                 return "Digite los campos primordiales para el registro";
             }
             else
             {
-                var res_1 = ModificarCorreo(usuario.Correo);
-                var res_2 = ModificarContrasena(usuario.Correo);
+                var res_1 = ModificarCorreo(correo);
 
                 if (!res_1.Equals("El correo ingresado es valido"))
                 {
                     return res_1;
                 }
-                if (!res_2.Equals("Su nueva contraseña es correcta"))
-                {
-                    return res_2;
-                }
 
-                Nombres = usuario.Nombres;
-                Apellidos = usuario.Apellidos;
-                NumeroIdentificacion = usuario.NumeroIdentificacion;
-                Correo = usuario.Correo;
-                Contraseña = usuario.Contraseña;
-                Semestre = usuario.Semestre;
-                Edad = usuario.Edad;
+                Nombres = nombres;
+                Apellidos = apellidos;
+                NumeroIdentificacion = numeroIdentificacion;
+                Correo = correo;
+                Semestre = semestre;
+                Edad = edad;
+                Estado = estado;
 
-                return $"El Usuario {usuario.Nombres} ha sido modificado correctamente";
+                return $"El Usuario {Nombres} ha sido modificado correctamente";
             }
         }
 

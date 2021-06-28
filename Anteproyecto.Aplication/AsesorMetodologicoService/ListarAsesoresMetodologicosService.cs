@@ -47,6 +47,6 @@ namespace Anteproyecto.Aplication.AsesorMetodologicoService
             }
         }
 
-        public record ListarAsesorMetodologicoResponse(IEnumerable<Usuario> Usuarios, string Mensaje);
+        public record ListarAsesorMetodologicoResponse(List<AsesorMetodologico> AsesorMetodologicos, string Mensaje);
     }
 }

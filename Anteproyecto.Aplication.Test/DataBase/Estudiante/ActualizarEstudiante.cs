@@ -34,18 +34,32 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
         }
 
         [Test]
-        public void RegistrarEstudianteTest()
+        public void ActualizarEstudianteTest()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN 1222222212 1234566789
-            var estudiante = UsuarioMother.crearUsuarioEstudiante("1222222212");
-            estudiante.Id = 1;
+            var estudiante = UsuarioMother.crearUsuarioEstudiante("1234566789");
+
+            _dbContext.Usuarios.Add(estudiante);
+            _dbContext.SaveChanges();
 
             // ACT // ACCION // CUANDO // WHEN
-            var request = new ActualizarEstudianteRequest(estudiante);
+            var request = new ActualizarEstudianteRequest(
+                estudiante.Nombres,
+                estudiante.Apellidos,
+                estudiante.NumeroIdentificacion,
+                estudiante.Correo,
+                estudiante.Semestre,
+                estudiante.Edad,
+                false
+            );
+
             var response = _estudianteService.ActualizarEstudiante(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual($"El Usuario {estudiante.Nombres} ha sido modificado correctamente", response.Mensaje);
+
+            _dbContext.Usuarios.Remove(estudiante);
+            _dbContext.SaveChanges();
         }
     }
 }

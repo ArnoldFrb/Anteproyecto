@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Anteproyecto.Aplication.SharedService
+namespace Anteproyecto.Aplication.UsuarioService
 {
     public class ModificarContraseñaService
     {
@@ -23,7 +23,7 @@ namespace Anteproyecto.Aplication.SharedService
 
         public ModificarContraseñaResponse ModificarContraseña(ModificarContraseñaRequest request)
         {
-            var user = _usuarioRepository.FindFirstOrDefault(t => t.Id == request.Id);
+            var user = _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.NumeroIdentificacion);
             if (user != null)
             {
                 var res = user.ModificarContrasena(request.Contraseña);
@@ -45,7 +45,7 @@ namespace Anteproyecto.Aplication.SharedService
 
         public record ModificarContraseñaRequest
         (
-            int Id,
+            string NumeroIdentificacion,
             string Contraseña
         );
 
