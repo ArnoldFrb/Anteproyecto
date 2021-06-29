@@ -28,11 +28,11 @@ namespace Anteproyecto.Aplication.ProyectoService
             Proyecto proyecto = _proyectoRepository.Find(request.Id);
             if (proyecto != null)
             {
-                proyecto.actualizarArchivo(request.archivo);
+                var res = proyecto.actualizarArchivo(request.archivo);
 
                 _proyectoRepository.Edit(proyecto);
                 _unitOfWork.Commit();
-                return new ActualizarProyectoResponse("El proyecto ha sido actualizado.");
+                return new ActualizarProyectoResponse(res);
             }
             else
             {

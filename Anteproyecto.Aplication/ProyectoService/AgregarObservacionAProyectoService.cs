@@ -24,7 +24,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             _mailServer = mailServer;
         }
 
-        //public MensageObservacionAProyectoResponse AgregarObservacion(AgregarObservacionAProyectoReques request)
+        //public AgregarObservacionAProyectoResponse AgregarObservacion(AgregarObservacionAProyectoReques request)
         //{
         //    var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
         //    if (proyecto != null)
@@ -36,21 +36,21 @@ namespace Anteproyecto.Aplication.ProyectoService
         //            if (res.Equals($"Nueva Observacon: {request.Obsercion.Nombre}"))
         //            {
         //                _unitOfWork.Commit();
-        //                return new MensageObservacionAProyectoResponse(res);
+        //                return new AgregarObservacionAProyectoResponse(res);
         //            }
         //            else
         //            {
-        //                return new MensageObservacionAProyectoResponse(res);
+        //                return new AgregarObservacionAProyectoResponse(res);
         //            }
         //        }
         //        else
         //        {
-        //            return new MensageObservacionAProyectoResponse($"No existe el Obsercion: { request.Obsercion.Nombre}");
+        //            return new AgregarObservacionAProyectoResponse($"No existe el Obsercion: { request.Obsercion.Nombre}");
         //        }
         //    }
         //    else
         //    {
-        //        return new MensageObservacionAProyectoResponse($"No existe el Proyecto: {proyecto.Nombre}");
+        //        return new AgregarObservacionAProyectoResponse($"No existe el Proyecto: {proyecto.Nombre}");
         //    }
         //}
 
@@ -65,6 +65,6 @@ namespace Anteproyecto.Aplication.ProyectoService
             AsesorMetodologico AsesorMetodologico
         );
 
-        public record MensageObservacionAProyectoResponse(string Mensaje);
+        public record AgregarObservacionAProyectoResponse(string Mensaje);
     }
 }

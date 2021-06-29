@@ -1,4 +1,4 @@
-﻿using Anteproyecto.Aplication;
+﻿using Anteproyecto.Aplication.ConvocatoriaService;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Anteproyecto.Aplication.ConvocatoriaService;
+using static Anteproyecto.Aplication.ConvocatoriaService.ActivarCargaProyectosService;
+using static Anteproyecto.Aplication.ConvocatoriaService.CrearConvocatoriaService;
+using static Anteproyecto.Aplication.ConvocatoriaService.DesactivarCargaProyectosService;
 
 namespace Anteproyecto.Infrastructure.WebApi.Controllers
 {
@@ -26,11 +28,30 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
             _mailServer = mailServer;
         }
 
-        [HttpPost]
-        public MensageConvocatoriaResponse PostValidarNombre(ConvocatoriaRequest convocatoriaRequest)
+        [HttpPost("CrearConvocatoria")]
+        public CrearConvocatoriaResponse PostCrearConvocatoria(CrearConvocatoriaRequest request)
         {
-            var service = new ConvocatoriaService(_unitOfWork, _convocatoriaRepository, _mailServer);
-            var response = service.ModificarConvocatoria(convocatoriaRequest);
+            var service = new CrearConvocatoriaService(_unitOfWork, _convocatoriaRepository, _mailServer);
+            var response = service.CrearConvocatoria(request);
+            
+            return response;
+        }
+
+        [HttpPost("ActivarCargaProyectos")]
+        public ActivarCargaProyectosResponse PostActivarCargaProyectos(ActivarCargaProyectosRequest request)
+        {
+            var service = new ActivarCargaProyectosService(_unitOfWork, _convocatoriaRepository, _mailServer);
+            var response = service.ActivarCargaProyectos(request);
+
+            return response;
+        }
+
+        [HttpPost("DesactivarCargaProyectos")]
+        public DesactivarCargaProyectosResponse PostDesactivarCargaProyectos(DesactivarCargaProyectosRequest request)
+        {
+            var service = new DesactivarCargaProyectosService(_unitOfWork, _convocatoriaRepository, _mailServer);
+            var response = service.DesactivarCargaProyectos(request);
+
             return response;
         }
     }

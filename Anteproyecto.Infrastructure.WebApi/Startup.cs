@@ -37,6 +37,8 @@ namespace Anteproyecto.Infrastructure.WebApi
             services.AddScoped<IUsuarioRepository, UsuarioRepository>(); //Crear Instancia por peticion
             services.AddScoped<IProyectoRepository, ProyectoRepository>(); //Crear Instancia por peticion
             services.AddScoped<IConvocatoriaRepository, ConvocatoriaRepository>(); //Crear Instancia por peticion
+            services.AddScoped<IEvaluacionRepository, EvaluacionRepository>(); //Crear Instancia por peticion
+            services.AddScoped<IObservacionRepository, ObservacionRepository>(); //Crear Instancia por peticion
             services.AddScoped<IDbContext, ProyectoContext>(); //Crear Instancia por peticion
             services.AddScoped<IMailServer, MailServer>(); //Crear Instancia por peticion
 

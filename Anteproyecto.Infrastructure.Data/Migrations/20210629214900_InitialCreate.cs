@@ -23,39 +23,6 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Evaluacion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
-                    Comentario = table.Column<string>(type: "TEXT", nullable: true),
-                    Estado = table.Column<bool>(type: "INTEGER", nullable: false),
-                    projectoId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Evaluacion", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Observacion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
-                    Comentario = table.Column<string>(type: "TEXT", nullable: true),
-                    proyectoId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Observacion", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -69,8 +36,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     Semestre = table.Column<int>(type: "INTEGER", nullable: false),
                     Edad = table.Column<int>(type: "INTEGER", nullable: false),
                     Estado = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
-                    ProyectoId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Discriminator = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,6 +91,61 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Evaluacion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
+                    Comentario = table.Column<string>(type: "TEXT", nullable: true),
+                    Estado = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ProyectoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Evaluacion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Evaluacion_Proyectos_ProyectoId",
+                        column: x => x.ProyectoId,
+                        principalTable: "Proyectos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Observacion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
+                    Comentario = table.Column<string>(type: "TEXT", nullable: true),
+                    ProyectoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Observacion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Observacion_Proyectos_ProyectoId",
+                        column: x => x.ProyectoId,
+                        principalTable: "Proyectos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Evaluacion",
+                columns: new[] { "Id", "Comentario", "Date", "Estado", "Nombre", "ProyectoId" },
+                values: new object[] { 14, "holaa mudnooo aqui", new DateTime(2021, 6, 29, 16, 48, 59, 537, DateTimeKind.Local).AddTicks(2268), true, "Correccion de objetivos", null });
+
+            migrationBuilder.InsertData(
+                table: "Observacion",
+                columns: new[] { "Id", "Comentario", "Date", "Nombre", "ProyectoId" },
+                values: new object[] { 14, "holaa mudnooo aqui", new DateTime(2021, 6, 29, 16, 48, 59, 536, DateTimeKind.Local).AddTicks(9408), "Correccion de objetivos", null });
+
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
@@ -157,18 +178,18 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "ProyectoId", "Semestre" },
-                values: new object[] { 1, "Santander Pimienta", "123344444", "hola@gmail.com", "Estudiante", 23, false, "Jose Carlo", "1222222212", null, 9 });
+                columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
+                values: new object[] { 1, "Santander Pimienta", "123344444", "hola@gmail.com", "Estudiante", 23, false, "Jose Carlo", "1222222212", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "ProyectoId", "Semestre" },
-                values: new object[] { 2, "Santander Pimienta", "123344444", "hola@gmail.com", "Estudiante", 23, false, "Andres alejandro", "1222222231", null, 9 });
+                columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
+                values: new object[] { 2, "Santander Pimienta", "123344444", "hola@gmail.com", "Estudiante", 23, false, "Andres alejandro", "1222222231", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "ProyectoId", "Semestre" },
-                values: new object[] { 3, "Santander Pimienta", "123344444", "hola@gmail.com", "Estudiante", 23, true, "Pedro pepi", "1222222246", null, 9 });
+                columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
+                values: new object[] { 3, "Santander Pimienta", "123344444", "hola@gmail.com", "Estudiante", 23, true, "Pedro pepi", "1222222246", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
@@ -188,27 +209,17 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Proyectos",
                 columns: new[] { "Id", "AsesorMetodologicoId", "AsesorTematicoId", "Cut", "Date", "Focus", "Line", "Nombre", "Resumen", "State", "Url_Archive", "estudiante1Id", "estudiante2Id" },
-                values: new object[] { 13, 7, 10, 2, new DateTime(2021, 6, 24, 19, 23, 14, 975, DateTimeKind.Local).AddTicks(5320), "arriva", "investigacion", "El proyecto de ley", "resumen del proyecto", 1, "arriba/pero", 1, 2 });
-
-            migrationBuilder.InsertData(
-                table: "Evaluacion",
-                columns: new[] { "Id", "Comentario", "Date", "Estado", "Nombre", "projectoId" },
-                values: new object[] { 14, "holaa mudnooo aqui", new DateTime(2021, 6, 24, 19, 23, 14, 979, DateTimeKind.Local).AddTicks(7824), true, "Correccion de objetivos", 13 });
-
-            migrationBuilder.InsertData(
-                table: "Observacion",
-                columns: new[] { "Id", "Comentario", "Date", "Nombre", "proyectoId" },
-                values: new object[] { 14, "holaa mudnooo aqui", new DateTime(2021, 6, 24, 19, 23, 14, 978, DateTimeKind.Local).AddTicks(8948), "Correccion de objetivos", 13 });
+                values: new object[] { 13, 7, 10, 2, new DateTime(2021, 6, 29, 16, 48, 59, 535, DateTimeKind.Local).AddTicks(4298), "arriva", "investigacion", "El proyecto de ley", "resumen del proyecto", 1, "arriba/pero", 1, 2 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Evaluacion_projectoId",
+                name: "IX_Evaluacion_ProyectoId",
                 table: "Evaluacion",
-                column: "projectoId");
+                column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Observacion_proyectoId",
+                name: "IX_Observacion_ProyectoId",
                 table: "Observacion",
-                column: "proyectoId");
+                column: "ProyectoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Proyectos_AsesorMetodologicoId",
@@ -229,43 +240,10 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                 name: "IX_Proyectos_estudiante2Id",
                 table: "Proyectos",
                 column: "estudiante2Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_ProyectoId",
-                table: "Usuarios",
-                column: "ProyectoId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Evaluacion_Proyectos_projectoId",
-                table: "Evaluacion",
-                column: "projectoId",
-                principalTable: "Proyectos",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Observacion_Proyectos_proyectoId",
-                table: "Observacion",
-                column: "proyectoId",
-                principalTable: "Proyectos",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Usuarios_Proyectos_ProyectoId",
-                table: "Usuarios",
-                column: "ProyectoId",
-                principalTable: "Proyectos",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Usuarios_Proyectos_ProyectoId",
-                table: "Usuarios");
-
             migrationBuilder.DropTable(
                 name: "Convocatorias");
 

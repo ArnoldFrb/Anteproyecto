@@ -8,7 +8,7 @@ namespace Anteproyecto.Domain.Entities
     {
         public string Nombre { get; private set; }
         public string Comentario { get; private set; }
-        public Proyecto proyecto { get; private set; }
+        public Proyecto Proyecto { get; private set; }
         public DateTime Date { get; set; }
         public Observacion(string nombre, string comentario)
         {
@@ -42,6 +42,25 @@ namespace Anteproyecto.Domain.Entities
                 return "Registro Exitozo, Se ha registrado el nuevo Comentario";
             }
             throw new NotImplementedException();
+        }
+
+        public string AgregarObservacion(string nombre, string comentario, Proyecto proyecto)
+        {
+            var nombreResponse = ValidarNombre(nombre);
+            var comentarioResponse = ValidarComentario(comentario);
+
+            if (!nombreResponse.Equals("Registro Exitozo, Se ha registrado el nuevo Nombre"))
+            {
+                return nombreResponse;
+            }
+            if (!comentarioResponse.Equals("Registro Exitozo, Se ha registrado el nuevo Comentario"))
+            {
+                return nombreResponse;
+            }
+
+            Proyecto = proyecto;
+            Date = DateTime.Now;
+            return $"Nueva Observacon: {Nombre}";
         }
     }
 }

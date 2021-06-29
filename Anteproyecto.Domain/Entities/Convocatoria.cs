@@ -20,6 +20,18 @@ namespace Anteproyecto.Domain.Entities
             CargarProyectos = false;
         }
 
+        public string CrearConvocatoria(DateTime fechaInicio, DateTime fechaCierre, bool cargarProyectos)
+        {
+            if (fechaInicio < fechaCierre)
+            {
+                FechaInicio = fechaInicio;
+                FechaCierre = fechaCierre;
+                CargarProyectos = cargarProyectos;
+                return $"Se ha creado la convocatoria para las fechas: Inicio: {FechaInicio} / Cierre: {FechaCierre}";
+            }
+            return $"Error: fecha de inicio {FechaInicio} mayor a fecha de cierre {FechaCierre}";
+        }
+
         public string ModificarConvocatoria(DateTime fechaInicio, DateTime fechaCierre)
         {
             if (fechaInicio < fechaCierre)
@@ -33,18 +45,26 @@ namespace Anteproyecto.Domain.Entities
 
         public string ActivarCargaProyectos()
         {
-            if (FechaInicio > DateTime.Now)
+            if (CargarProyectos == true)
+            {
+                return "La Carga de proyecto ya esta activada.";
+            }
+            if (FechaInicio < DateTime.Now)
             {
                 CargarProyectos = true;
-                return "Carga de proyectos activada";
+                return "Carga de proyectos activada.";
             }
-            return "Error: Las fechas de inicio no concuerda con la fecha actual";
+            return "Error: No se pudo activar la carga de proyectos.";
         }
 
         public string DesactivarCargaProyectos()
         {
+            if (CargarProyectos == false)
+            {
+                return "La Carga de proyecto ya esta desactivada.";
+            }
             CargarProyectos = false;
-            return "Carga de proyectos desactivada";
+            return "Carga de proyectos desactivada.";
         }
     }
 }

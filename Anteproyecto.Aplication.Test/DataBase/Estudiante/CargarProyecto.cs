@@ -28,7 +28,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             _dbContext.Database.EnsureDeleted();
             _dbContext.Database.EnsureCreated();
 
-            _proyectoService = new CargarProyectoService(new UnitOfWork(_dbContext), new UsuarioRepository(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
+            _proyectoService = new CargarProyectoService(new UnitOfWork(_dbContext), new UsuarioRepository(_dbContext), new ProyectoRepository(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
             _ActualizarProyectoService = new ActualizarProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
         }
 
@@ -53,16 +53,23 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new CargarProyectoRequest(
+                proyecto.Nombre,
+                proyecto.Resumen,
+                proyecto.Url_Archive,
+                proyecto.Focus,
+                proyecto.Cut,
+                proyecto.Line,
+                proyecto.Date,
+                proyecto.State,
                 estudiante1.NumeroIdentificacion,
                 estudiante2.NumeroIdentificacion,
                 asesorTematico.NumeroIdentificacion,
-                asesorMetodologico.NumeroIdentificacion,
-                proyecto
+                asesorMetodologico.NumeroIdentificacion
             );
             var response = _proyectoService.CargarProyecto(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual($"Operacion exitoza: Se ha cargado el proyecto {request.Proyecto.Nombre}", response.Mensaje);
+            Assert.AreEqual($"Operacion exitoza: Se ha cargado el proyecto {request.Nombre}", response.Mensaje);
 
             _dbContext.Usuarios.Remove(estudiante1);
             _dbContext.Usuarios.Remove(estudiante2);
@@ -94,11 +101,18 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
 
             // ACT // ACCION // CUANDO // WHEN
             var request = new CargarProyectoRequest(
+                proyecto.Nombre,
+                proyecto.Resumen,
+                proyecto.Url_Archive,
+                proyecto.Focus,
+                proyecto.Cut,
+                proyecto.Line,
+                proyecto.Date,
+                proyecto.State,
                 estudiante1.NumeroIdentificacion,
                 estudiante2.NumeroIdentificacion,
                 asesorTematico.NumeroIdentificacion,
-                asesorMetodologico.NumeroIdentificacion,
-                proyecto
+                asesorMetodologico.NumeroIdentificacion
             );
             _proyectoService.CargarProyecto(request);
            

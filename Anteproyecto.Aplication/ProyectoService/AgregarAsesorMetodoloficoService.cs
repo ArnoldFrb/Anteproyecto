@@ -24,7 +24,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             _mailServer = mailServer;
         }
 
-        public AgregarAsesorMetodoloficoResponse AgregarAsesor(AgregarAsesorMetodoloficoReques request)
+        public AgregarAsesorMetodoloficoResponse AgregarAsesor(AgregarAsesorMetodoloficoRequest request)
         {
             var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
             if (proyecto != null)
@@ -54,7 +54,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             }
         }
 
-        public record AgregarAsesorMetodoloficoReques
+        public record AgregarAsesorMetodoloficoRequest
         (
             int Id,
             string Nombre,

@@ -9,7 +9,7 @@ namespace Anteproyecto.Domain.Entities
         public string Nombre { get; private set; }
         public string Comentario { get; private set; }
         public bool Estado { get; private set; }
-        public Proyecto projecto { get; private set; }
+        public Proyecto Proyecto { get; private set; }
         public DateTime Date { get; set; }
 
         public Evaluacion(int id, string nombre, string comentario, bool estado)
@@ -26,6 +26,8 @@ namespace Anteproyecto.Domain.Entities
             Comentario = comentario;
             Estado = estado;
         }
+
+        public Evaluacion() { }
 
         public string ValidarNombre(string nombre)
         {
@@ -68,5 +70,24 @@ namespace Anteproyecto.Domain.Entities
             throw new NotImplementedException();
         }
 
+        public string AgregarEvaluacion(string nombre, string comentario, bool estado, Proyecto proyecto)
+        {
+            var nombreResponse = ValidarNombre(nombre);
+            var comentarioResponse = ValidarComentario(comentario);
+
+            if (!nombreResponse.Equals($"Registro Exitozo: {Nombre}"))
+            {
+                return nombreResponse;
+            }
+            if (!comentarioResponse.Equals($"Registro Exitozo: {Comentario}"))
+            {
+                return nombreResponse;
+            }
+
+            Proyecto = proyecto;
+            Estado = estado;
+            Date = DateTime.Now;
+            return $"Nueva Evaluacion: {Nombre}";
+        }
     }
 }

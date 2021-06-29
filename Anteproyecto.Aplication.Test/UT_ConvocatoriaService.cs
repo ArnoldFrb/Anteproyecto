@@ -7,7 +7,7 @@ using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
-using static Anteproyecto.Aplication.ConvocatoriaService;
+using static Anteproyecto.Aplication.ConvocatoriasService;
 using static Anteproyecto.Aplication.ValidarNombreProyectoService;
 
 namespace Anteproyecto.Aplication.Test
@@ -16,7 +16,7 @@ namespace Anteproyecto.Aplication.Test
     {
 
         private ProyectoContext _dbContext;
-        private ConvocatoriaService _convocatoriaService;
+        private ConvocatoriasService _convocatoriaService;
 
         [SetUp]
         public void Setup()
@@ -26,7 +26,7 @@ namespace Anteproyecto.Aplication.Test
            .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
 
-            _convocatoriaService = new ConvocatoriaService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
+            _convocatoriaService = new ConvocatoriasService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
 
         }
 
@@ -72,8 +72,6 @@ namespace Anteproyecto.Aplication.Test
 
             _dbContext.Convocatorias.Remove(convocatoria);
             _dbContext.SaveChanges();
-
         }
-
     }
 }

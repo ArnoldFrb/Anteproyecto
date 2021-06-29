@@ -18,14 +18,16 @@ namespace Anteproyecto.Domain.Entities
         public int State { get; private set; }
         public AsesorTematico AsesorTematico { get; private set; }
         public AsesorMetodologico AsesorMetodologico { get; private set; }
-        public Usuario estudiante1 { get; private set; }
-        public Usuario estudiante2 { get; private set; }
+        public Usuario Estudiante1 { get; private set; }
+        public Usuario Estudiante2 { get; private set; }
          
         public Proyecto(string nombre, string resumen)
         {
             Nombre = nombre;
             Resumen = resumen;
         }
+
+        public Proyecto() { }
 
         public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state) : this(nombre, resumen)
         {
@@ -73,24 +75,6 @@ namespace Anteproyecto.Domain.Entities
             throw new NotImplementedException();
         }
 
-        //public string AgregarObservar(List<Observacion> obsercion)
-        //{
-        //    Obsercion = obsercion;
-        //    return $"Se han agregado las op";
-        //}
-
-        //public string Observar(Observacion obsercion)
-        //{
-        //    Obsercion.Add(obsercion);
-        //    return $"Nueva Observacon: {obsercion.Nombre}";
-        //}
-
-        //public string Evaluar(Evaluacion evaluacion)
-        //{
-        //    Evaluacion = evaluacion;
-        //    return $"Nueva Evaluacion: {Evaluacion.Nombre}";
-        //}
-
         public string AsignarAsesorTematico(AsesorTematico asesorTematico)
         {
             AsesorTematico = asesorTematico;
@@ -105,14 +89,14 @@ namespace Anteproyecto.Domain.Entities
 
         public string AsignarEstudianteUno(Estudiante estudiante)
         {
-            estudiante1 = estudiante;
-            return $"Se ha asignado el Estudiante {estudiante1.Nombres}";
+            Estudiante1 = estudiante;
+            return $"Se ha asignado el Estudiante {Estudiante1.Nombres}";
         }
 
         public string AsignarEstudianteDos(Estudiante estudiante)
         {
-            estudiante2 = estudiante;
-            return $"Se ha asignado el Estudiante {estudiante2.Nombres}";
+            Estudiante2 = estudiante;
+            return $"Se ha asignado el Estudiante {Estudiante2.Nombres}";
         }
 
         public string actualizarArchivo(string url_archivo)
@@ -121,29 +105,34 @@ namespace Anteproyecto.Domain.Entities
             return "Actualizo archivo del proyecto";
         }
 
-        public string CargarProyecto(Proyecto proyecto)
+        public string CargarProyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line,
+        DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Estudiante estudiante1, Estudiante estudiante2)
         {
-            var mensaje = proyecto.ValidarNombre(proyecto.Nombre);
-            if (!mensaje.Equals($"Registro Exitozo: {proyecto.Nombre}"))
+            var mensaje = ValidarNombre(nombre);
+            if (!mensaje.Equals($"Registro Exitozo: {Nombre}"))
             {
                 return mensaje;
             }
-            mensaje = proyecto.ValidarResumen(proyecto.Resumen);
-            if (!mensaje.Equals($"Registro Exitozo: {proyecto.Resumen}"))
+            mensaje = ValidarResumen(resumen);
+            if (!mensaje.Equals($"Registro Exitozo: {Resumen}"))
             {
                 return mensaje;
             }
-            if (Url_Archive == null)
-            {
-                Url_Archive = proyecto.Url_Archive;
-                return $"Operacion exitoza: Se ha cargado el proyecto {proyecto.Nombre}";
-            }
-            if (Url_Archive != null)
-            {
-                Url_Archive = proyecto.Url_Archive;
-                return $"Operacion exitoza: Se ha cargado la correccion del proyecto {proyecto.Nombre}";
-            }
-            throw new NotImplementedException();
+
+            Nombre = nombre;
+            Resumen = resumen;
+            Url_Archive = url_Archive;
+            Focus = focus;
+            Cut = cut;
+            Line = line;
+            Date = date;
+            State = state;
+            AsesorTematico = asesorTematico;
+            AsesorMetodologico = asesorMetodologico;
+            Estudiante1 = estudiante1;
+            Estudiante2 = estudiante2;
+
+            return $"Operacion Exitoza: Su proyecto {Nombre} ha sido cargado";
         }
     }
 }
