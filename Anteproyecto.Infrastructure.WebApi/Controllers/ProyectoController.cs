@@ -62,8 +62,8 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         public ListProyectosResponse GetProyectos()
         {
             var servicio = new ListProyectosService(_unitOfWork,_proyectoRepository);
-            var response = servicio.List();
-
+            var response = servicio.List(Request.Host.ToString());
+            
             return response;
         }
 

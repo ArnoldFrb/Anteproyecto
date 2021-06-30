@@ -92,8 +92,13 @@ namespace Anteproyecto.Domain.Entities
 
         public string enviarPlantillaCorreo()
         {
+            string estadoProyecto = Estado ? "Aceptado" : "Rezhazo";
+            
             string contenido = "<html>Cordial saludo  " + Proyecto.Estudiante1.Nombres + "," + "<br><br>"
-                       + " Se realizo una nueva evaluacion  al proyecto" + Nombre + "<br><br>"
+                       + " Se realizo una nueva evaluacion  al proyecto " + Proyecto.Nombre + "<br><br>"
+                       + " Titulo de la evaluacion: " + Nombre + "<br><br>"
+                       + " Evaluacion: " + Comentario + "<br><br>"
+                       + " Su proyecto se encuentra en estado: " + estadoProyecto + "<br><br>"
                        + " Atentamente:" + "<br>" + "<br>"
                        + " Universidad Popular del Cesar." + "<br>"
                        + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";

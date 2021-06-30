@@ -26,11 +26,11 @@ namespace Anteproyecto.Aplication.EvaluacionService
 
         public AgregarEvaluacionResponse AgregarEvaluacion(AgregarEvaluacionRequest request)
         {
-            var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.IdProyecto);
+            var proyecto = (List<Proyecto>)_proyectoRepository.FindBy(proyect => proyect.Id == request.IdProyecto, includeProperties: "Estudiante1");
             if (proyecto != null)
             {
                 var eval = new Evaluacion();
-                var res = eval.AgregarEvaluacion(request.Nombre, request.Comentario, request.Estado, proyecto);
+                var res = eval.AgregarEvaluacion(request.Nombre, request.Comentario, request.Estado, proyecto[0]);
                 if (res.Equals($"Nueva Evaluacion: {eval.Nombre}"))
                 {
                     _evaluacionRepository.Add(eval);
