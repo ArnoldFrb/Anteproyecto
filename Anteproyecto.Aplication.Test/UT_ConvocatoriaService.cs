@@ -41,7 +41,11 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
-            var _convocatoria = new ConvocatoriaRequest {Id = convocatoria.Id, FechaInicio= new DateTime(2021,1,1) , FechaCierre = new DateTime(2021, 3, 1) };
+<<<<<<< Updated upstream
+            var _convocatoria = new ConvocatoriaRequest {Id = 009, FechaInicio= new DateTime(2021,1,1) , FechaCierre = new DateTime(2021, 3, 1) };
+=======
+            var _convocatoria = new ConvocatoriaRequest {Id = 4, FechaInicio= new DateTime(2021,1,1) , FechaCierre = new DateTime(2021, 3, 1) };
+>>>>>>> Stashed changes
             var response = _convocatoriaService.ActivarCargaProyectos(_convocatoria);
 
             //Assert
@@ -57,7 +61,7 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseña = "123344444"};
+            //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseï¿½a = "123344444"};
             var convocatoria = CrearConvocatoriaMother.CrearConvocatoria();
 
             _dbContext.Convocatorias.Add(convocatoria);
