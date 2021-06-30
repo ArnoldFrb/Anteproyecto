@@ -20,11 +20,16 @@ namespace Anteproyecto.Aplication.ProyectoService
             _proyectoRepository = proyectoRepository;
         }
 
-        public ListProyectosResponse List()
+        public ListProyectosResponse List(string request)
         {
-            var proyecto = _proyectoRepository.FindBy(includeProperties: "AsesorTematico,AsesorMetodologico,Estudiante1,Estudiante2");
+            var proyecto = (List<Proyecto>) _proyectoRepository.FindBy(includeProperties: "AsesorTematico,AsesorMetodologico,Estudiante1,Estudiante2");
             if (proyecto.Count() != 0)
             {
+                proyecto.ForEach(x =>
+                {
+                    x.asignarArchivo(request + "/" + x.Url_Archive);
+                });
+
                 return new ListProyectosResponse(proyecto, "Proyecto registrados");
             }
             else

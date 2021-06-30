@@ -27,24 +27,25 @@ namespace Anteproyecto.Aplication.ObservacionService
         public AgregarObservacionResponse AgregarObservacion(AgregarObservacionRequest request)
         {
             ///var observacion = (List<Proyecto>) _observacionRepository.FindBy(x=>x.Id == request.IdProyecto, includeProperties: "Proyecto");
-            var observacion = (List<Observacion>) _observacionRepository.FindBy(x => x.Id == request.IdProyecto, includeProperties: "Proyecto,Proyecto.Estudiante1");
-            if (observacion != null) 
+
+            var proyecto = (List<Proyecto>)_proyectoRepository.FindBy(x => x.Id == request.IdProyecto, includeProperties: "Estudiante1");
+
+            if (proyecto != null) 
             {
 
                 var obs = new Observacion(request.Nombre, request.Comentario);
-                var res = obs.AgregarObservacion(request.Nombre, request.Comentario, observacion[0].Proyecto);
+                var res = obs.AgregarObservacion(request.Nombre, request.Comentario, proyecto[0]);
                 if (res.Equals($"Nueva Observacon: {obs.Nombre}"))
                 {
                     _observacionRepository.Add(obs);
-                    _mailServer.Send(obs.Proyecto.Estudiante1.Correo, "Se agrego un nueva Observacion a su proyecto", obs.enviarPlantillaCorreo());
+                    _mailServer.Send(proyecto[0].Estudiante1.Correo, "Se agrego un nueva Observacion a su proyecto", obs.enviarPlantillaCorreo());
                     _unitOfWork.Commit();
                     return new AgregarObservacionResponse(res);
                 }
                 else
                 {
                     return new AgregarObservacionResponse(res);
-                }
-                return new AgregarObservacionResponse($"No existe el Proyecto a Observar");
+                } 
             }
             else
             {

@@ -170,5 +170,10 @@ namespace Anteproyecto.Domain.Entities
 
             return $"Operacion Exitoza: Su proyecto {Nombre} ha sido cargado";
         }
+
+        public void asignarArchivo(string archivo)
+        {
+            Url_Archive = archivo;
+        }
     }
 }
