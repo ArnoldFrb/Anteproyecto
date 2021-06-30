@@ -13,37 +13,35 @@ namespace Anteproyecto.Aplication.ProyectoService
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IProyectoRepository _proyectoRepository;
-        private readonly IConvocatoriaRepository _convocatoriaRepository;
         private readonly IMailServer _mailServer;
 
-        public CargarProyectoService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IProyectoRepository proyectoRepository, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
+        public CargarProyectoService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IProyectoRepository proyectoRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _usuarioRepository = usuarioRepository;
             _proyectoRepository = proyectoRepository;
-            _convocatoriaRepository = convocatoriaRepository;
             _mailServer = mailServer;
         }
 
-        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request,string path)
+        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request, string path)
         {
-            var conv = _convocatoriaRepository.FindFirstOrDefault(doc => DateTime.Now >= doc.FechaInicio && DateTime.Now <= doc.FechaCierre);
-            if (conv != null)
+            var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1.ToString());
+            if (user1 != null)
             {
-                var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1.ToString());
-                if (user1 != null)
+                var user2 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante2.ToString());
+                if (user2 != null)
                 {
-                    var user2 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante2.ToString());
-                    if (user2 != null)
+                    var AsesorTematico = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorTematico.ToString());
+                    if (AsesorTematico != null)
                     {
                         var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
                         if (AsesorMetodologico != null)
-                        { 
+                        {
 
                             Proyecto proyectoCreado = new Proyecto(request.Nombre,
                                     request.Resumen, request.Focus,
                                     request.Cut, request.Line, DateTime.Now,
-                                    AsesorTematico,AsesorMetodologico,user1,user2);
+                                    AsesorTematico, AsesorMetodologico, user1, user2);
 
                             var res = proyectoCreado.CargarProyecto(proyectoCreado);
                             if (res.Equals("Se cargo el archivo correctamento"))
@@ -77,30 +75,30 @@ namespace Anteproyecto.Aplication.ProyectoService
                         }
                         else
                         {
-                            return new CargarProyectoResponse($"El Asesor Tematico identificado con la cedula {request.IdAsesorMetodologico} no existe.");
+                            return new CargarProyectoResponse($"El Asesor Metodologico identificado con la cedula {request.IdAsesorTematico} no existe.");
                         }
                     }
                     else
                     {
-                        return new CargarProyectoResponse($"El Usuario identificado con la cedula {request.IdEstudiante1} no existe.");
+                        return new CargarProyectoResponse($"El Asesor Tematico identificado con la cedula {request.IdAsesorMetodologico} no existe.");
                     }
                 }
                 else
                 {
-                    return new CargarProyectoResponse($"El Usuario identificado con la cedula {request.IdEstudiante2} no existe.");
+                    return new CargarProyectoResponse($"El Usuario identificado con la cedula {request.IdEstudiante1} no existe.");
                 }
             }
             else
             {
-                return new CargarProyectoResponse("No existe Convocatoria para este proceso");
+                return new CargarProyectoResponse($"El Usuario identificado con la cedula {request.IdEstudiante2} no existe.");
             }
         }
 
-        public record CargarProyectoRequest 
+        public record CargarProyectoRequest
         (
           string Nombre,
           string Resumen,
-          string Focus, 
+          string Focus,
           int Cut,
           string Line,
           IFormFile Archive,
@@ -108,7 +106,7 @@ namespace Anteproyecto.Aplication.ProyectoService
           string IdEstudiante2,
           string IdAsesorTematico,
           string IdAsesorMetodologico
-          
+
         );
 
         public record CargarProyectoResponse(string Mensaje);

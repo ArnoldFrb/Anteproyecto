@@ -29,7 +29,7 @@ namespace Anteproyecto.Domain.Entities
 
         public Proyecto() { }
 
-        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state) : this(nombre, resumen)
+        public Proyecto(string nombre, string resumen, string focus, int cut, string line, DateTime date, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Usuario estudiante1, Usuario estudiante2) : this(nombre, resumen)
         {
             Focus = focus;
             Cut = cut;
@@ -37,11 +37,11 @@ namespace Anteproyecto.Domain.Entities
             Date = date;
             AsesorTematico = asesorTematico;
             AsesorMetodologico = asesorMetodologico;
-            this.estudiante1 = estudiante1;
-            this.estudiante2 = estudiante2;
+            Estudiante1 = estudiante1;
+            Estudiante2 = estudiante2;
             State = 1;
         }
-  
+
         public string ValidarNombre(string nombre)
         {
             if (nombre.Length == 0)
@@ -139,32 +139,31 @@ namespace Anteproyecto.Domain.Entities
             return "Actualizo archivo del proyecto";
         }
 
-        public string CargarProyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line,
-        DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Estudiante estudiante1, Estudiante estudiante2)
+        public string CargarProyecto(Proyecto proyecto)
         {
-            var mensaje = ValidarNombre(nombre);
+            var mensaje = ValidarNombre(proyecto.Nombre);
             if (!mensaje.Equals($"Registro Exitozo: {Nombre}"))
             {
                 return mensaje;
             }
-            mensaje = ValidarResumen(resumen);
+            mensaje = ValidarResumen(proyecto.Resumen);
             if (!mensaje.Equals($"Registro Exitozo: {Resumen}"))
             {
                 return mensaje;
             }
 
-            Nombre = nombre;
-            Resumen = resumen;
-            Url_Archive = url_Archive;
-            Focus = focus;
-            Cut = cut;
-            Line = line;
-            Date = date;
-            State = state;
-            AsesorTematico = asesorTematico;
-            AsesorMetodologico = asesorMetodologico;
-            Estudiante1 = estudiante1;
-            Estudiante2 = estudiante2;
+            //Nombre = nombre;
+            //Resumen = resumen;
+            //Url_Archive = url_Archive;
+            //Focus = focus;
+            //Cut = cut;
+            //Line = line;
+            //Date = date;
+            //State = state;
+            //AsesorTematico = asesorTematico;
+            //AsesorMetodologico = asesorMetodologico;
+            //Estudiante1 = estudiante1;
+            //Estudiante2 = estudiante2;
 
             return $"Operacion Exitoza: Su proyecto {Nombre} ha sido cargado";
         }
