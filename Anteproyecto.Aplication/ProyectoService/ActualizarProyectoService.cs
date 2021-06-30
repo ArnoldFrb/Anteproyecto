@@ -53,10 +53,10 @@ namespace Anteproyecto.Aplication.ProyectoService
         }
 
         public record ActualizarProyectoRequest
-       (
+        (
             int Id,
             IFormFile Archivo
-       );
+        );
          
         public record ActualizarProyectoResponse(string Mensaje);
 
