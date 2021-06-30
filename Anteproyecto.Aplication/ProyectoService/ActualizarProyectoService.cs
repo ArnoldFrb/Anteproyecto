@@ -1,8 +1,10 @@
 ﻿using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +30,17 @@ namespace Anteproyecto.Aplication.ProyectoService
             Proyecto proyecto = _proyectoRepository.Find(request.Id);
             if (proyecto != null)
             {
-                var res = proyecto.actualizarArchivo(request.archivo);
+                string path = Path.GetFullPath("../../../../Anteproyecto.Infrastructure.WebApi/");
+                FileInfo fi = new FileInfo(request.Archivo.FileName);
+                string nameFile = "Archivos/" + DateTime.Now.Ticks.ToString() + fi.Extension;
+                string filepatch = Path.Combine(path, nameFile);
+
+                using (var stream = File.Create(filepatch))
+                {
+                    request.Archivo.CopyTo(stream);
+                }
+
+                var res = proyecto.actualizarArchivo(nameFile);
 
                 _proyectoRepository.Edit(proyecto);
                 _unitOfWork.Commit();
@@ -43,7 +55,7 @@ namespace Anteproyecto.Aplication.ProyectoService
         public record ActualizarProyectoRequest
        (
             int Id,
-            string archivo
+            IFormFile Archivo
        );
          
         public record ActualizarProyectoResponse(string Mensaje);

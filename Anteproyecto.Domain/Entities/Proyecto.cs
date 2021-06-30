@@ -1,4 +1,4 @@
-﻿using Anteproyecto.Domain.Base;
+﻿ using Anteproyecto.Domain.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -142,31 +142,31 @@ namespace Anteproyecto.Domain.Entities
             return "Actualizo archivo del proyecto";
         }
 
-        public string CargarProyecto(Proyecto proyecto)
+        public string CargarProyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line,
+        DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Estudiante estudiante1, Estudiante estudiante2)
         {
-            var mensaje = ValidarNombre(proyecto.Nombre);
+            var mensaje = ValidarNombre(nombre);
             if (!mensaje.Equals($"Registro Exitozo: {Nombre}"))
             {
                 return mensaje;
             }
-            mensaje = ValidarResumen(proyecto.Resumen);
+            mensaje = ValidarResumen(resumen);
             if (!mensaje.Equals($"Registro Exitozo: {Resumen}"))
             {
                 return mensaje;
             }
 
-            //Nombre = nombre;
-            //Resumen = resumen;
-            //Url_Archive = url_Archive;
-            //Focus = focus;
-            //Cut = cut;
-            //Line = line;
-            //Date = date;
-            //State = state;
-            //AsesorTematico = asesorTematico;
-            //AsesorMetodologico = asesorMetodologico;
-            //Estudiante1 = estudiante1;
-            //Estudiante2 = estudiante2;
+            AsignarAsesorMetodologico(asesorMetodologico);
+            AsignarAsesorTematico(asesorTematico);
+            AsignarEstudianteDos(estudiante2);
+            AsignarEstudianteUno(estudiante1);
+
+            Url_Archive = url_Archive;
+            Focus = focus;
+            Cut = cut;
+            Line = line;
+            Date = date;
+            State = state;
 
             return $"Operacion Exitoza: Su proyecto {Nombre} ha sido cargado";
         }

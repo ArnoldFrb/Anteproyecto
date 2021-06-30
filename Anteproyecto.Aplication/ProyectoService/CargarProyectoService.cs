@@ -30,43 +30,45 @@ namespace Anteproyecto.Aplication.ProyectoService
             var conv = _convocatoriaRepository.FindFirstOrDefault(doc => DateTime.Now >= doc.FechaInicio);
             if (conv != null)
             {
-                var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1.ToString());
+                var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1);
                 if (user1 != null)
                 {
-                    var user2 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante2.ToString());
+                    var user2 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante2);
                     if (user2 != null)
                     {
-                        var AsesorTematico = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorTematico.ToString());
+                        var AsesorTematico = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorTematico);
                         if (AsesorTematico != null)
                         {
-                            var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
+                            var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico);
                             if (AsesorMetodologico != null)
                             {
-                                Proyecto proyectoCreado = new Proyecto(request.Nombre,
-                                   request.Resumen, request.Focus,
-                                   request.Cut, request.Line, DateTime.Now,
-                                   AsesorTematico, AsesorMetodologico, user1, user2);
+                                var proyecto = new Proyecto();
 
-                                var res = proyectoCreado.CargarProyecto(proyectoCreado);
-                                if (res.Equals($"Operacion Exitoza: Su proyecto {proyectoCreado.Nombre} ha sido cargado"))
+                                FileInfo fi = new FileInfo(request.Archive.FileName);
+                                string nameFile = "Archivos/" + DateTime.Now.Ticks.ToString() + fi.Extension;
+                                string filepatch = Path.Combine(path, nameFile);
+
+                                user1.CambiarEstado(false);
+                                user2.CambiarEstado(false);
+
+                                using (var stream = File.Create(filepatch))
                                 {
-                                    FileInfo fi = new FileInfo(request.Archive.FileName);
-                                    string nameFile = "Archivos/" + DateTime.Now.Ticks.ToString() + fi.Extension;
-                                    string filepatch = Path.Combine(path, nameFile);
+                                    request.Archive.CopyTo(stream);
+                                }
 
-                                    proyectoCreado.actualizarArchivo(nameFile);
-                                    user1.CambiarEstado(false);
-                                    user2.CambiarEstado(false);
+                                var res = proyecto.CargarProyecto(request.Nombre, request.Resumen, nameFile, request.Focus, request.Cut, request.Line,
+                                    DateTime.Now, request.State, AsesorTematico, AsesorMetodologico, user1, user2);
 
-                                    using (var stream = File.Create(filepatch))
-                                    {
-                                        request.Archive.CopyTo(stream);
-                                    }
-                                    _usuarioRepository.Edit(user1);
-                                    _usuarioRepository.Edit(user2);
-                                    _proyectoRepository.Add(proyectoCreado);
-                                    _mailServer.Send(user1.Correo, "Proyecto cargado correctamente", proyectoCreado.enviarPlantillaCorreo(user1.Nombres));
+                                if (res.Equals($"Operacion Exitoza: Su proyecto {proyecto.Nombre} ha sido cargado"))
+                                {
+
+                                    _proyectoRepository.Add(proyecto);
+                                    _mailServer.Send(user1.Correo, "Proyecto cargado correctamente", proyecto.enviarPlantillaCorreo(user1.Nombres));
+                                    _mailServer.Send(user2.Correo, "Proyecto cargado correctamente", proyecto.enviarPlantillaCorreo(user2.Nombres));
+                                    _mailServer.Send(AsesorMetodologico.Correo, "Se le asignado un proyecto", proyecto.enviarPlantillaCorreo(AsesorMetodologico.Nombres));
+                                    _mailServer.Send(AsesorTematico.Correo, "Se le asignado un proyecto", proyecto.enviarPlantillaCorreo(AsesorTematico.Nombres));
                                     _unitOfWork.Commit();
+
                                     return new CargarProyectoResponse(res);
                                 }
                                 else
@@ -108,6 +110,7 @@ namespace Anteproyecto.Aplication.ProyectoService
           int Cut,
           string Line,
           IFormFile Archive,
+          int State,
           string IdEstudiante1,
           string IdEstudiante2,
           string IdAsesorTematico,

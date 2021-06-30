@@ -59,6 +59,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             _dbContext.Usuarios.Add(estudiante2);
             _dbContext.Usuarios.Add(asesorTematico);
             _dbContext.Usuarios.Add(asesorMetodologico);
+            _dbContext.SaveChanges();
 
             var archivo = ProyectoMother.CrearArchivo();
             // ACT // ACCION // CUANDO // WHEN
@@ -69,17 +70,24 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
                 proyecto.Cut,
                 proyecto.Line,
                 archivo,
-                estudiante1.NumeroIdentificacion,
-                estudiante2.NumeroIdentificacion,
-                asesorTematico.NumeroIdentificacion,
-                asesorMetodologico.NumeroIdentificacion
+                proyecto.State,
+                "1222222212",
+                "1222222231",
+                "5222232229",
+                "3222233299"
             );
             var response = _proyectoService.CargarProyecto(request, path);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual($"Operacion Exitoza: Su proyecto {proyecto.Nombre} ha sido cargado", response.Mensaje);
 
-            
+            _dbContext.Convocatorias.Remove(convocatoria);
+            _dbContext.Usuarios.Remove(estudiante1);
+            _dbContext.Usuarios.Remove(estudiante2);
+            _dbContext.Usuarios.Remove(asesorTematico);
+            _dbContext.Usuarios.Remove(asesorMetodologico);
+            _dbContext.SaveChanges();
+
         }
 
         [Test]
@@ -87,54 +95,26 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
         {
 
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante1 = UsuarioMother.crearUsuarioEstudiante("923456678");
-            var estudiante2 = UsuarioMother.crearUsuarioEstudiante("913456118");
-            var asesorTematico = UsuarioMother.crearUsuarioAsesorTematico("333456118");
-            var asesorMetodologico = UsuarioMother.crearUsuarioAsesorMetodologico("444456118");
 
             var proyecto = ProyectoMother.CrearProyecto_();
-            var convocatoriaActiva = CrearConvocatoriaMother.CrearConvocatoria();
-            convocatoriaActiva.ActivarCargaProyectos();
-
-            string path = Path.GetFullPath("../../../../Anteproyecto.Infrastructure.WebApi/");
-            var proyecto2 = ProyectoMother.ActualizarProyecto_();
-
-            _dbContext.Usuarios.Add(estudiante1);
-            _dbContext.Usuarios.Add(estudiante2);
-            _dbContext.Usuarios.Add(asesorTematico); 
-            _dbContext.Usuarios.Add(asesorMetodologico);
-            _dbContext.Convocatorias.Add(convocatoriaActiva);
+            
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
 
             var archivo = ProyectoMother.CrearArchivo();
             // ACT // ACCION // CUANDO // WHEN
-            var request = new CargarProyectoRequest(
-                proyecto.Nombre, proyecto.Resumen, proyecto.Focus, proyecto.Cut, proyecto.Line,
-                archivo,
-                estudiante1.NumeroIdentificacion,
-                estudiante2.NumeroIdentificacion,
-                asesorTematico.NumeroIdentificacion,
-                asesorMetodologico.NumeroIdentificacion
-            );
-            _proyectoService.CargarProyecto(request,path);
            
             var request2 = new ActualizarProyectoRequest(
                 proyecto.Id,
-                proyecto2.Url_Archive
-                
+                archivo
+
             );
             var response = _ActualizarProyectoService.ActualizarProyecto(request2);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual("Actualizo archivo del proyecto", response.Mensaje);
 
-            _dbContext.Usuarios.Remove(estudiante1);
-            _dbContext.Usuarios.Remove(estudiante2);
-            _dbContext.Usuarios.Remove(asesorTematico);
-            _dbContext.Usuarios.Remove(asesorMetodologico);
             _dbContext.Proyectos.Remove(proyecto);
-            _dbContext.Convocatorias.Remove(convocatoriaActiva);
             _dbContext.SaveChanges();
         }
     }
