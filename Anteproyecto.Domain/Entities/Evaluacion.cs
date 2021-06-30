@@ -9,6 +9,16 @@ namespace Anteproyecto.Domain.Entities
         public string Nombre { get; private set; }
         public string Comentario { get; private set; }
         public bool Estado { get; private set; }
+        public Proyecto Proyecto { get; private set; }
+        public DateTime Date { get; set; }
+
+        public Evaluacion(int id, string nombre, string comentario, bool estado)
+        {
+            Id = id;
+            Nombre = nombre;
+            Comentario = comentario;
+            Estado = estado;
+        }
 
         public Evaluacion(string nombre, string comentario, bool estado)
         {
@@ -17,16 +27,18 @@ namespace Anteproyecto.Domain.Entities
             Estado = estado;
         }
 
+        public Evaluacion() { }
+
         public string ValidarNombre(string nombre)
         {
             if (nombre.Length == 0)
             {
                 return "Registro Fallido, El Dato recibido se encuantra vacio";
             }
-            if (nombre.Length > 0 && nombre.Length >= 35)
+            if (nombre.Length > 10)
             {
                 Nombre = nombre;
-                return "Registro Exitozo, Se ha registrado el nuevo Nombre";
+                return $"Registro Exitozo: {Nombre}";
             }
             throw new NotImplementedException();
         }
@@ -40,7 +52,7 @@ namespace Anteproyecto.Domain.Entities
             if (comentario.Length > 0 && comentario.Length >= 100)
             {
                 Comentario = comentario;
-                return "Registro Exitozo, Se ha registrado el nuevo Comentario";
+                return $"Registro Exitozo: {Comentario}";
             }
             throw new NotImplementedException();
         }
@@ -57,6 +69,43 @@ namespace Anteproyecto.Domain.Entities
             }
             throw new NotImplementedException();
         }
+
+        public string AgregarEvaluacion(string nombre, string comentario, bool estado, Proyecto proyecto)
+        {
+            var nombreResponse = ValidarNombre(nombre);
+            var comentarioResponse = ValidarComentario(comentario);
+
+            if (!nombreResponse.Equals($"Registro Exitozo: {Nombre}"))
+            {
+                return nombreResponse;
+            }
+            if (!comentarioResponse.Equals($"Registro Exitozo: {Comentario}"))
+            {
+                return nombreResponse;
+            }
+
+            Proyecto = proyecto;
+            Estado = estado;
+            Date = DateTime.Now;
+            return $"Nueva Evaluacion: {Nombre}";
+        }
+
+        public string enviarPlantillaCorreo()
+        {
+            string estadoProyecto = Estado ? "Aceptado" : "Rezhazo";
+            
+            string contenido = "<html>Cordial saludo  " + Proyecto.Estudiante1.Nombres + "," + "<br><br>"
+                       + " Se realizo una nueva evaluacion  al proyecto " + Proyecto.Nombre + "<br><br>"
+                       + " Titulo de la evaluacion: " + Nombre + "<br><br>"
+                       + " Evaluacion: " + Comentario + "<br><br>"
+                       + " Su proyecto se encuentra en estado: " + estadoProyecto + "<br><br>"
+                       + " Atentamente:" + "<br>" + "<br>"
+                       + " Universidad Popular del Cesar." + "<br>"
+                       + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
+        }
+
 
     }
 }

@@ -28,7 +28,7 @@ namespace Anteproyecto.Domain.Test
             //ARRANGE //PREPARAR // DADO // GIVEN
             string nombre = "Aplicativo Web Para la Gestión";
             string comentario = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos";
-            var obsercion = new Obsercion(nombre, comentario);
+            var obsercion = new Observacion(nombre, comentario);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = obsercion.ValidarNombre("");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -41,7 +41,7 @@ namespace Anteproyecto.Domain.Test
             //ARRANGE //PREPARAR // DADO // GIVEN
             string nombre = "Aplicativo Web Para la Gestión";
             string comentario = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos";
-            var obsercion = new Obsercion(nombre, comentario);
+            var obsercion = new Observacion(nombre, comentario);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = obsercion.ValidarNombre("seguimiento y evaluación de los anteproyectos");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -54,7 +54,7 @@ namespace Anteproyecto.Domain.Test
             //ARRANGE //PREPARAR // DADO // GIVEN
             string nombre = "Aplicativo Web Para la Gestión";
             string comentario = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos";
-            var obsercion = new Obsercion(nombre, comentario);
+            var obsercion = new Observacion(nombre, comentario);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = obsercion.ValidarComentario("");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -67,7 +67,7 @@ namespace Anteproyecto.Domain.Test
             //ARRANGE //PREPARAR // DADO // GIVEN
             string nombre = "Aplicativo Web Para la Gestión";
             string comentario = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos";
-            var obsercion = new Obsercion(nombre, comentario);
+            var obsercion = new Observacion(nombre, comentario);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = obsercion.ValidarComentario("El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento");
             //ASSERT //AFIRMACION //ENTONCES //THEN

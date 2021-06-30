@@ -9,27 +9,27 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    public class CrearConvocatoriaService
+    public class CrearConvocatoriasService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
         private readonly IMailServer _mailServer;
 
-        public CrearConvocatoriaService(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
+        public CrearConvocatoriasService(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _convocatoriaRepository = convocatoriaRepository;
             _mailServer = mailServer;
         }
 
-        public MensageCrearConvocatoriaResponse CrearConvocatoria(CrearConvocatoriaRequest request)
+        public string CrearConvocatoria(CrearConvocatoriaRequest request)
         {
             Convocatoria convocatoria = ConvocatoriaNueva.EstablerConvocatoria(request.FechaInicio, request.FechaCierre);
             if (convocatoria != null)
             {
                 _convocatoriaRepository.Add(convocatoria);
                 _unitOfWork.Commit();
-                return new MensageCrearConvocatoriaResponse() { Mensaje = $"Se ha añadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio} / Fin: {convocatoria.FechaCierre}." };
+                return $"Se ha anadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio.ToLongDateString()} / Fin: {convocatoria.FechaCierre.ToLongDateString()}";
             }
             else
             {
@@ -39,6 +39,7 @@ namespace Anteproyecto.Aplication
 
         public class CrearConvocatoriaRequest
         {
+            public int Id { get; set; }
             public DateTime FechaInicio { get; set; }
             public DateTime FechaCierre { get; set; }
             public bool CargarProyectos { get; set; }

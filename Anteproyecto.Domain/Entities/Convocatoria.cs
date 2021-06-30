@@ -17,7 +17,19 @@ namespace Anteproyecto.Domain.Entities
         {
             FechaInicio = fechaInicio;
             FechaCierre = fechaCierre;
-            CargarProyectos = false;
+            CargarProyectos = true;
+        }
+
+        public string CrearConvocatoria(DateTime fechaInicio, DateTime fechaCierre, bool cargarProyectos)
+        {
+            if (fechaInicio < fechaCierre)
+            {
+                FechaInicio = fechaInicio;
+                FechaCierre = fechaCierre;
+                CargarProyectos = cargarProyectos;
+                return $"Se ha creado la convocatoria para las fechas: Inicio: {FechaInicio} / Cierre: {FechaCierre}";
+            }
+            return $"Error: fecha de inicio {FechaInicio} mayor a fecha de cierre {FechaCierre}";
         }
 
         public string ModificarConvocatoria(DateTime fechaInicio, DateTime fechaCierre)
@@ -33,39 +45,26 @@ namespace Anteproyecto.Domain.Entities
 
         public string ActivarCargaProyectos()
         {
-            CargarProyectos = true;
-            return "Carga de proyectos activada";
+            if (CargarProyectos == true)
+            {
+                return "La Carga de proyecto ya esta activada.";
+            }
+            if (FechaInicio < DateTime.Now)
+            {
+                CargarProyectos = true;
+                return "Carga de proyectos activada.";
+            }
+            return "Error: No se pudo activar la carga de proyectos.";
         }
 
         public string DesactivarCargaProyectos()
         {
-            if (PuedeActivarCargaProyectos().Any())
+            if (CargarProyectos == false)
             {
-                throw new ConvocatoriaActivacionDeCargaException("No es posible realizar el Retiro, Supera el tope mínimo permitido de retiro");
+                return "La Carga de proyecto ya esta desactivada.";
             }
             CargarProyectos = false;
-            return "Carga de proyectos desactivada";
-        }
-
-        public List<string> PuedeActivarCargaProyectos()
-        {
-            List<string> errors = new List<string>();
-            if (FechaInicio > DateTime.Now)
-            {
-                errors.Add("Error: Las fechas de inicio no concuerda con la fecha actual");
-            }
-            return errors;
-        }
-
-        [Serializable]
-        public class ConvocatoriaActivacionDeCargaException : Exception
-        {
-            public ConvocatoriaActivacionDeCargaException() { }
-            public ConvocatoriaActivacionDeCargaException(string message) : base(message) { }
-            public ConvocatoriaActivacionDeCargaException(string message, Exception inner) : base(message, inner) { }
-            protected ConvocatoriaActivacionDeCargaException(
-              System.Runtime.Serialization.SerializationInfo info,
-              System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+            return "Carga de proyectos desactivada.";
         }
     }
 }

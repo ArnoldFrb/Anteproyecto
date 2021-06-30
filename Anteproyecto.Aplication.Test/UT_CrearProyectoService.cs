@@ -23,54 +23,36 @@ namespace Anteproyecto.Aplication.Test
             var optionsSqlite = new DbContextOptionsBuilder<ProyectoContext>()
            .UseSqlite(@"Data Source=C:\\BD\\AnteProyecto.db")
            .Options;
+             
             _dbContext = new ProyectoContext(optionsSqlite);
+            _dbContext.Database.EnsureDeleted();
+            _dbContext.Database.EnsureCreated();
 
             _CrearProyectoService = new CrearProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
 
         }
 
         [Test]
-        public void CargaProyectosTest()
+        public void verificarProyectosCargadosTest()
         {
 
-            //Arrange
-            var proyecto = ProyectoMother.crearProyecto("Poryecto4");
+            //ARRANGE //PREPARAR // DADO // GIVEN
+            var proyecto = ProyectoMother.CrearProyecto();
 
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
 
-            //Act
-            var _proyecto = new ProyectoRequest { Nombre = "proyecto4", Resumen = "Este es un proyecto" };
+            // ACT // ACCION // CUANDO // WHEN
+            var _proyecto = new CrearProyectoRequest {Nombre = proyecto.Nombre, Resumen = proyecto.Resumen };
             var response = _CrearProyectoService.CrearProyecto(_proyecto);
 
-            //Assert
-            Assert.AreEqual("Se agrego con exito el proyecto: proyecto4.", response);
-
-            _dbContext.Proyectos.Remove(proyecto);
-            _dbContext.SaveChanges();
-
-        }
-
-        [Test]
-        public void NoCargarProyectoSiExisteUnoConElMismoNombre()
-        {
-
-            //Arrange
-            var proyecto = ProyectoMother.crearProyecto("Poryecto1");
-
-            _dbContext.Proyectos.Add(proyecto);
-            _dbContext.SaveChanges();
-
-            //Act
-            var _proyecto = new ProyectoRequest { Nombre = "proyecto2", Resumen = "Este es un proyecto" };
-            var response = _CrearProyectoService.CrearProyecto(_proyecto);
-
-            //Assert
+            //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.AreEqual("El Nombre del proyecto ya ha sido registrado", response);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();
 
         }
+         
     }
 }

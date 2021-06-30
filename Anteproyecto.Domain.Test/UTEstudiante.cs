@@ -21,12 +21,12 @@ namespace Anteproyecto.Domain.Test
             Entonces El sistema presentará el mensaje. “No puede ingresar una contraseña igual a la registrada, pruebe de nuevo”
         */
         [Test]
-        public void NoPuedeIngresarContraseñaIgualALaAnterior()
+        public void NoPuedeIngresarContrasenaIgualALaAnterior()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",9,12,true);
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarContraseña("@#Hl1g2l34");
+            var resultado = estudiante.ModificarContrasena("@#Hl1g2l34");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("No puede ingresar contraseña igual a la registrada, pruebe de nuevo", resultado);
         }
@@ -42,12 +42,12 @@ namespace Anteproyecto.Domain.Test
             Entonces El sistema presentará el mensaje. “Su nueva contraseña es correcta”
         */
         [Test]
-        public void PuedeIngresarContraseñaMayorOIgualA10Caracteres()
+        public void PuedeIngresarContrasenaMayorOIgualA10Caracteres()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",8,22,true);
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarContraseña("g2l34@#Hl1");
+            var resultado = estudiante.ModificarContrasena("g2l34@#Hl1");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("Su nueva contraseña es correcta", resultado);
         }
@@ -66,7 +66,7 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarCorreosConEspacios()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,23,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = estudiante.ModificarCorreo("hol @gmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -87,7 +87,7 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarCorreosSinArroba()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",9,25,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = estudiante.ModificarCorreo("holagmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN
@@ -108,7 +108,7 @@ namespace Anteproyecto.Domain.Test
         public void PuedeIngresarCorreosConEstructuraAdecuada()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",7,23,true);
             // ACT // ACCION // CUANDO // WHEN
             var resultado = estudiante.ModificarCorreo("mundo@gmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN

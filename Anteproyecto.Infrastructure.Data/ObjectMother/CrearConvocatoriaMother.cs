@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Infrastructure.Data.ObjectMother
 {
-    public class CrearConvocatoriaMother
+    public static class CrearConvocatoriaMother
     {
         public static Convocatoria CrearConvocatoria()
         {
-            return new Convocatoria(new DateTime(2021, 1, 1), new DateTime(2021, 3, 1));
+            return new Convocatoria(new DateTime(2021, 5, 1, 12, 0, 0), new DateTime(2021, 6, 1, 12, 0, 0));
         }
     }
 }

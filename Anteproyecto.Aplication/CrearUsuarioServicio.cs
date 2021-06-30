@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    class CrearUsuarioServicio
+    public class CrearUsuarioServicio
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUsuarioRepository _usuarioRepository;
@@ -22,28 +22,50 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public string CrearCuentaBancaria(ProyectoRequest request)
+        public CrearUsuarioResponse CrearCuentaBancaria(crearUsuarioRequest request)
         {
-            Usuario user = _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.NumeroIdentificacion);
-            if (user != null)
+            Usuario user = _usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.NumeroIdentificacion.ToString());
+            if (user == null)
             {
-                _usuarioRepository.Add(user);
-                _unitOfWork.Commit();
-                return $"Se ha creado un nuevo usuario con la identificacion: {user.NumeroIdentificacion}";
+                Estudiante us = new Estudiante(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Contraseña, request.Semestre,request.Edad,true);
+                
+                if (us.ValidarUsuario(us) == $"El Usuario {request.Nombres} ha sido registrado correctamente")
+                {
+                    _usuarioRepository.Add(us);
+                    _unitOfWork.Commit();
+
+                    return new CrearUsuarioResponse() { Mensaje = $"Se ha creado un nuevo usuario con la identificacion: {us.NumeroIdentificacion}" };
+                }
+                else
+                {
+                    return new CrearUsuarioResponse() { Mensaje = "Digite los campos primordiales para su registro" };
+                }
+               
             }
             else
-            {
-                return $"El usuario ya existe";
+             {
+                return new CrearUsuarioResponse() { Mensaje = $"El estudiante con ese numero de cedula ya esta registrado"};
+               
             }
         }
 
-        public class ProyectoRequest
-        {
+        public class crearUsuarioRequest
+        { 
             public string Nombres { get; set; }
             public string Apellidos { get; set; }
             public string NumeroIdentificacion { get; set; }
             public string Correo { get; set; }
             public string Contraseña { get; set; }
+            public int Semestre { get; set; }
+            public int Edad { get;  set; }
+            public bool Estado { get; set; }
+
+        }
+
+
+        public class CrearUsuarioResponse
+        {
+            public string Mensaje { get; set; }
         }
     }
 }

@@ -1,12 +1,11 @@
 using Anteproyecto.Aplication.Test.Dobles;
 using Anteproyecto.Domain.Entities;
-using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Anteproyecto.Infrastructure.Data.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using static Anteproyecto.Aplication.ProyectoService;
+using static Anteproyecto.Aplication.ValidarNombreProyectoService;
 
 namespace Anteproyecto.Aplication.Test
 {
@@ -14,7 +13,7 @@ namespace Anteproyecto.Aplication.Test
     {
 
         private ProyectoContext _dbContext;
-        private ProyectoService _proyectoService;
+        private ValidarNombreProyectoService _proyectoService;
 
         [SetUp]
         public void Setup()
@@ -24,7 +23,7 @@ namespace Anteproyecto.Aplication.Test
            .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
 
-            _proyectoService = new ProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
+            _proyectoService = new ValidarNombreProyectoService(new UnitOfWork(_dbContext), new ProyectoRepository(_dbContext), new MailServerSpy());
 
         }
 
@@ -33,14 +32,13 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            var proyecto = ProyectoMother.crearProyecto("proyecto2");
+            var proyecto = new Proyecto("proyecto1", "Este proyecto es importane");
 
             _dbContext.Proyectos.Add(proyecto);
-            _dbContext.SaveChanges();
-            string nombreDePrueba = "sistemas de informacion para la gestion del talento humano en el departmento del cesar colombia";
+            _dbContext.SaveChanges(); 
 
-            //Act
-            var _proyecto = new ProyectoRequest { Id = 2, Nombre = nombreDePrueba, Resumen = "Este es un proyecto" };
+             //Act
+            var _proyecto = new ProyectoRequest {Id = proyecto.Id, Nombre="proyecto1", Resumen="Este es un proyecto"};
             var response = _proyectoService.ValidarNombre(_proyecto);
 
             //Assert
@@ -56,14 +54,15 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseña = "123344444"};
-            var proyecto = new Proyecto("Poryecto8", "Este es un resumen del proyecto para probar");
+            //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseï¿½a = "123344444"};
+            var proyecto = new Proyecto("Aplicativo Web Para la Gestiï¿½n, seguimiento y evaluaciï¿½n de los anteproyectos del programa de Psicologï¿½a de la Universidad Popular del Cesar", "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicologï¿½a en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda");
              
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
              
             //Act
-            var _proyecto = new ProyectoRequest { Id = 27, Nombre = "proyecto8", Resumen = "Este es un resumen del proyecto para probar" };
+
+            var _proyecto = new ProyectoRequest { Id = 1, Nombre = "proyecto8", Resumen = "El aplicativo web a desarrollar tiene como objetivo ser una herramienta que permita gestionar y controlar de manera adecuada el seguimiento de los anteproyectos recibidos en la oficina de psicologï¿½a en la Universidad Popular del Cesar, ubicada en la ciudad de Valledupar. Para esto se requiere que el sistema pueda" };
             var response = _proyectoService.ValidarResumen(_proyecto);
 
             //Assert

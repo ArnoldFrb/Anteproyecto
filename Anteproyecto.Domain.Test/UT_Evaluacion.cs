@@ -45,7 +45,7 @@ namespace Anteproyecto.Domain.Test
             // ACT // ACCION // CUANDO // WHEN
             var resultado = obsercion.ValidarNombre("seguimiento y evaluación de los anteproyectos");
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual("Registro Exitozo, Se ha registrado el nuevo Nombre", resultado);
+            Assert.AreEqual("Registro Exitozo: seguimiento y evaluación de los anteproyectos", resultado);
         }
 
         [Test]

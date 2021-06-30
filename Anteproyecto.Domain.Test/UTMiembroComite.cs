@@ -12,7 +12,7 @@ namespace Anteproyecto.Domain.Test
 
         /*
          Modificar Contraseña 
-            H1: Como Estudiante quiero modificar mi contraseña de acceso en el sistema para tener mayor seguridad.
+            H1: Como Usuario quiero modificar mi contraseña de acceso en el sistema para tener mayor seguridad.
             Criterio de Aceptación:
             1.2 La contraseña no puede ser igual a la anterior.
             Dado El estudiante tiene una cuenta en el sistema 
@@ -24,16 +24,16 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarContraseñaIgualALaAnterior()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,35,true);
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarContraseña("@#Hl1g2l34");
+            var resultado = user.ModificarContrasena("@#Hl1g2l34");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("No puede ingresar una contraseña igual a la registrada, pruebe de nuevo", resultado);
         }
 
         /*
          Modificar Contraseña 
-            H1: Como Estudiante quiero modificar mi contraseña de acceso en el sistema para tener mayor seguridad.
+            H1: Como Usuario quiero modificar mi contraseña de acceso en el sistema para tener mayor seguridad.
             Criterio de Aceptación:
             1.2 La contraseña debe ser mayor a 10 caracteres.
             Dado El estudiante tiene una cuenta en el sistema 
@@ -45,16 +45,16 @@ namespace Anteproyecto.Domain.Test
         public void PuedeIngresarContraseñaMayorOIgualA10Caracteres()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,20,true);
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarContraseña("g2l34@#Hl1");
+            var resultado = user.ModificarContrasena("g2l34@#Hl1");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("Su nueva contraseña es correcta", resultado);
         }
 
         /*
          Modificar Correo 
-            H1: Como Estudiante quiero modificar mi correo de acceso en el sistema para mantener mi informacion actualizada.
+            H1: Como Usuario quiero modificar mi correo de acceso en el sistema para mantener mi informacion actualizada.
             Criterio de Aceptación:
             1.2 El Correo no debe tener espacios o faltar el @.
             Dado El estudiante tiene una cuenta en el sistema 
@@ -66,16 +66,16 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarCorreosConEspacios()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,29,true);
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarCorreo("hol @gmail.com");
+            var resultado = user.ModificarCorreo("hol @gmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("El correo ingresado es invalido", resultado);
         }
 
         /*
          Modificar Correo 
-            H1: Como Estudiante quiero modificar mi correo de acceso en el sistema para mantener mi informacion actualizada.
+            H1: Como Usuario quiero modificar mi correo de acceso en el sistema para mantener mi informacion actualizada.
             Criterio de Aceptación:
             1.2 El Correo no debe tener espacios o faltar el @.
             Dado El estudiante tiene una cuenta en el sistema 
@@ -87,16 +87,16 @@ namespace Anteproyecto.Domain.Test
         public void NoPuedeIngresarCorreosSinArroba()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,29,true);
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarCorreo("holagmail.com");
+            var resultado = user.ModificarCorreo("holagmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("El correo ingresado es invalido", resultado);
         }
 
         /*
          Modificar Correo 
-            H1: Como Estudiante quiero modificar mi correo de acceso en el sistema para mantener mi informacion actualizada.
+            H1: Como Usuario quiero modificar mi correo de acceso en el sistema para mantener mi informacion actualizada.
             Criterio de Aceptación:
             1.2 El Correo no debe tener espacios o faltar el @.
             Dado El estudiante tiene una cuenta en el sistema 
@@ -108,9 +108,9 @@ namespace Anteproyecto.Domain.Test
         public void PuedeIngresarCorreosConEstructuraAdecuada()
         {
             //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante = new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34");
+            var user = new MiembroComite("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "@#Hl1g2l34",0,28,true);
             // ACT // ACCION // CUANDO // WHEN
-            var resultado = estudiante.ModificarCorreo("mundo@gmail.com");
+            var resultado = user.ModificarCorreo("mundo@gmail.com");
             //ASSERT //AFIRMACION //ENTONCES //THEN
             Assert.Pass("El correo ingresado es valido", resultado);
         }

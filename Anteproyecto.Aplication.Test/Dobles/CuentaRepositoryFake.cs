@@ -43,7 +43,7 @@ namespace Anteproyecto.Aplication.Test.Dobles
 
         public Usuario Find(object id)
         {
-            return new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "123344444");
+            return new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "123344444",0,32,true);
         }
 
         public IEnumerable<Usuario> FindBy(Expression<Func<Usuario, bool>> predicate)
@@ -59,7 +59,7 @@ namespace Anteproyecto.Aplication.Test.Dobles
  
         public Usuario FindFirstOrDefault(Expression<Func<Usuario, bool>> predicate)
         {
-            return new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "123344444");
+            return new Estudiante("Jose Carlo", "Santander Pimienta", "0123456789", "hola@gmail.com", "123344444",9,24,true);
         }
 
         public IEnumerable<Usuario> GetAll()

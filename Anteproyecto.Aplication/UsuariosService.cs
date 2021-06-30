@@ -4,13 +4,13 @@ using Anteproyecto.Domain.Repositories;
 
 namespace Anteproyecto.Aplication
 {
-    public class UsuarioService
+    public class UsuariosService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMailServer _mailServer;
 
-        public UsuarioService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IMailServer mailServer)
+        public UsuariosService(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _usuarioRepository = usuarioRepository;
@@ -23,7 +23,7 @@ namespace Anteproyecto.Aplication
 
             if (usuario != null)
             {
-                usuario.ModificarContraseña(request.Contraseña);
+                usuario.ModificarContrasena(request.Contraseña);
                 _unitOfWork.Commit();
                 return new ModificarContrasenaResponse() { Mensaje = "La contraseña a sido modificada satifctoriamente"};
             }
@@ -52,8 +52,8 @@ namespace Anteproyecto.Aplication
 
         public class UsuarioRequest
         {
-            public int Id { get; set; }
-
+            public int Id { get;   set; }
+            
             public string Nombres { get;   set; }
            
             public string Apellidos { get;   set; }

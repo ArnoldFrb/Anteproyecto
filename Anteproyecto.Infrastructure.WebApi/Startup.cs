@@ -1,7 +1,7 @@
+using Anteproyecto.Aplication.Mail;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Repositories;
 using Anteproyecto.Infrastructure.Data.Repositories;
-using GestionProyectos.Infrastructure.Systems;
 using Infrastructure.Data;
 using Infrastructure.Data.Base;
 using Infrastructure.Data.Repositories;
@@ -29,7 +29,7 @@ namespace Anteproyecto.Infrastructure.WebApi
         {
             var connectionString = Configuration.GetConnectionString("ProyectoContext");//obtiene la configuracion del appsettitgs
 
-            services.AddDbContext<ProyectoContext>(opt => opt.UseSqlite(connectionString));
+            services.AddDbContext<ProyectoContext>(opt => opt.UseSqlite(connectionString).EnableSensitiveDataLogging(true));
 
             ///Inyección de dependencia Especifica
             //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.0#register-additional-services-with-extension-methods
@@ -37,7 +37,10 @@ namespace Anteproyecto.Infrastructure.WebApi
             services.AddScoped<IUsuarioRepository, UsuarioRepository>(); //Crear Instancia por peticion
             services.AddScoped<IProyectoRepository, ProyectoRepository>(); //Crear Instancia por peticion
             services.AddScoped<IConvocatoriaRepository, ConvocatoriaRepository>(); //Crear Instancia por peticion
+            services.AddScoped<IEvaluacionRepository, EvaluacionRepository>(); //Crear Instancia por peticion
+            services.AddScoped<IObservacionRepository, ObservacionRepository>(); //Crear Instancia por peticion
             services.AddScoped<IDbContext, ProyectoContext>(); //Crear Instancia por peticion
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddScoped<IMailServer, MailServer>(); //Crear Instancia por peticion
 
             //inyección del servicio de mail

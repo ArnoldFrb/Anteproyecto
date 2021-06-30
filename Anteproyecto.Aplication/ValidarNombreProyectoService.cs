@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    public class ProyectoService
+    public class ValidarNombreProyectoService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IProyectoRepository _proyectoRepository;
         private readonly IMailServer _mailServer;
 
-        public ProyectoService(IUnitOfWork unitOfWork, IProyectoRepository proyectoRepository, IMailServer mailServer)
+        public ValidarNombreProyectoService(IUnitOfWork unitOfWork, IProyectoRepository proyectoRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _proyectoRepository = proyectoRepository;
@@ -40,12 +40,16 @@ namespace Anteproyecto.Aplication
 
         public MensageProyectoResponse ValidarResumen(ProyectoRequest request)
         {
-
-            var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+            //validar duda
+            //var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.Id);
+            var proyecto = new Proyecto(request.Nombre, request.Resumen);
 
             if (proyecto != null)
             {
-                proyecto.ValidarResumen(request.Resumen);
+                if (proyecto.ValidarResumen(request.Resumen) == "Registro Exitozo, Se ha registrado el nuevo Resumen")
+                {
+
+                }
                 _unitOfWork.Commit();
                 return new MensageProyectoResponse() { Mensaje = "El resumen ingresado es correcto" };
             }
@@ -61,7 +65,7 @@ namespace Anteproyecto.Aplication
             public int Id { get; set; }
             public string Nombre { get; set; }
             public string Resumen { get; set; }
-            public List<Obsercion> Obsercion { get; set; }
+            public List<Observacion> Obsercion { get; set; }
             public Evaluacion Evaluacion { get; set; }
             public AsesorTematico AsesorTematico { get; set; }
             public AsesorMetodologico AsesorMetodologico { get; set; }

@@ -19,9 +19,9 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public string CrearProyecto(ProyectoRequest request)
+        public string CrearProyecto(CrearProyectoRequest request)
         {
-            Proyecto proyecto = _proyectoRepository.FindFirstOrDefault(t => t.Nombre == request.Nombre);
+            Proyecto proyecto = _proyectoRepository.FindFirstOrDefault(t => t.Nombre == request.Nombre.ToString());
             if (proyecto == null)
             {
                 Proyecto proyectoNueva = ProyectoNuevo.CrearProyecto(request.Nombre, request.Resumen);
@@ -35,14 +35,14 @@ namespace Anteproyecto.Aplication
             }
         }
 
-        public class ProyectoRequest
+        public class CrearProyectoRequest
         {
             public string Nombre { get; set; }
             public string Resumen { get; set; }
-            public List<Obsercion> Obsercion { get; private set; }
-            public Evaluacion Evaluacion { get; private set; }
-            public AsesorTematico AsesorTematico { get; private set; }
-            public AsesorMetodologico AsesorMetodologico { get; private set; }
+            public List<Observacion> Obsercion { get; set; }
+            public Evaluacion Evaluacion { get; set; }
+            public AsesorTematico AsesorTematico { get; set; }
+            public AsesorMetodologico AsesorMetodologico { get; set; }
         }
 
         public static class ProyectoNuevo

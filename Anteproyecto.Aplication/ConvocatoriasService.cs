@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    public class ConvocatoriaService
+    public class ConvocatoriasService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
         private readonly IMailServer _mailServer;
 
-        public ConvocatoriaService(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
+        public ConvocatoriasService(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _convocatoriaRepository = convocatoriaRepository;
@@ -25,7 +25,7 @@ namespace Anteproyecto.Aplication
         {
             var convocatoria = _convocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
 
-            if (convocatoria != null)
+            if (convocatoria != null) 
             {
                 convocatoria.ModificarConvocatoria(request.FechaInicio, request.FechaCierre);
                 _unitOfWork.Commit();
