@@ -45,49 +45,51 @@ namespace Infrastructure.Data
         {
             modelBuilder.Entity<Estudiante>().HasData(
                     new { Id = 1, Nombres = "Jose Carlo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "1222222212", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = false},
-                    new { Id = 2, Nombres = "Andres alejandro", Apellidos = "Santander Pimienta", NumeroIdentificacion = "1222222231", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = false},
-                    new { Id = 3, Nombres = "Pedro pepi", Apellidos = "Santander Pimienta", NumeroIdentificacion = "1222222246", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
+                    new { Id = 2, Nombres = "Andres alejandro", Apellidos = "espinosa Pimienta", NumeroIdentificacion = "1222222231", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = false},
+                    new { Id = 3, Nombres = "Pedro pepi", Apellidos = "romulo salamandra", NumeroIdentificacion = "1222222246", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
+                    new { Id = 4, Nombres = "rodoldo pepi", Apellidos = "papeleta Piña", NumeroIdentificacion = "3556222246", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
+                    new { Id = 5, Nombres = "san francisco", Apellidos = "pepe de la hoz", NumeroIdentificacion = "2346222246", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
            );
 
 
             modelBuilder.Entity<MiembroComite>().HasData(
-                   new { Id = 4, Nombres = "Santiago ramirez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "2222233233", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
-                   new { Id = 5, Nombres = "ivan lopez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "2222233222", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
-                   new { Id = 6, Nombres = "felipe domingo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "2222233345", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
+                   new { Id = 6, Nombres = "Santiago ramirez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "2222233233", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
+                   new { Id = 7, Nombres = "ivan lopez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "2222233222", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
+                   new { Id = 8, Nombres = "felipe domingo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "2222233345", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
           );
 
             modelBuilder.Entity<AsesorMetodologico>().HasData(
-              new { Id = 7, Nombres = "Santiago ramirez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "3222233299", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = false, ProyectoId = 1 },
-              new { Id = 8, Nombres = "ivan lopez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "3222233200", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
-              new { Id = 9, Nombres = "felipe domingo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "3222233012", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
+              new { Id = 9, Nombres = "Santiago ramirez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "3222233299", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = false },
+              new { Id = 10, Nombres = "ivan lopez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "3222233200", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
+              new { Id = 11, Nombres = "felipe domingo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "3222233012", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
 
                 );
 
             modelBuilder.Entity<AsesorTematico>().HasData(
-            new { Id = 10, Nombres = "Santiago ramirez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "5222232229", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = false, ProyectoId = 1 },
-            new { Id = 11, Nombres = "ivan lopez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "5222221200", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
-            new { Id = 12, Nombres = "felipe domingo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "5211233012", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
+            new { Id = 12, Nombres = "Santiago ramirez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "5222232229", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = false},
+            new { Id = 13, Nombres = "ivan lopez", Apellidos = "Santander Pimienta", NumeroIdentificacion = "5222221200", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true },
+            new { Id = 14, Nombres = "felipe domingo", Apellidos = "Santander Pimienta", NumeroIdentificacion = "5211233012", Correo = "hola@gmail.com", Contraseña = "123344444", Semestre = 9, Edad = 23, Estado = true }
               );
         }
 
         protected void SemillasProyecto(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Proyecto>().HasData(
-                new { Id = 13, Nombre = "El proyecto de ley", Resumen = "resumen del proyecto", Url_Archive = "arriba/pero" , Focus= "arriva", Cut =2, Line= "investigacion" ,Date = DateTime.Now, State = 1 , AsesorTematicoId = 10, AsesorMetodologicoId = 7, estudiante1Id = 1 , estudiante2Id = 2 }
+                new { Id = 1, Nombre = "El proyecto de ley", Resumen = "resumen del proyecto", Url_Archive = "arriba/pero" , Focus= "arriva", Cut =2, Line= "investigacion" ,Date = DateTime.Now, State = 1 , AsesorTematicoId = 12, AsesorMetodologicoId = 9, Estudiante1Id = 1 , Estudiante2Id = 2 }
              );
         }
 
         protected void SemillasObservacion(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Observacion>().HasData(
-                new { Id = 14, Nombre = "Correccion de objetivos", Comentario = "holaa mudnooo aqui", proyectoId = 13 , Date = DateTime.Now }
+                new { Id = 1, Nombre = "Correccion de objetivos", Comentario = "holaa mudnooo aqui", ProyectoId = 1 , Date = DateTime.Now }
              );
         }
 
         protected void SemillasEvaluacion(ModelBuilder modelBuilder)
         { 
             modelBuilder.Entity<Evaluacion>().HasData(
-                new { Id = 14, Nombre = "Correccion de objetivos", Comentario = "holaa mudnooo aqui",Estado = true, projectoId = 13, Date = DateTime.Now }
+                new { Id = 1, Nombre = "Correccion de objetivos", Comentario = "holaa mudnooo aqui",Estado = true, ProyectoId = 1, Date = DateTime.Today }
              );
         }
 

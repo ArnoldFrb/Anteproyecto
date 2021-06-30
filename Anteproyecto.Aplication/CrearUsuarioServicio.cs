@@ -29,7 +29,7 @@ namespace Anteproyecto.Aplication
             {
                 Estudiante us = new Estudiante(request.Nombres, request.Apellidos, request.NumeroIdentificacion, request.Correo, request.Contraseña, request.Semestre,request.Edad,true);
                 
-                if (us.ValidarUsuario(us) == "Usuario registrado correctamente")
+                if (us.ValidarUsuario(us) == $"El Usuario {request.Nombres} ha sido registrado correctamente")
                 {
                     _usuarioRepository.Add(us);
                     _unitOfWork.Commit();

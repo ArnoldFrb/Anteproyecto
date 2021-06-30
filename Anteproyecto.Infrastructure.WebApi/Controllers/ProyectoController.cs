@@ -3,6 +3,7 @@ using Anteproyecto.Aplication.ProyectoService;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,21 +27,24 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
         private readonly IMailServer _mailServer;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public ProyectoController(IUnitOfWork unitOfWork, IProyectoRepository proyectoRepository, IUsuarioRepository usuarioRepository, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
+        public ProyectoController(IUnitOfWork unitOfWork, IProyectoRepository proyectoRepository, IUsuarioRepository usuarioRepository, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer, IWebHostEnvironment appEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _usuarioRepository = usuarioRepository;
             _proyectoRepository = proyectoRepository;
             _usuarioRepository = usuarioRepository;
             _convocatoriaRepository = convocatoriaRepository;
             _mailServer = mailServer;
+            _appEnvironment = appEnvironment;
         }
 
         [HttpPost("Cargar")]
-        public CargarProyectoResponse PostCargarProyecto(CargarProyectoRequest request)
+        public CargarProyectoResponse PostCargarProyecto([FromForm] CargarProyectoRequest request)
         {
             var service = new CargarProyectoService(_unitOfWork, _usuarioRepository, _proyectoRepository, _convocatoriaRepository, _mailServer);
-            var response = service.CargarProyecto(request);
+            var response = service.CargarProyecto(request, _appEnvironment.ContentRootPath);
 
             return response;
         }
@@ -80,5 +84,6 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
 
             return response;
         }
+
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+ 
 namespace Anteproyecto.Infrastructure.Data.ObjectMother
 {
     public static class UsuarioMother
@@ -12,7 +12,7 @@ namespace Anteproyecto.Infrastructure.Data.ObjectMother
        public static Estudiante crearUsuarioEstudiante(string NumeroIdentificacion)
         {
 
-            return new Estudiante("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hola@gmail.com", "123344444", 9, 23, true);
+            return new Estudiante("Jose Carlo", "Santander Pimienta", NumeroIdentificacion, "hzzzzola@gmail.com", "1233448889444", 9, 23, true);
         }
 
         public static MiembroComite crearUsuarioMiembroComite(string NumeroIdentificacion)

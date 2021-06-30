@@ -22,6 +22,7 @@ namespace Anteproyecto.Aplication.ProyectoService
 
         public List<Proyecto> GetAll()
         {
+            ///corregir para que traiga toda la informacion
             var res = _proyectoRepository.GetAll();
             return res.ToList();
         }

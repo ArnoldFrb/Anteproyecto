@@ -25,7 +25,7 @@ namespace Anteproyecto.Aplication
         {
             var convocatoria = _convocatoriaRepository.FindFirstOrDefault(conv => conv.Id == request.Id);
 
-            if (convocatoria != null)
+            if (convocatoria != null) 
             {
                 convocatoria.ModificarConvocatoria(request.FechaInicio, request.FechaCierre);
                 _unitOfWork.Commit();

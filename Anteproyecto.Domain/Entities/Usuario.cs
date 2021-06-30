@@ -25,12 +25,13 @@ namespace Anteproyecto.Domain.Entities
             Contraseña = contraseña;
             Semestre = semestre;
             Edad = edad;
-            Estado = estado;
+            Estado = true;
         }
 
         public abstract string ModificarCorreo(string correo);
         public abstract string ModificarContrasena(string contraseña);
         public abstract string ValidarUsuario(Usuario usuario);
+        public abstract string enviarPlantillaCorreo();
         
     }
 }

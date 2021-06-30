@@ -29,14 +29,17 @@ namespace Anteproyecto.Domain.Entities
 
         public Proyecto() { }
 
-        public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state) : this(nombre, resumen)
+        public Proyecto(string nombre, string resumen, string focus, int cut, string line, DateTime date, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Usuario estudiante1, Usuario estudiante2) : this(nombre, resumen)
         {
-            Url_Archive = url_Archive;
             Focus = focus;
             Cut = cut;
             Line = line;
             Date = date;
-            State = state; 
+            AsesorTematico = asesorTematico;
+            AsesorMetodologico = asesorMetodologico;
+            Estudiante1 = estudiante1;
+            Estudiante2 = estudiante2;
+            State = 1;
         }
 
         public string ValidarNombre(string nombre)
@@ -75,6 +78,40 @@ namespace Anteproyecto.Domain.Entities
             throw new NotImplementedException();
         }
 
+        //public string AgregarObservar(List<Observacion> obsercion)
+        //{
+        //    Obsercion = obsercion;
+        //    return $"Se han agregado las op";
+        //}
+
+        //public string Observar(Observacion obsercion)
+        //{
+        //    Obsercion.Add(obsercion);
+        //    return $"Nueva Observacon: {obsercion.Nombre}";
+        //}
+
+        //public string Evaluar(Evaluacion evaluacion)
+        //{
+        //    Evaluacion = evaluacion;
+        //    return $"Nueva Evaluacion: {Evaluacion.Nombre}";
+        //}
+
+        public string enviarPlantillaCorreo(string usuarioNombre)
+        {
+            string contenido = "<html>Cordial saludo  " + usuarioNombre + "," + "<br><br>"
+                        + " Se le informa que su proyecto con titulo:" + "<br><br>"
+                        + " Proyecto:  " + Nombre + " " + "<br><br>"
+                        + " Compañero seleccionado: " + Estudiante2.Nombres+ "<br><br>"
+                        + " Asesor tematico seleccionado" + AsesorTematico.Nombres +"<br><br>"
+                        + " Asesor metodologico seleccionado" + AsesorMetodologico.Nombres + "<br><br>"
+                        + " Ha sido cargado correctamente en el sistema" + "<br><br>"
+                        + " De antemano agradecemos la confianza depositada en nosotros" + "<br><br>"
+                        + " Atentamente:" + "<br>" + "<br>"
+                        + " Universidad Popular del Cesar." + "<br>"
+                        + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
+        }
         public string AsignarAsesorTematico(AsesorTematico asesorTematico)
         {
             AsesorTematico = asesorTematico;
@@ -105,32 +142,31 @@ namespace Anteproyecto.Domain.Entities
             return "Actualizo archivo del proyecto";
         }
 
-        public string CargarProyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line,
-        DateTime date, int state, AsesorTematico asesorTematico, AsesorMetodologico asesorMetodologico, Estudiante estudiante1, Estudiante estudiante2)
+        public string CargarProyecto(Proyecto proyecto)
         {
-            var mensaje = ValidarNombre(nombre);
+            var mensaje = ValidarNombre(proyecto.Nombre);
             if (!mensaje.Equals($"Registro Exitozo: {Nombre}"))
             {
                 return mensaje;
             }
-            mensaje = ValidarResumen(resumen);
+            mensaje = ValidarResumen(proyecto.Resumen);
             if (!mensaje.Equals($"Registro Exitozo: {Resumen}"))
             {
                 return mensaje;
             }
 
-            Nombre = nombre;
-            Resumen = resumen;
-            Url_Archive = url_Archive;
-            Focus = focus;
-            Cut = cut;
-            Line = line;
-            Date = date;
-            State = state;
-            AsesorTematico = asesorTematico;
-            AsesorMetodologico = asesorMetodologico;
-            Estudiante1 = estudiante1;
-            Estudiante2 = estudiante2;
+            //Nombre = nombre;
+            //Resumen = resumen;
+            //Url_Archive = url_Archive;
+            //Focus = focus;
+            //Cut = cut;
+            //Line = line;
+            //Date = date;
+            //State = state;
+            //AsesorTematico = asesorTematico;
+            //AsesorMetodologico = asesorMetodologico;
+            //Estudiante1 = estudiante1;
+            //Estudiante2 = estudiante2;
 
             return $"Operacion Exitoza: Su proyecto {Nombre} ha sido cargado";
         }

@@ -62,5 +62,18 @@ namespace Anteproyecto.Domain.Entities
             Date = DateTime.Now;
             return $"Nueva Observacon: {Nombre}";
         }
+
+
+        public string enviarPlantillaCorreo()
+        {
+            string contenido = "<html>Cordial saludo  " + Proyecto.Estudiante1.Nombres  + "," + "<br><br>"
+                       + " Se realizo una nueva observacion  al proyecto"+ Nombre  +"<br><br>"
+                       + " Atentamente:" + "<br>" + "<br>"
+                       + " Universidad Popular del Cesar." + "<br>"
+                       + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
+        }
+
     }
 }

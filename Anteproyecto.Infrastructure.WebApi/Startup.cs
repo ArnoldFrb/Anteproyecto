@@ -1,7 +1,7 @@
+using Anteproyecto.Aplication.Mail;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Repositories;
 using Anteproyecto.Infrastructure.Data.Repositories;
-using GestionProyectos.Infrastructure.Systems;
 using Infrastructure.Data;
 using Infrastructure.Data.Base;
 using Infrastructure.Data.Repositories;
@@ -40,6 +40,7 @@ namespace Anteproyecto.Infrastructure.WebApi
             services.AddScoped<IEvaluacionRepository, EvaluacionRepository>(); //Crear Instancia por peticion
             services.AddScoped<IObservacionRepository, ObservacionRepository>(); //Crear Instancia por peticion
             services.AddScoped<IDbContext, ProyectoContext>(); //Crear Instancia por peticion
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddScoped<IMailServer, MailServer>(); //Crear Instancia por peticion
 
             //inyección del servicio de mail

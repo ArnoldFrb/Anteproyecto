@@ -1,7 +1,10 @@
 ﻿using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
+using Microsoft.AspNetCore.Http;
 using System;
+using System.IO;
+
 
 namespace Anteproyecto.Aplication.ProyectoService
 {
@@ -22,7 +25,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             _mailServer = mailServer;
         }
 
-        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request)
+        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request, string path)
         {
             var conv = _convocatoriaRepository.FindFirstOrDefault(doc => DateTime.Now >= doc.FechaInicio);
             if (conv != null)
@@ -39,14 +42,30 @@ namespace Anteproyecto.Aplication.ProyectoService
                             var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
                             if (AsesorMetodologico != null)
                             {
-                                var proy = new Proyecto(); 
-                                var res = proy.CargarProyecto(request.Nombre, request.Resumen, request.Url_Archive, request.Focus, request.Cut, request.Line,
-                                    DateTime.Now, request.State, AsesorTematico, AsesorMetodologico, user1, user2);
+                                Proyecto proyectoCreado = new Proyecto(request.Nombre,
+                                   request.Resumen, request.Focus,
+                                   request.Cut, request.Line, DateTime.Now,
+                                   AsesorTematico, AsesorMetodologico, user1, user2);
 
-                                if (res.Equals($"Operacion Exitoza: Su proyecto {proy.Nombre} ha sido cargado"))
+                                var res = proyectoCreado.CargarProyecto(proyectoCreado);
+                                if (res.Equals($"Operacion Exitoza: Su proyecto {proyectoCreado.Nombre} ha sido cargado"))
                                 {
+                                    FileInfo fi = new FileInfo(request.Archive.FileName);
+                                    string nameFile = "Archivos/" + DateTime.Now.Ticks.ToString() + fi.Extension;
+                                    string filepatch = Path.Combine(path, nameFile);
 
-                                    _proyectoRepository.Add(proy);
+                                    proyectoCreado.actualizarArchivo(nameFile);
+                                    user1.CambiarEstado(false);
+                                    user2.CambiarEstado(false);
+
+                                    using (var stream = File.Create(filepatch))
+                                    {
+                                        request.Archive.CopyTo(stream);
+                                    }
+                                    _usuarioRepository.Edit(user1);
+                                    _usuarioRepository.Edit(user2);
+                                    _proyectoRepository.Add(proyectoCreado);
+                                    _mailServer.Send(user1.Correo, "Proyecto cargado correctamente", proyectoCreado.enviarPlantillaCorreo(user1.Nombres));
                                     _unitOfWork.Commit();
                                     return new CargarProyectoResponse(res);
                                 }
@@ -81,19 +100,18 @@ namespace Anteproyecto.Aplication.ProyectoService
             }
         }
 
-        public record CargarProyectoRequest 
+        public record CargarProyectoRequest
         (
-            string Nombre,
-            string Resumen,
-            string Url_Archive,
-            string Focus,
-            int Cut,
-            string Line,
-            int State,
-            string IdEstudiante1,
-            string IdEstudiante2,
-            string IdAsesorTematico,
-            string IdAsesorMetodologico
+           string Nombre,
+          string Resumen,
+          string Focus,
+          int Cut,
+          string Line,
+          IFormFile Archive,
+          string IdEstudiante1,
+          string IdEstudiante2,
+          string IdAsesorTematico,
+          string IdAsesorMetodologico 
         );
 
         public record CargarProyectoResponse(string Mensaje);

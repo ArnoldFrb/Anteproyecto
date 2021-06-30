@@ -11,6 +11,17 @@ namespace Anteproyecto.Domain.Entities
         {
         }
 
+        public override string enviarPlantillaCorreo()
+        {
+            string contenido = "<html>Cordial saludo  " + Nombres + " " + Apellidos + "," + "<br><br>"
+                        + " El registro en el sistema de anteproyecto se realizo satifactoriamente " + "<br><br>"
+                        + " Atentamente:" + "<br>" + "<br>"
+                        + " Universidad Popular del Cesar." + "<br>"
+                        + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
+        }
+
         public override string ModificarContrasena(string contraseña)
         {
             if (Contraseña.Equals(contraseña))
@@ -37,7 +48,7 @@ namespace Anteproyecto.Domain.Entities
                 if (Regex.Replace(correo, expresion, String.Empty).Length == 0)
                 {
                     Correo = correo;
-                    return $"El correo ingresado es valido {correo}";
+                    return $"El correo ingresado es valido";
                 }
                 else
                 {

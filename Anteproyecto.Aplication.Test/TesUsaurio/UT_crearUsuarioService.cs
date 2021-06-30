@@ -26,7 +26,7 @@ namespace Anteproyecto.Aplication.Test.TesUsaurio
             _dbContext.Database.EnsureCreated();
 
             _crearusuarioService = new CrearUsuarioServicio(new UnitOfWork(_dbContext), new UsuarioRepository(_dbContext), new MailServerSpy());
-        }
+        } 
 
         [Test]
         public void validarUsuarioYaExisteEnlaBDTest()

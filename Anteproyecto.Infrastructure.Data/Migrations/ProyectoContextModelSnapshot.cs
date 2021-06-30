@@ -66,11 +66,12 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 14,
+                            Id = 1,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 29, 16, 48, 59, 537, DateTimeKind.Local).AddTicks(2268),
+                            Date = new DateTime(2021, 6, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             Estado = true,
-                            Nombre = "Correccion de objetivos"
+                            Nombre = "Correccion de objetivos",
+                            ProyectoId = 1
                         });
                 });
 
@@ -101,10 +102,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 14,
+                            Id = 1,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 29, 16, 48, 59, 536, DateTimeKind.Local).AddTicks(9408),
-                            Nombre = "Correccion de objetivos"
+                            Date = new DateTime(2021, 6, 30, 10, 24, 39, 557, DateTimeKind.Local).AddTicks(728),
+                            Nombre = "Correccion de objetivos",
+                            ProyectoId = 1
                         });
                 });
 
@@ -126,6 +128,12 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("Estudiante1Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Estudiante2Id")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Focus")
                         .HasColumnType("TEXT");
 
@@ -144,40 +152,34 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.Property<string>("Url_Archive")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("estudiante1Id")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("estudiante2Id")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AsesorMetodologicoId");
 
                     b.HasIndex("AsesorTematicoId");
 
-                    b.HasIndex("estudiante1Id");
+                    b.HasIndex("Estudiante1Id");
 
-                    b.HasIndex("estudiante2Id");
+                    b.HasIndex("Estudiante2Id");
 
                     b.ToTable("Proyectos");
 
                     b.HasData(
                         new
                         {
-                            Id = 13,
-                            AsesorMetodologicoId = 7,
-                            AsesorTematicoId = 10,
+                            Id = 1,
+                            AsesorMetodologicoId = 9,
+                            AsesorTematicoId = 12,
                             Cut = 2,
-                            Date = new DateTime(2021, 6, 29, 16, 48, 59, 535, DateTimeKind.Local).AddTicks(4298),
+                            Date = new DateTime(2021, 6, 30, 10, 24, 39, 554, DateTimeKind.Local).AddTicks(9471),
+                            Estudiante1Id = 1,
+                            Estudiante2Id = 2,
                             Focus = "arriva",
                             Line = "investigacion",
                             Nombre = "El proyecto de ley",
                             Resumen = "resumen del proyecto",
                             State = 1,
-                            Url_Archive = "arriba/pero",
-                            estudiante1Id = 1,
-                            estudiante2Id = 2
+                            Url_Archive = "arriba/pero"
                         });
                 });
 
@@ -231,7 +233,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 7,
+                            Id = 9,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -243,7 +245,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 10,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -255,7 +257,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 11,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -276,7 +278,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 10,
+                            Id = 12,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -288,7 +290,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 13,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -300,7 +302,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 14,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -334,7 +336,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Apellidos = "Santander Pimienta",
+                            Apellidos = "espinosa Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
                             Edad = 23,
@@ -346,13 +348,37 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 3,
-                            Apellidos = "Santander Pimienta",
+                            Apellidos = "romulo salamandra",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
                             Edad = 23,
                             Estado = true,
                             Nombres = "Pedro pepi",
                             NumeroIdentificacion = "1222222246",
+                            Semestre = 9
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Apellidos = "papeleta Piña",
+                            Contraseña = "123344444",
+                            Correo = "hola@gmail.com",
+                            Edad = 23,
+                            Estado = true,
+                            Nombres = "rodoldo pepi",
+                            NumeroIdentificacion = "3556222246",
+                            Semestre = 9
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Apellidos = "pepe de la hoz",
+                            Contraseña = "123344444",
+                            Correo = "hola@gmail.com",
+                            Edad = 23,
+                            Estado = true,
+                            Nombres = "san francisco",
+                            NumeroIdentificacion = "2346222246",
                             Semestre = 9
                         });
                 });
@@ -366,7 +392,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 4,
+                            Id = 6,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -378,7 +404,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 7,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -390,7 +416,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 8,
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
@@ -430,21 +456,21 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AsesorTematicoId");
 
-                    b.HasOne("Anteproyecto.Domain.Entities.Usuario", "estudiante1")
+                    b.HasOne("Anteproyecto.Domain.Entities.Usuario", "Estudiante1")
                         .WithMany()
-                        .HasForeignKey("estudiante1Id");
+                        .HasForeignKey("Estudiante1Id");
 
-                    b.HasOne("Anteproyecto.Domain.Entities.Usuario", "estudiante2")
+                    b.HasOne("Anteproyecto.Domain.Entities.Usuario", "Estudiante2")
                         .WithMany()
-                        .HasForeignKey("estudiante2Id");
+                        .HasForeignKey("Estudiante2Id");
 
                     b.Navigation("AsesorMetodologico");
 
                     b.Navigation("AsesorTematico");
 
-                    b.Navigation("estudiante1");
+                    b.Navigation("Estudiante1");
 
-                    b.Navigation("estudiante2");
+                    b.Navigation("Estudiante2");
                 });
 #pragma warning restore 612, 618
         }
