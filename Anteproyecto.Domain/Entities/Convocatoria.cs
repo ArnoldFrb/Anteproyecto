@@ -33,39 +33,18 @@ namespace Anteproyecto.Domain.Entities
 
         public string ActivarCargaProyectos()
         {
-            CargarProyectos = true;
-            return "Carga de proyectos activada";
+            if (FechaInicio > DateTime.Now)
+            {
+                CargarProyectos = true;
+                return "Carga de proyectos activada";
+            }
+            return "Error: Las fechas de inicio no concuerda con la fecha actual";
         }
 
         public string DesactivarCargaProyectos()
         {
-            if (PuedeActivarCargaProyectos().Any())
-            {
-                throw new ConvocatoriaActivacionDeCargaException("No es posible realizar el Retiro, Supera el tope mínimo permitido de retiro");
-            }
             CargarProyectos = false;
             return "Carga de proyectos desactivada";
-        }
-
-        public List<string> PuedeActivarCargaProyectos()
-        {
-            List<string> errors = new List<string>();
-            if (FechaInicio > DateTime.Now)
-            {
-                errors.Add("Error: Las fechas de inicio no concuerda con la fecha actual");
-            }
-            return errors;
-        }
-
-        [Serializable]
-        public class ConvocatoriaActivacionDeCargaException : Exception
-        {
-            public ConvocatoriaActivacionDeCargaException() { }
-            public ConvocatoriaActivacionDeCargaException(string message) : base(message) { }
-            public ConvocatoriaActivacionDeCargaException(string message, Exception inner) : base(message, inner) { }
-            protected ConvocatoriaActivacionDeCargaException(
-              System.Runtime.Serialization.SerializationInfo info,
-              System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
         }
     }
 }

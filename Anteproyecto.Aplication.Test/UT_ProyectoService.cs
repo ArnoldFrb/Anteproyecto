@@ -36,15 +36,10 @@ namespace Anteproyecto.Aplication.Test
             var proyecto = ProyectoMother.CrearProyecto();
                  
             _dbContext.Proyectos.Add(proyecto);
-            _dbContext.SaveChanges();
-            string nombreDePrueba = "sistemas de informacion para la gestion del talento humano en el departmento del cesar colombia";
+            _dbContext.SaveChanges(); 
 
              //Act
-<<<<<<< Updated upstream
-            var _proyecto = new ProyectoRequest {Id = 0002, Nombre="proyecto2", Resumen="Este es un proyecto"};
-=======
-            var _proyecto = new ProyectoRequest {Id = 2, Nombre= nombreDePrueba, Resumen="Este es un proyecto"};
->>>>>>> Stashed changes
+            var _proyecto = new ProyectoRequest {Id = proyecto.Id, Nombre="proyecto2", Resumen="Este es un proyecto"};
             var response = _proyectoService.ValidarNombre(_proyecto);
 
             //Assert
@@ -60,7 +55,7 @@ namespace Anteproyecto.Aplication.Test
         {
 
             //Arrange
-            //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseï¿½a = "123344444"};
+            //var user = new UsuarioRequest{Id = "101010",Nombres = "Jose Carlo",Apellidos = "Santander Pimienta",NumeroIdentificacion = "0123456789",Correo = "hola@gmail.com",Contraseña = "123344444"};
             var proyecto = ProyectoMother.CrearProyecto();
 
             _dbContext.Proyectos.Add(proyecto);
