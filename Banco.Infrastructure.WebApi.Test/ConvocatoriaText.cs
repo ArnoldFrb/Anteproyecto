@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using static Anteproyecto.Aplication.CrearConvocatoriaService;
+using static Anteproyecto.Aplication.CrearConvocatoriasService;
 
 namespace Anteproyecto.Infrastructure.WebApi.Test
 {
@@ -24,7 +24,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Test
         [Fact]
         public async Task PuedeCrearConvocatoriaTestAsync()
         {
-            var request = new CrearConvocatoriaRequest()
+            var request = new CrearConvocatoriasRequest()
             {
                 FechaInicio = new DateTime(2021, 1, 1),
                 FechaCierre = new DateTime(2021, 2, 1),

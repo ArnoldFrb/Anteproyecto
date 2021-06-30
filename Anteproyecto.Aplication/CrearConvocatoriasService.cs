@@ -22,14 +22,14 @@ namespace Anteproyecto.Aplication
             _mailServer = mailServer;
         }
 
-        public string CrearConvocatoria(CrearConvocatoriaRequest request)
+        public MensageCrearConvocatoriaResponse CrearConvocatoria(CrearConvocatoriasRequest request)
         {
             Convocatoria convocatoria = ConvocatoriaNueva.EstablerConvocatoria(request.FechaInicio, request.FechaCierre);
             if (convocatoria != null)
             {
                 _convocatoriaRepository.Add(convocatoria);
                 _unitOfWork.Commit();
-                return $"Se ha anadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio.ToLongDateString()} / Fin: {convocatoria.FechaCierre.ToLongDateString()}";
+                return new MensageCrearConvocatoriaResponse() { Mensaje = $"Se ha anadido la sigiente convocatoria, Inicio: {convocatoria.FechaInicio.ToLongDateString()} / Fin: {convocatoria.FechaCierre.ToLongDateString()}" };
             }
             else
             {
@@ -37,7 +37,7 @@ namespace Anteproyecto.Aplication
             }
         }
 
-        public class CrearConvocatoriaRequest
+        public class CrearConvocatoriasRequest
         {
             public int Id { get; set; }
             public DateTime FechaInicio { get; set; }

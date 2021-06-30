@@ -54,13 +54,5 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
 
             return response;
         }
-
-        [HttpPost]
-        public MensageCrearConvocatoriaResponse CrearConvocatoria(CrearConvocatoriaRequest convocatoriaRequest)
-        {
-            var service = new CrearConvocatoriaService(_unitOfWork, _convocatoriaRepository, _mailServer);
-            var response = service.CrearConvocatoria(convocatoriaRequest);
-            return response;
-        }
     }
 }

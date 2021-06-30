@@ -66,7 +66,7 @@ namespace Anteproyecto.Aplication.Test
             var response = _proyectoService.ValidarResumen(_proyecto);
 
             //Assert
-            Assert.AreEqual("El resumen ingresado es incorrecta", response.Mensaje);
+            Assert.AreEqual("El resumen ingresado es incorrecto", response.Mensaje);
 
             _dbContext.Proyectos.Remove(proyecto);
             _dbContext.SaveChanges();

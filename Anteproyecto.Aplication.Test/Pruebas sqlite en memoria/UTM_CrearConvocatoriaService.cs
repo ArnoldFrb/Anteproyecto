@@ -6,9 +6,8 @@ using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
-using static Anteproyecto.Aplication.ConvocatoriaService;
-using static Anteproyecto.Aplication.CrearConvocatoriaService;
-
+using static Anteproyecto.Aplication.ConvocatoriasService;
+using static Anteproyecto.Aplication.CrearConvocatoriasService;
 
 namespace Anteproyecto.Aplication.Test
 {
@@ -42,12 +41,12 @@ namespace Anteproyecto.Aplication.Test
             _dbContext.SaveChanges(); 
 
              //Act
-            var _convocatoria = new CrearConvocatoriaRequest { Id=1, FechaInicio= new DateTime(2021,1,1,12,0,0) , FechaCierre = new DateTime(2021,3,1,12,0,0), CargarProyectos = true };
+            var _convocatoria = new CrearConvocatoriasRequest { Id=convocatoria.Id, FechaInicio= new DateTime(2021,1,1,12,0,0) , FechaCierre = new DateTime(2021,3,1,12,0,0), CargarProyectos = true };
             var response = _crearconvocatoriaService.CrearConvocatoria(_convocatoria);
 
             //Assert
 
-            Assert.AreEqual("Se ha anadido la sigiente convocatoria, Inicio: viernes, 1 de enero de 2021 / Fin: lunes, 1 de marzo de 2021", response);
+            Assert.AreEqual("Se ha anadido la sigiente convocatoria, Inicio: viernes, 1 de enero de 2021 / Fin: lunes, 1 de marzo de 2021", response.Mensaje);
 
             _dbContext.Convocatorias.Remove(convocatoria);
             _dbContext.SaveChanges();
