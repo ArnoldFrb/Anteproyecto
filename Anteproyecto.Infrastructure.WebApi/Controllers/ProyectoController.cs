@@ -29,7 +29,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         private readonly IMailServer _mailServer;
         private readonly IWebHostEnvironment _appEnvironment;
 
-        public ProyectoController(IUnitOfWork unitOfWork, IProyectoRepository proyectoRepository, IUsuarioRepository usuarioRepository, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
+        public ProyectoController(IUnitOfWork unitOfWork, IProyectoRepository proyectoRepository, IUsuarioRepository usuarioRepository, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer, IWebHostEnvironment appEnvironment)
         {
             _unitOfWork = unitOfWork;
             _usuarioRepository = usuarioRepository;
@@ -44,7 +44,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         public CargarProyectoResponse PostCargarProyecto(CargarProyectoRequest request)
         {
             var service = new CargarProyectoService(_unitOfWork, _usuarioRepository, _proyectoRepository, _convocatoriaRepository, _mailServer);
-            var response = service.CargarProyecto(request);
+            var response = service.CargarProyecto(request, _appEnvironment.ContentRootPath);
 
             return response;
         }
@@ -83,14 +83,6 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
             var response = servicio.AgregarAsesor(request);
 
             return response;
-        }
-
-        [HttpPost("[action]")]
-        public ActionResult<CargarProyectoResponse> PostCargarProyecto([FromForm] CargarProyectoRequest request)
-        {
-            CargarProyectoService _service = new CargarProyectoService(_unitOfWork, _usuarioRepository, _proyectoRepository,_mailServer);
-            CargarProyectoResponse response = _service.CargarProyecto(request, _appEnvironment.ContentRootPath);
-            return Ok(response);
         }
 
     }

@@ -55,7 +55,11 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             var archivo = ProyectoMother.CrearArchivo();
             // ACT // ACCION // CUANDO // WHEN
             var request = new CargarProyectoRequest(
-                proyecto.Nombre,proyecto.Resumen,proyecto.Focus,proyecto.Cut,proyecto.Line,
+                proyecto.Nombre,
+                proyecto.Resumen,
+                proyecto.Focus,
+                proyecto.Cut,
+                proyecto.Line,
                 archivo,
                 estudiante1.NumeroIdentificacion,
                 estudiante2.NumeroIdentificacion,
