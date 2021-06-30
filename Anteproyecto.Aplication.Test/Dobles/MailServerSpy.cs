@@ -23,9 +23,9 @@ namespace Anteproyecto.Aplication.Test.Dobles
             Console.WriteLine("Se enviar el email");
         }
 
-        public Task Send(string email, string subject, string body)
+        public async Task Send(string email, string subject, string body)
         {
-            throw new NotImplementedException();
+            await Task.CompletedTask;
         }
     }
 }
