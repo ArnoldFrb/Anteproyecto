@@ -68,5 +68,16 @@ namespace Anteproyecto.Domain.Entities
             Estado = estado;
             return "El estado del estudiante fue cambiado";
         }
+
+        public override string enviarPlantillaCorreo()
+        {
+            string contenido = "<html>Cordial saludo  " + Nombres +" " + Apellidos  + "," + "<br><br>"
+                       + " El registro en el sistema de Valoracion de anteproyecto se realizo satifactoriamente " + "<br><br>"
+                       + " Atentamente:" + "<br>" + "<br>"
+                       + " Universidad Popular del Cesar." + "<br>"
+                       + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
+        }
     }
 }

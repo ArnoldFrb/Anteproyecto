@@ -94,6 +94,19 @@ namespace Anteproyecto.Domain.Entities
         //    return $"Nueva Evaluacion: {Evaluacion.Nombre}";
         //}
 
+        public string enviarPlantillaCorreo(string usuarioNombre)
+        {
+            string contenido = "<html>Cordial saludo  " + usuarioNombre + "," + "<br><br>"
+                        + " Se le informa que su proyecto con titulo:" + "<br><br>"
+                        + " Proyecto:  " + Nombre + " " + "<br><br>"
+                        + " Ha sido valorado por el comite, por favor revise el estado de su proyecto<br><br> "
+                        + " De antemano agradecemos la confianza depositada en nosotros" + "<br><br>"
+                        + " Atentamente:" + "<br>" + "<br>"
+                        + " Universidad Popular del Cesar." + "<br>"
+                        + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
+        }
         public string AsignarAsesorTematico(AsesorTematico asesorTematico)
         {
             AsesorTematico = asesorTematico;
