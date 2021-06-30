@@ -26,7 +26,7 @@ namespace Anteproyecto.Aplication.Test.TesUsaurio
             _dbContext.Database.EnsureCreated();
 
             _crearusuarioService = new CrearUsuarioServicio(new UnitOfWork(_dbContext), new UsuarioRepository(_dbContext), new MailServerSpy());
-        }
+        } 
 
 
         [Test]
@@ -36,11 +36,11 @@ namespace Anteproyecto.Aplication.Test.TesUsaurio
             //Arrange
             var user = UsuarioMother.crearUsuarioEstudiante("0123456781");
 
-            _dbContext.Usuarios.Add(user);
+            _dbContext.Usuarios.Add(user); 
             _dbContext.SaveChanges();
 
             //Act
-            var _user = new crearUsuarioRequest { Nombres = user.Nombres, Apellidos = user.Apellidos, NumeroIdentificacion = "0123456799", Correo = user.NumeroIdentificacion, Contraseña = user.Contraseña, Semestre = 10,Edad = user.Edad , Estado = user.Estado};
+            var _user = new crearUsuarioRequest { Nombres = user.Nombres, Apellidos = user.Apellidos, NumeroIdentificacion = "0123456799", Correo = user.Correo, Contraseña = user.Contraseña, Semestre = user.Semestre,Edad = user.Edad , Estado = user.Estado};
             var response = _crearusuarioService.CrearCuentaBancaria(_user);
 
             //Assert

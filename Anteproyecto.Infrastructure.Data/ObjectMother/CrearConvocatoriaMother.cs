@@ -11,7 +11,7 @@ namespace Anteproyecto.Infrastructure.Data.ObjectMother
     {
         public static Convocatoria CrearConvocatoria()
         {
-            return new Convocatoria(new DateTime(2021, 1, 1, 12, 0, 0), new DateTime(2021, 3, 1, 12, 0, 0));
+            return new Convocatoria(DateTime.Now, DateTime.Now);
         }
     }
 }

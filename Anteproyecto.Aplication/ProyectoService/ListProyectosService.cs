@@ -25,7 +25,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             var proyecto = _proyectoRepository.GetAll();
             if (proyecto.Count() != 0)
             {
-                return new ListProyectosResponse(proyecto, "No existen Proyectos registrados");
+                return new ListProyectosResponse(proyecto, "Proyecto registrados");
             }
             else
             {

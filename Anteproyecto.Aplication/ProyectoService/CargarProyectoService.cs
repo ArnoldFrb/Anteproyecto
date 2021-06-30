@@ -27,8 +27,9 @@ namespace Anteproyecto.Aplication.ProyectoService
 
         public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request, string path)
         {
-            var conv = _convocatoriaRepository.FindFirstOrDefault(doc => DateTime.Now >= doc.FechaInicio && DateTime.Now <= doc.FechaCierre);
-            if (conv != null)
+            //var conv = _convocatoriaRepository.FindFirstOrDefault(doc => DateTime.Now >= doc.FechaInicio && DateTime.Now <= doc.FechaCierre);
+            var conv =(Convocatoria) _convocatoriaRepository.Find(1);
+            if (conv.CargarProyectos)
             {
                 var user1 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante1.ToString());
                 if (user1 != null)
