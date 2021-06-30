@@ -20,4 +20,13 @@
     <ProjectReference Include="..\Anteproyectos.Infrastructure.Systems\Anteproyecto.Infrastructure.Systems.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Folder Include="Archivos\" />
+	</ItemGroup>
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties appsettings_1json__JsonSchema="" />
+		</VisualStudio>
+	</ProjectExtensions>
 </Project>

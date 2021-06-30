@@ -73,7 +73,7 @@ namespace Anteproyecto.Domain.Entities
                 }
                 return $"El Usuario {usuario.Nombres} ha sido registrado correctamente";
             }
-        }
+        }    
 
         public string Editar(string nombres, string apellidos, string numeroIdentificacion, string correo, int semestre, int edad, bool estado)
         {
@@ -100,6 +100,17 @@ namespace Anteproyecto.Domain.Entities
 
                 return $"El Usuario {Nombres} ha sido modificado correctamente";
             }
+        }
+
+        public override string enviarPlantillaCorreo()
+        {
+            string contenido = "<html>Cordial saludo  " + Nombres +" " + Apellidos  + "," + "<br><br>"
+                       + " El registro en el sistema de Valoracion de anteproyecto se realizo satifactoriamente " + "<br><br>"
+                       + " Atentamente:" + "<br>" + "<br>"
+                       + " Universidad Popular del Cesar." + "<br>"
+                       + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
         }
     }
 }

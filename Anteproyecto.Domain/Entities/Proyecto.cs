@@ -31,14 +31,17 @@ namespace Anteproyecto.Domain.Entities
 
         public Proyecto(string nombre, string resumen, string url_Archive, string focus, int cut, string line, DateTime date, int state) : this(nombre, resumen)
         {
-            Url_Archive = url_Archive;
             Focus = focus;
             Cut = cut;
             Line = line;
             Date = date;
-            State = state; 
+            AsesorTematico = asesorTematico;
+            AsesorMetodologico = asesorMetodologico;
+            this.estudiante1 = estudiante1;
+            this.estudiante2 = estudiante2;
+            State = 1;
         }
-
+  
         public string ValidarNombre(string nombre)
         {
             if (nombre.Length == 0)
@@ -75,6 +78,37 @@ namespace Anteproyecto.Domain.Entities
             throw new NotImplementedException();
         }
 
+        //public string AgregarObservar(List<Observacion> obsercion)
+        //{
+        //    Obsercion = obsercion;
+        //    return $"Se han agregado las op";
+        //}
+
+        //public string Observar(Observacion obsercion)
+        //{
+        //    Obsercion.Add(obsercion);
+        //    return $"Nueva Observacon: {obsercion.Nombre}";
+        //}
+
+        //public string Evaluar(Evaluacion evaluacion)
+        //{
+        //    Evaluacion = evaluacion;
+        //    return $"Nueva Evaluacion: {Evaluacion.Nombre}";
+        //}
+
+        public string enviarPlantillaCorreo(string usuarioNombre)
+        {
+            string contenido = "<html>Cordial saludo  " + usuarioNombre + "," + "<br><br>"
+                        + " Se le informa que su proyecto con titulo:" + "<br><br>"
+                        + " Proyecto:  " + Nombre + " " + "<br><br>"
+                        + " Ha sido valorado por el comite, por favor revise el estado de su proyecto<br><br> "
+                        + " De antemano agradecemos la confianza depositada en nosotros" + "<br><br>"
+                        + " Atentamente:" + "<br>" + "<br>"
+                        + " Universidad Popular del Cesar." + "<br>"
+                        + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
+
+            return contenido;
+        }
         public string AsignarAsesorTematico(AsesorTematico asesorTematico)
         {
             AsesorTematico = asesorTematico;

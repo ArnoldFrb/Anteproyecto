@@ -22,5 +22,10 @@ namespace Anteproyecto.Aplication.Test.Dobles
             Email = email;
             Console.WriteLine("Se enviar el email");
         }
+
+        public async Task Send(string email, string subject, string body)
+        {
+            await Task.CompletedTask;
+        }
     }
 }

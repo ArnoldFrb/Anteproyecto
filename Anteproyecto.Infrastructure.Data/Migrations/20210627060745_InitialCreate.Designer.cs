@@ -3,14 +3,16 @@ using System;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Anteproyecto.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ProyectoContext))]
-    partial class ProyectoContextModelSnapshot : ModelSnapshot
+    [Migration("20210627060745_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,12 +56,12 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProyectoId")
+                    b.Property<int?>("projectoId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectoId");
+                    b.HasIndex("projectoId");
 
                     b.ToTable("Evaluacion");
 
@@ -68,9 +70,10 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 29, 16, 48, 59, 537, DateTimeKind.Local).AddTicks(2268),
+                            Date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             Estado = true,
-                            Nombre = "Correccion de objetivos"
+                            Nombre = "Correccion de objetivos",
+                            projectoId = 1
                         });
                 });
 
@@ -89,12 +92,12 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProyectoId")
+                    b.Property<int?>("proyectoId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProyectoId");
+                    b.HasIndex("proyectoId");
 
                     b.ToTable("Observacion");
 
@@ -103,8 +106,9 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 29, 16, 48, 59, 536, DateTimeKind.Local).AddTicks(9408),
-                            Nombre = "Correccion de objetivos"
+                            Date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            Nombre = "Correccion de objetivos",
+                            proyectoId = 1
                         });
                 });
 
@@ -169,7 +173,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             AsesorMetodologicoId = 7,
                             AsesorTematicoId = 10,
                             Cut = 2,
-                            Date = new DateTime(2021, 6, 29, 16, 48, 59, 535, DateTimeKind.Local).AddTicks(4298),
+                            Date = new DateTime(2021, 6, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             Focus = "arriva",
                             Line = "investigacion",
                             Nombre = "El proyecto de ley",
@@ -428,20 +432,20 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Evaluacion", b =>
                 {
-                    b.HasOne("Anteproyecto.Domain.Entities.Proyecto", "Proyecto")
+                    b.HasOne("Anteproyecto.Domain.Entities.Proyecto", "projecto")
                         .WithMany()
-                        .HasForeignKey("ProyectoId");
+                        .HasForeignKey("projectoId");
 
-                    b.Navigation("Proyecto");
+                    b.Navigation("projecto");
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Observacion", b =>
                 {
-                    b.HasOne("Anteproyecto.Domain.Entities.Proyecto", "Proyecto")
+                    b.HasOne("Anteproyecto.Domain.Entities.Proyecto", "proyecto")
                         .WithMany()
-                        .HasForeignKey("ProyectoId");
+                        .HasForeignKey("proyectoId");
 
-                    b.Navigation("Proyecto");
+                    b.Navigation("proyecto");
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Proyecto", b =>

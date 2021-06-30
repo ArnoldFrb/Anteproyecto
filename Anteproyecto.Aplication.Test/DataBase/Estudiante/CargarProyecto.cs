@@ -51,25 +51,22 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
 
+
+            var archivo = ProyectoMother.CrearArchivo();
             // ACT // ACCION // CUANDO // WHEN
             var request = new CargarProyectoRequest(
-                proyecto.Nombre,
-                proyecto.Resumen,
-                proyecto.Url_Archive,
-                proyecto.Focus,
-                proyecto.Cut,
-                proyecto.Line,
-                proyecto.Date,
-                proyecto.State,
+                proyecto.Nombre,proyecto.Resumen,proyecto.Focus,proyecto.Cut,proyecto.Line,
+                archivo,
                 estudiante1.NumeroIdentificacion,
                 estudiante2.NumeroIdentificacion,
                 asesorTematico.NumeroIdentificacion,
                 asesorMetodologico.NumeroIdentificacion
             );
-            var response = _proyectoService.CargarProyecto(request);
+            var response = _proyectoService.CargarProyecto(request, "C:\\Users\\Andres\\Documents\\GitKraken\\Anteproyecto\\Anteproyecto.Infrastructure.WebApi");
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual($"Operacion exitoza: Se ha cargado el proyecto {request.Nombre}", response.Mensaje);
+            
+            Assert.AreEqual($"El proyecto {request.Nombre} Se cargo correctamento.", response.Mensaje);
 
             _dbContext.Usuarios.Remove(estudiante1);
             _dbContext.Usuarios.Remove(estudiante2);
@@ -99,22 +96,17 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             
             _dbContext.SaveChanges();
 
+            var archivo = ProyectoMother.CrearArchivo();
             // ACT // ACCION // CUANDO // WHEN
             var request = new CargarProyectoRequest(
-                proyecto.Nombre,
-                proyecto.Resumen,
-                proyecto.Url_Archive,
-                proyecto.Focus,
-                proyecto.Cut,
-                proyecto.Line,
-                proyecto.Date,
-                proyecto.State,
+                proyecto.Nombre, proyecto.Resumen, proyecto.Focus, proyecto.Cut, proyecto.Line,
+                archivo,
                 estudiante1.NumeroIdentificacion,
                 estudiante2.NumeroIdentificacion,
                 asesorTematico.NumeroIdentificacion,
                 asesorMetodologico.NumeroIdentificacion
             );
-            _proyectoService.CargarProyecto(request);
+            _proyectoService.CargarProyecto(request,"Anteproyecto\\Anteproyecto.Infrastructure.WebApi\\Archivos");
            
             var request2 = new ActualizarProyectoRequest(
                 proyecto.Id,

@@ -1,7 +1,10 @@
 ﻿using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
+using Microsoft.AspNetCore.Http;
 using System;
+using System.IO;
+
 
 namespace Anteproyecto.Aplication.ProyectoService
 {
@@ -22,7 +25,7 @@ namespace Anteproyecto.Aplication.ProyectoService
             _mailServer = mailServer;
         }
 
-        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request)
+        public CargarProyectoResponse CargarProyecto(CargarProyectoRequest request,string path)
         {
             var conv = _convocatoriaRepository.FindFirstOrDefault(doc => DateTime.Now >= doc.FechaInicio && DateTime.Now <= doc.FechaCierre);
             if (conv != null)
@@ -33,31 +36,43 @@ namespace Anteproyecto.Aplication.ProyectoService
                     var user2 = (Estudiante)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdEstudiante2.ToString());
                     if (user2 != null)
                     {
-                        var AsesorTematico = (AsesorTematico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorTematico.ToString());
-                        if (AsesorTematico != null)
-                        {
-                            var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
-                            if (AsesorMetodologico != null)
+                        var AsesorMetodologico = (AsesorMetodologico)_usuarioRepository.FindFirstOrDefault(t => t.NumeroIdentificacion == request.IdAsesorMetodologico.ToString());
+                        if (AsesorMetodologico != null)
+                        { 
+
+                            Proyecto proyectoCreado = new Proyecto(request.Nombre,
+                                    request.Resumen, request.Focus,
+                                    request.Cut, request.Line, DateTime.Now,
+                                    AsesorTematico,AsesorMetodologico,user1,user2);
+
+                            var res = proyectoCreado.CargarProyecto(proyectoCreado);
+                            if (res.Equals("Se cargo el archivo correctamento"))
                             {
-                                var proy = new Proyecto(); 
-                                var res = proy.CargarProyecto(request.Nombre, request.Resumen, request.Url_Archive, request.Focus, request.Cut, request.Line,
-                                    DateTime.Now, request.State, AsesorTematico, AsesorMetodologico, user1, user2);
+                                FileInfo fi = new FileInfo(request.Archive.FileName);
+                                string nameFile = "Archivos/" + DateTime.Now.Ticks.ToString() + fi.Extension;
+                                string filepatch = Path.Combine(path, nameFile);
 
-                                if (res.Equals($"Operacion Exitoza: Su proyecto {proy.Nombre} ha sido cargado"))
-                                {
+                                proyectoCreado.actualizarArchivo(nameFile);
+                                user1.CambiarEstado(false);
+                                user2.CambiarEstado(false);
 
-                                    _proyectoRepository.Add(proy);
-                                    _unitOfWork.Commit();
-                                    return new CargarProyectoResponse(res);
-                                }
-                                else
+                                using (var stream = System.IO.File.Create(filepatch))
                                 {
-                                    return new CargarProyectoResponse(res);
+                                    request.Archive.CopyTo(stream);
                                 }
+
+                                _usuarioRepository.Edit(user1);
+                                _usuarioRepository.Edit(user2);
+                                _proyectoRepository.Add(proyectoCreado);
+                                _mailServer.Send(user1.Correo, "Anteproyecto cargado correctamento", proyectoCreado.enviarPlantillaCorreo(user1.Nombres));
+                                _mailServer.Send(user2.Correo, "Anteproyecto cargado correctamento", proyectoCreado.enviarPlantillaCorreo(user2.Nombres));
+
+                                _unitOfWork.Commit();
+                                return new CargarProyectoResponse($"El proyecto {request.Nombre} Se cargo correctamento.");
                             }
                             else
                             {
-                                return new CargarProyectoResponse($"El Asesor Metodologico identificado con la cedula {request.IdAsesorTematico} no existe.");
+                                return new CargarProyectoResponse($"El proyecto {request.Nombre} Tiene la informcion incompleta.");
                             }
                         }
                         else
@@ -83,17 +98,17 @@ namespace Anteproyecto.Aplication.ProyectoService
 
         public record CargarProyectoRequest 
         (
-            string Nombre,
-            string Resumen,
-            string Url_Archive,
-            string Focus,
-            int Cut,
-            string Line,
-            int State,
-            string IdEstudiante1,
-            string IdEstudiante2,
-            string IdAsesorTematico,
-            string IdAsesorMetodologico
+          string Nombre,
+          string Resumen,
+          string Focus, 
+          int Cut,
+          string Line,
+          IFormFile Archive,
+          string IdEstudiante1,
+          string IdEstudiante2,
+          string IdAsesorTematico,
+          string IdAsesorMetodologico
+          
         );
 
         public record CargarProyectoResponse(string Mensaje);

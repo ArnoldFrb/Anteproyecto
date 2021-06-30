@@ -3,6 +3,7 @@ using Anteproyecto.Aplication.ProyectoService;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Entities;
 using Anteproyecto.Domain.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,14 +27,17 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
         private readonly IMailServer _mailServer;
+        private readonly IWebHostEnvironment _appEnvironment;
 
         public ProyectoController(IUnitOfWork unitOfWork, IProyectoRepository proyectoRepository, IUsuarioRepository usuarioRepository, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
+            _usuarioRepository = usuarioRepository;
             _proyectoRepository = proyectoRepository;
             _usuarioRepository = usuarioRepository;
             _convocatoriaRepository = convocatoriaRepository;
             _mailServer = mailServer;
+            _appEnvironment = appEnvironment;
         }
 
         [HttpPost("Cargar")]
@@ -80,5 +84,14 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
 
             return response;
         }
+
+        [HttpPost("[action]")]
+        public ActionResult<CargarProyectoResponse> PostCargarProyecto([FromForm] CargarProyectoRequest request)
+        {
+            CargarProyectoService _service = new CargarProyectoService(_unitOfWork, _usuarioRepository, _proyectoRepository,_mailServer);
+            CargarProyectoResponse response = _service.CargarProyecto(request, _appEnvironment.ContentRootPath);
+            return Ok(response);
+        }
+
     }
 }
