@@ -6,7 +6,7 @@ using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
-using static Anteproyecto.Aplication.CrearConvocatoriaService;
+using static Anteproyecto.Aplication.CrearConvocatoriasService;
 
 namespace Anteproyecto.Aplication.Test
 {
@@ -14,7 +14,7 @@ namespace Anteproyecto.Aplication.Test
     {
 
         private ProyectoContext _dbContext;
-        private CrearConvocatoriaService _crearconvocatoriaService;
+        private CrearConvocatoriasService _crearconvocatoriaService;
 
         [SetUp]
         public void Setup()
@@ -25,7 +25,7 @@ namespace Anteproyecto.Aplication.Test
             _dbContext = new ProyectoContext(optionsSqlite);
             _dbContext.Database.EnsureCreated();
 
-            _crearconvocatoriaService = new CrearConvocatoriaService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
+            _crearconvocatoriaService = new CrearConvocatoriasService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
 
         }
 

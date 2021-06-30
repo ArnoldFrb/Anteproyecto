@@ -41,14 +41,15 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             var estudiante2 = UsuarioMother.crearUsuarioEstudiante("913451118");
             var asesorTematico = UsuarioMother.crearUsuarioAsesorTematico("323456116");
             var asesorMetodologico = UsuarioMother.crearUsuarioAsesorMetodologico("456656116");
+            var convocatoria = CrearConvocatoriaMother.CrearConvocatoria();
 
             var proyecto = ProyectoMother.CrearProyecto_();
 
+            _dbContext.Convocatorias.Add(convocatoria);
             _dbContext.Usuarios.Add(estudiante1);
             _dbContext.Usuarios.Add(estudiante2);
             _dbContext.Usuarios.Add(asesorTematico);
             _dbContext.Usuarios.Add(asesorMetodologico);
-            _dbContext.Proyectos.Add(proyecto);
             _dbContext.SaveChanges();
 
             // ACT // ACCION // CUANDO // WHEN
@@ -59,7 +60,6 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
                 proyecto.Focus,
                 proyecto.Cut,
                 proyecto.Line,
-                proyecto.Date,
                 proyecto.State,
                 estudiante1.NumeroIdentificacion,
                 estudiante2.NumeroIdentificacion,
@@ -69,69 +69,13 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             var response = _proyectoService.CargarProyecto(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual($"Operacion exitoza: Se ha cargado el proyecto {request.Nombre}", response.Mensaje);
+            Assert.AreEqual($"Operacion Exitoza: Su proyecto {proyecto.Nombre} ha sido cargado", response.Mensaje);
 
+            _dbContext.Convocatorias.Remove(convocatoria);
             _dbContext.Usuarios.Remove(estudiante1);
             _dbContext.Usuarios.Remove(estudiante2);
             _dbContext.Usuarios.Remove(asesorTematico);
             _dbContext.Usuarios.Remove(asesorMetodologico);
-            _dbContext.Proyectos.Remove(proyecto);
-            _dbContext.SaveChanges();
-        }
-
-        [Test]
-        public void CargarCorrecionesDelProyectoText()
-        {
-
-            //ARRANGE //PREPARAR // DADO // GIVEN
-            var estudiante1 = UsuarioMother.crearUsuarioEstudiante("923456678");
-            var estudiante2 = UsuarioMother.crearUsuarioEstudiante("913456118");
-            var asesorTematico = UsuarioMother.crearUsuarioAsesorTematico("333456118");
-            var asesorMetodologico = UsuarioMother.crearUsuarioAsesorMetodologico("444456118");
-
-            var proyecto = ProyectoMother.CrearProyecto_();
-            var proyecto2 = ProyectoMother.ActualizarProyecto_();
-
-            _dbContext.Usuarios.Add(estudiante1);
-            _dbContext.Usuarios.Add(estudiante2);
-            _dbContext.Usuarios.Add(asesorTematico); 
-            _dbContext.Usuarios.Add(asesorMetodologico);
-            
-            _dbContext.SaveChanges();
-
-            // ACT // ACCION // CUANDO // WHEN
-            var request = new CargarProyectoRequest(
-                proyecto.Nombre,
-                proyecto.Resumen,
-                proyecto.Url_Archive,
-                proyecto.Focus,
-                proyecto.Cut,
-                proyecto.Line,
-                proyecto.Date,
-                proyecto.State,
-                estudiante1.NumeroIdentificacion,
-                estudiante2.NumeroIdentificacion,
-                asesorTematico.NumeroIdentificacion,
-                asesorMetodologico.NumeroIdentificacion
-            );
-            _proyectoService.CargarProyecto(request);
-           
-            var request2 = new ActualizarProyectoRequest(
-                proyecto.Id,
-                proyecto2.Url_Archive
-                
-            );
-            var response = _ActualizarProyectoService.ActualizarProyecto(request2);
-
-            //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual("El proyecto ha sido actualizado.", response.Mensaje);
-
-            _dbContext.Usuarios.Remove(estudiante1);
-            _dbContext.Usuarios.Remove(estudiante2);
-            _dbContext.Usuarios.Remove(asesorTematico);
-            _dbContext.Usuarios.Remove(asesorMetodologico);
-            _dbContext.Proyectos.Remove(proyecto);
-            _dbContext.Proyectos.Remove(proyecto2);
             _dbContext.SaveChanges();
         }
     }

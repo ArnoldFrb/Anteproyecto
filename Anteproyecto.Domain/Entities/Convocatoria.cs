@@ -17,7 +17,7 @@ namespace Anteproyecto.Domain.Entities
         {
             FechaInicio = fechaInicio;
             FechaCierre = fechaCierre;
-            CargarProyectos = false;
+            CargarProyectos = true;
         }
 
         public string CrearConvocatoria(DateTime fechaInicio, DateTime fechaCierre, bool cargarProyectos)

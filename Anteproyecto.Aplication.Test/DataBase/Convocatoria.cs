@@ -1,5 +1,5 @@
+﻿using Anteproyecto.Aplication.ConvocatoriaService;
 using Anteproyecto.Aplication.Test.Dobles;
-using Anteproyecto.Domain.Entities;
 using Anteproyecto.Infrastructure.Data.ObjectMother;
 using Anteproyecto.Infrastructure.Data.Repositories;
 using Infrastructure.Data;
@@ -7,15 +7,18 @@ using Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
-using static Anteproyecto.Aplication.CrearConvocatoriasService;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static Anteproyecto.Aplication.ConvocatoriaService.CrearConvocatoriaService;
 
-namespace Anteproyecto.Aplication.Test
+namespace Anteproyecto.Aplication.Test.DataBase
 {
-    public class CrearConvocatoriaTest
+    class Convocatoria
     {
-
         private ProyectoContext _dbContext;
-        private CrearConvocatoriasService _crearconvocatoriaService;
+        private CrearConvocatoriaService _crearconvocatoriaService;
 
         [SetUp]
         public void Setup()
@@ -25,7 +28,7 @@ namespace Anteproyecto.Aplication.Test
            .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
 
-            _crearconvocatoriaService = new CrearConvocatoriasService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
+            _crearconvocatoriaService = new CrearConvocatoriaService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
 
         }
 
@@ -35,20 +38,14 @@ namespace Anteproyecto.Aplication.Test
 
             //Arrange
             var convocatoria = CrearConvocatoriaMother.CrearConvocatoria();
-            
-            _dbContext.Convocatorias.Add(convocatoria);
-            _dbContext.SaveChanges(); 
 
              //Act
-            var _convocatoria = new CrearConvocatoriaRequest { FechaInicio= new DateTime(2021,1,1,12,0,0) , FechaCierre = new DateTime(2021,3,1,12,0,0), CargarProyectos = true };
+            var _convocatoria = new CrearConvocatoriaRequest (new DateTime(2021,5,1,12,0,0), new DateTime(2021,7,1,12,0,0), true );
             var response = _crearconvocatoriaService.CrearConvocatoria(_convocatoria);
 
             //Assert 01 / 01 / 2021 12:00:00 p.m.
 
-            Assert.AreEqual("Se ha anadido la sigiente convocatoria, Inicio: viernes, 1 de enero de 2021 / Fin: lunes, 1 de marzo de 2021", response);
-
-            _dbContext.Convocatorias.Remove(convocatoria);
-            _dbContext.SaveChanges();
+            Assert.AreEqual($"Se ha creado la convocatoria para las fechas: Inicio: {new DateTime(2021, 5, 1, 12, 0, 0)} / Cierre: {new DateTime(2021, 7, 1, 12, 0, 0)}", response.Mensaje);
 
         } 
     }

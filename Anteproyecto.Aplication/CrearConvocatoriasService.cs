@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Anteproyecto.Aplication
 {
-    public class CrearConvocatoriaService
+    public class CrearConvocatoriasService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
         private readonly IMailServer _mailServer;
 
-        public CrearConvocatoriaService(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
+        public CrearConvocatoriasService(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _convocatoriaRepository = convocatoriaRepository;
