@@ -104,7 +104,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 30, 1, 13, 39, 674, DateTimeKind.Local).AddTicks(5010),
+                            Date = new DateTime(2021, 6, 30, 10, 24, 39, 557, DateTimeKind.Local).AddTicks(728),
                             Nombre = "Correccion de objetivos",
                             ProyectoId = 1
                         });
@@ -171,7 +171,9 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             AsesorMetodologicoId = 9,
                             AsesorTematicoId = 12,
                             Cut = 2,
-                            Date = new DateTime(2021, 6, 30, 1, 13, 39, 670, DateTimeKind.Local).AddTicks(5778),
+                            Date = new DateTime(2021, 6, 30, 10, 24, 39, 554, DateTimeKind.Local).AddTicks(9471),
+                            Estudiante1Id = 1,
+                            Estudiante2Id = 2,
                             Focus = "arriva",
                             Line = "investigacion",
                             Nombre = "El proyecto de ley",

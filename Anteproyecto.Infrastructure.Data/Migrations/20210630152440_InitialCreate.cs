@@ -209,7 +209,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Proyectos",
                 columns: new[] { "Id", "AsesorMetodologicoId", "AsesorTematicoId", "Cut", "Date", "Estudiante1Id", "Estudiante2Id", "Focus", "Line", "Nombre", "Resumen", "State", "Url_Archive" },
-                values: new object[] { 1, 9, 12, 2, new DateTime(2021, 6, 30, 1, 13, 39, 670, DateTimeKind.Local).AddTicks(5778), null, null, "arriva", "investigacion", "El proyecto de ley", "resumen del proyecto", 1, "arriba/pero" });
+                values: new object[] { 1, 9, 12, 2, new DateTime(2021, 6, 30, 10, 24, 39, 554, DateTimeKind.Local).AddTicks(9471), 1, 2, "arriva", "investigacion", "El proyecto de ley", "resumen del proyecto", 1, "arriba/pero" });
 
             migrationBuilder.InsertData(
                 table: "Evaluacion",
@@ -219,7 +219,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Observacion",
                 columns: new[] { "Id", "Comentario", "Date", "Nombre", "ProyectoId" },
-                values: new object[] { 1, "holaa mudnooo aqui", new DateTime(2021, 6, 30, 1, 13, 39, 674, DateTimeKind.Local).AddTicks(5010), "Correccion de objetivos", 1 });
+                values: new object[] { 1, "holaa mudnooo aqui", new DateTime(2021, 6, 30, 10, 24, 39, 557, DateTimeKind.Local).AddTicks(728), "Correccion de objetivos", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluacion_ProyectoId",

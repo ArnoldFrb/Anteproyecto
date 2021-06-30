@@ -75,7 +75,7 @@ namespace Infrastructure.Data
         protected void SemillasProyecto(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Proyecto>().HasData(
-                new { Id = 1, Nombre = "El proyecto de ley", Resumen = "resumen del proyecto", Url_Archive = "arriba/pero" , Focus= "arriva", Cut =2, Line= "investigacion" ,Date = DateTime.Now, State = 1 , AsesorTematicoId = 12, AsesorMetodologicoId = 9, estudiante1Id = 1 , estudiante2Id = 2 }
+                new { Id = 1, Nombre = "El proyecto de ley", Resumen = "resumen del proyecto", Url_Archive = "arriba/pero" , Focus= "arriva", Cut =2, Line= "investigacion" ,Date = DateTime.Now, State = 1 , AsesorTematicoId = 12, AsesorMetodologicoId = 9, Estudiante1Id = 1 , Estudiante2Id = 2 }
              );
         }
 

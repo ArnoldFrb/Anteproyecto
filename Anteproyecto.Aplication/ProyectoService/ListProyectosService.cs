@@ -22,7 +22,7 @@ namespace Anteproyecto.Aplication.ProyectoService
 
         public ListProyectosResponse List()
         {
-            var proyecto = _proyectoRepository.GetAll();
+            var proyecto = _proyectoRepository.FindBy(includeProperties: "AsesorTematico,AsesorMetodologico,Estudiante1,Estudiante2");
             if (proyecto.Count() != 0)
             {
                 return new ListProyectosResponse(proyecto, "Proyecto registrados");

@@ -32,6 +32,7 @@ namespace Anteproyecto.Aplication.MiembroComiteService
                 if (res.Equals($"El Usuario {user.Nombres} ha sido registrado correctamente"))
                 {
                     _usuarioRepository.Add(user);
+                    _mailServer.Send(user.Correo, "Se realizo el registro ecorrectamente", user.enviarPlantillaCorreo());
                     _unitOfWork.Commit();
 
                     return new RegistrarMiembroComiteResponse(res);
