@@ -14,7 +14,7 @@ namespace Anteproyecto.Domain.Entities
         public override string enviarPlantillaCorreo()
         {
             string contenido = "<html>Cordial saludo  " + Nombres + " " + Apellidos + "," + "<br><br>"
-                        + " El registro en el sistema de Valoracion de anteproyecto se realizo satifactoriamente " + "<br><br>"
+                        + " Su registro como asesor tematico se realizo satifactoriamente" + "<br><br>"
                         + " Atentamente:" + "<br>" + "<br>"
                         + " Universidad Popular del Cesar." + "<br>"
                         + " Correo: 1234@unicesar.edu.co - Celular (Whatsapp): 3042065930" + "<br><br></html>";
@@ -42,7 +42,23 @@ namespace Anteproyecto.Domain.Entities
 
         public override string ModificarCorreo(string correo)
         {
-            throw new System.NotImplementedException();
+            string expresion = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (Regex.IsMatch(correo, expresion))
+            {
+                if (Regex.Replace(correo, expresion, String.Empty).Length == 0)
+                {
+                    return "El correo ingresado es valido";
+                }
+                else
+                {
+                    return "El correo ingresado es invalido";
+                }
+            }
+            if (!Regex.IsMatch(correo, expresion))
+            {
+                return "El correo ingresado es invalido";
+            }
+            throw new NotImplementedException();
         }
 
         public override string ValidarUsuario(Usuario usuario)

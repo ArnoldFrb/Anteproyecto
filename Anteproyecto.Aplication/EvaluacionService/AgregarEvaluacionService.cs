@@ -34,6 +34,7 @@ namespace Anteproyecto.Aplication.EvaluacionService
                 if (res.Equals($"Nueva Evaluacion: {eval.Nombre}"))
                 {
                     _evaluacionRepository.Add(eval);
+                    _mailServer.Send(eval.Proyecto.Estudiante1.Correo, "Nueva evaluacion agregada", eval.enviarPlantillaCorreo());
                     _unitOfWork.Commit();
 
                     return new AgregarEvaluacionResponse(res);

@@ -66,7 +66,7 @@ namespace Anteproyecto.Aplication.ProyectoService
                                     _usuarioRepository.Edit(user1);
                                     _usuarioRepository.Edit(user2);
                                     _proyectoRepository.Add(proyectoCreado);
-                                    
+                                    _mailServer.Send(user1.Correo, "Proyecto cargado correctamente", proyectoCreado.enviarPlantillaCorreo(user1.Nombres));
                                     _unitOfWork.Commit();
                                     return new CargarProyectoResponse(res);
                                 }

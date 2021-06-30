@@ -34,6 +34,7 @@ namespace Anteproyecto.Aplication.ObservacionService
                 if (res.Equals($"Nueva Observacon: {obs.Nombre}"))
                 {
                     _observacionRepository.Add(obs);
+                    _mailServer.Send(proyecto.Estudiante1.Correo, "Se agrego un nueva Observacion a su proyecto",obs.enviarPlantillaCorreo());
                     _unitOfWork.Commit();
                     return new AgregarObservacionResponse(res);
                 }

@@ -41,7 +41,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         }
 
         [HttpPost("Cargar")]
-        public CargarProyectoResponse PostCargarProyecto(CargarProyectoRequest request)
+        public CargarProyectoResponse PostCargarProyecto([FromForm] CargarProyectoRequest request)
         {
             var service = new CargarProyectoService(_unitOfWork, _usuarioRepository, _proyectoRepository, _convocatoriaRepository, _mailServer);
             var response = service.CargarProyecto(request, _appEnvironment.ContentRootPath);
