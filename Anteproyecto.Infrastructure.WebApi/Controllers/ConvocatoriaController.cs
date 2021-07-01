@@ -33,7 +33,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         [HttpPost("CrearConvocatoria")]
         public CrearConvocatoriaResponse PostCrearConvocatoria(CrearConvocatoriaRequest request)
         {
-            var service = new CrearConvocatoriaService(_unitOfWork, _convocatoriaRepository, _mailServer);
+            var service = new CrearConvocatoriaService(_unitOfWork, _convocatoriaRepository, _usuarioRepository, _mailServer);
             var response = service.CrearConvocatoria(request);
             
             return response;

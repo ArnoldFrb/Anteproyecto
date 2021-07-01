@@ -40,7 +40,7 @@ namespace Anteproyecto.Aplication.ConvocatoriaService
                     {
                         if (doc.ToString().Equals("Anteproyecto.Domain.Entities.Estudiante"))
                         {
-                            _mailServer.Send("arnold.fb16@gmail.com", "Se ha activado la carga de proyecot",
+                            _mailServer.Send(doc.Correo, "Se ha activado la carga de proyecto",
                                 "<html>Cordial saludo Estudiantes de la UPC," + "<br><br>"
                                 + " Este correo es con el fin de informar que ya esta habilitada la plataforma para cargar sus proyectos de grado." + "<br><br>"
                                 + " Con las fechas estipuladas entre:" + "<br><br>"

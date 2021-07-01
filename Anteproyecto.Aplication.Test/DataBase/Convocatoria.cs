@@ -28,7 +28,7 @@ namespace Anteproyecto.Aplication.Test.DataBase
            .Options;
             _dbContext = new ProyectoContext(optionsSqlite);
 
-            _crearconvocatoriaService = new CrearConvocatoriaService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new MailServerSpy());
+            _crearconvocatoriaService = new CrearConvocatoriaService(new UnitOfWork(_dbContext), new ConvocatoriaRepository(_dbContext), new UsuarioRepository(_dbContext), new MailServerSpy());
 
         }
 

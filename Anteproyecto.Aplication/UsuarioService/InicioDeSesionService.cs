@@ -41,8 +41,7 @@ namespace Anteproyecto.Aplication.UsuarioService
             }
             else
             {
-                user = null;
-                return new InicioDeSesionResponse(user.Id.ToString(), tipo, user.Nombres, user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222", $"El correo {request.Correo} no fue encontrado");
+                return new InicioDeSesionResponse(null, null, null, null, null, null, $"El correo {request.Correo} no fue encontrado");
             }
         }
 
