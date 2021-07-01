@@ -45,6 +45,37 @@ namespace Anteproyecto.Aplication.EvaluacionService
             }
         }
 
+
+        public ListEvaluacionResponse ProyectosEvaluados(int request)
+        {
+
+            ///var proyecto = _proyectoRepository.FindFirstOrDefault(proyect => proyect.Id == request.ToString());
+            var proyecto = _evaluacionRepository.FindBy(Proyecto => Proyecto.Proyecto.Estudiante1.Id == request || Proyecto.Proyecto.Estudiante2.Id == request, includeProperties: "Proyecto");
+            if (proyecto != null)
+            {
+                List<Evaluacion> evaluacions = new List<Evaluacion>();
+
+                foreach (var itemlist in proyecto.ToList())
+                {
+                    evaluacions.Add(itemlist);
+                } 
+
+                if (evaluacions.Count() != 0)
+                {
+                    return new ListEvaluacionResponse(evaluacions, "Evaluaciones realizadas al proyecto.");
+                }
+                else
+                {
+                    return new ListEvaluacionResponse(null, "No hay Evaluaciones.");
+                }
+            }
+            else
+            {
+                return new ListEvaluacionResponse(null, "No existe el Proyecto.");
+            }
+            
+        }
+
         public record ListEvaluacionRequest
         (
             int IdProyecto

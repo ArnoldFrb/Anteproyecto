@@ -34,7 +34,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
             }
         }
 
-        [HttpPost("ModificarContraseña")]
+        [HttpPut("ModificarContrasena")]
         public ModificarContraseñaResponse PostModificarContraseña(ModificarContraseñaRequest request)
         {
             var service = new ModificarContraseñaService(_unitOfWork, _usuarioRepository, _mailServer);

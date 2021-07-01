@@ -46,6 +46,34 @@ namespace Anteproyecto.Aplication.ObservacionService
             }
         }
 
+
+        public ListObservacionResponse listarProyectoObservaciones(int request)
+        {
+            var proyecto = _observacionRepository.FindBy(Proyecto => Proyecto.Proyecto.Estudiante1.Id == request || Proyecto.Proyecto.Estudiante2.Id == request, includeProperties: "Proyecto");
+            if (proyecto != null)
+            {
+                List<Observacion> observaciones = new List<Observacion>();
+
+                foreach (var itemlist in proyecto.ToList())
+                {
+                    observaciones.Add(itemlist);
+                }
+
+                if (observaciones.Count() != 0)
+                {
+                    return new ListObservacionResponse(observaciones, "Evaluaciones realizadas al proyecto.");
+                }
+                else
+                {
+                    return new ListObservacionResponse(null, "No hay Evaluaciones.");
+                }
+            }
+            else
+            {
+                return new ListObservacionResponse(null, "No existe el Proyecto.");
+            }
+        }
+
         public record ListObservacionRequest
         (
             int IdProyecto

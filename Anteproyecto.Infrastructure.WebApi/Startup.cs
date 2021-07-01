@@ -68,6 +68,14 @@ namespace Anteproyecto.Infrastructure.WebApi
 
             app.UseAuthorization();
 
+            app.UseCors(option =>
+            {
+
+                option.AllowAnyHeader();
+                option.AllowAnyMethod();
+                option.AllowAnyOrigin();
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

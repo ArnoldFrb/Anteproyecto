@@ -68,5 +68,15 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
             var response = service.ListarEstudiantes();
             return response;
         }
+
+
+        [HttpGet("Listasinproyecto")]
+        public ListarEstudiantesResponse GetListarSinProyecto()
+        {
+            var service = new ListarEstudiantesService(_unitOfWork, _usuarioRepository, _mailServer);
+            var response = service.ListarEstudiantesSinProyecto();
+            return response;
+        }
+
     }
 }
