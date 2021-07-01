@@ -48,6 +48,41 @@ namespace Anteproyecto.Aplication.EstuduanteService
             }
         }
 
+
+        public ListarEstudiantesResponse ListarEstudiantesSinProyecto()
+        {
+
+            var user = _usuarioRepository.GetAll();
+            if (user != null)
+            {  
+                 var estudianteSinProyecto = new List<Estudiante>();
+                foreach (var item in user)
+                {
+                    if (item.ToString().Equals("Anteproyecto.Domain.Entities.Estudiante") && item.Estado == true)
+                    {
+                        estudianteSinProyecto.Add((Estudiante)item);
+                    }
+
+                }
+                if (estudianteSinProyecto.Count != 0)
+                {
+                    return new ListarEstudiantesResponse(estudianteSinProyecto, "Lista de Usuarios");
+                }
+                else
+                {
+                    return new ListarEstudiantesResponse(null, "No se ncontraron Estudiantes registrados");
+                }
+
+            }
+            else
+            {
+                return new ListarEstudiantesResponse(null, "No existen usuarios en el sistema");
+            }
+        }
+
+
+
+
         public record ListarEstudiantesResponse(List<Estudiante> Estudiantes, string Mensaje);
     }
 }

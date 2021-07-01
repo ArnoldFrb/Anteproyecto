@@ -62,17 +62,6 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasIndex("ProyectoId");
 
                     b.ToTable("Evaluacion");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 30, 0, 0, 0, 0, DateTimeKind.Local),
-                            Estado = true,
-                            Nombre = "Correccion de objetivos",
-                            ProyectoId = 1
-                        });
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Observacion", b =>
@@ -98,16 +87,6 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasIndex("ProyectoId");
 
                     b.ToTable("Observacion");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Comentario = "holaa mudnooo aqui",
-                            Date = new DateTime(2021, 6, 30, 10, 24, 39, 557, DateTimeKind.Local).AddTicks(728),
-                            Nombre = "Correccion de objetivos",
-                            ProyectoId = 1
-                        });
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Proyecto", b =>
@@ -163,24 +142,6 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                     b.HasIndex("Estudiante2Id");
 
                     b.ToTable("Proyectos");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AsesorMetodologicoId = 9,
-                            AsesorTematicoId = 12,
-                            Cut = 2,
-                            Date = new DateTime(2021, 6, 30, 10, 24, 39, 554, DateTimeKind.Local).AddTicks(9471),
-                            Estudiante1Id = 1,
-                            Estudiante2Id = 2,
-                            Focus = "arriva",
-                            Line = "investigacion",
-                            Nombre = "El proyecto de ley",
-                            Resumen = "resumen del proyecto",
-                            State = 1,
-                            Url_Archive = "arriba/pero"
-                        });
                 });
 
             modelBuilder.Entity("Anteproyecto.Domain.Entities.Usuario", b =>
@@ -251,7 +212,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Correo = "hola@gmail.com",
                             Edad = 23,
                             Estado = true,
-                            Nombres = "ivan lopez",
+                            Nombres = "velen lopez",
                             NumeroIdentificacion = "3222233200",
                             Semestre = 9
                         },
@@ -263,7 +224,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Correo = "hola@gmail.com",
                             Edad = 23,
                             Estado = true,
-                            Nombres = "felipe domingo",
+                            Nombres = "rico rico domingo",
                             NumeroIdentificacion = "3222233012",
                             Semestre = 9
                         });
@@ -284,7 +245,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Correo = "hola@gmail.com",
                             Edad = 23,
                             Estado = false,
-                            Nombres = "Santiago ramirez",
+                            Nombres = "pedro ramirez",
                             NumeroIdentificacion = "5222232229",
                             Semestre = 9
                         },
@@ -296,7 +257,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Correo = "hola@gmail.com",
                             Edad = 23,
                             Estado = true,
-                            Nombres = "ivan lopez",
+                            Nombres = "reminro lopez",
                             NumeroIdentificacion = "5222221200",
                             Semestre = 9
                         },
@@ -308,7 +269,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Correo = "hola@gmail.com",
                             Edad = 23,
                             Estado = true,
-                            Nombres = "felipe domingo",
+                            Nombres = "osvaldo  domingo",
                             NumeroIdentificacion = "5211233012",
                             Semestre = 9
                         });
@@ -327,11 +288,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Apellidos = "Santander Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
-                            Edad = 23,
+                            Edad = 13,
                             Estado = false,
                             Nombres = "Jose Carlo",
                             NumeroIdentificacion = "1222222212",
-                            Semestre = 9
+                            Semestre = 5
                         },
                         new
                         {
@@ -339,11 +300,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Apellidos = "espinosa Pimienta",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
-                            Edad = 23,
+                            Edad = 13,
                             Estado = false,
                             Nombres = "Andres alejandro",
                             NumeroIdentificacion = "1222222231",
-                            Semestre = 9
+                            Semestre = 2
                         },
                         new
                         {
@@ -351,11 +312,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Apellidos = "romulo salamandra",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
-                            Edad = 23,
+                            Edad = 43,
                             Estado = true,
                             Nombres = "Pedro pepi",
                             NumeroIdentificacion = "1222222246",
-                            Semestre = 9
+                            Semestre = 5
                         },
                         new
                         {
@@ -363,11 +324,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Apellidos = "papeleta Piña",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
-                            Edad = 23,
+                            Edad = 53,
                             Estado = true,
                             Nombres = "rodoldo pepi",
                             NumeroIdentificacion = "3556222246",
-                            Semestre = 9
+                            Semestre = 4
                         },
                         new
                         {
@@ -375,11 +336,11 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Apellidos = "pepe de la hoz",
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
-                            Edad = 23,
+                            Edad = 33,
                             Estado = true,
                             Nombres = "san francisco",
                             NumeroIdentificacion = "2346222246",
-                            Semestre = 9
+                            Semestre = 3
                         });
                 });
 
@@ -397,7 +358,7 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
                             Contraseña = "123344444",
                             Correo = "hola@gmail.com",
                             Edad = 23,
-                            Estado = true,
+                            Estado = false,
                             Nombres = "Santiago ramirez",
                             NumeroIdentificacion = "2222233233",
                             Semestre = 9

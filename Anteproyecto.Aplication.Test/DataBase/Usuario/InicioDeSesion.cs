@@ -46,7 +46,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Usuario
             var response = _inicioDeSesionService.IniciosDeSesion(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual($"El correo {request.Correo} no fue encontrado", response.Mensaje);
+            Assert.AreEqual($"El correo {request.Correo} no fue encontrado", response.Message);
 
             _dbContext.Usuarios.Remove(estudiante);
             _dbContext.SaveChanges();
@@ -70,7 +70,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Usuario
             var response = _inicioDeSesionService.IniciosDeSesion(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual($"Contrasena Incorrecta.", response.Mensaje);
+            Assert.AreEqual($"Contrasena Incorrecta.", response.Message);
 
             _dbContext.Usuarios.Remove(estudiante);
             _dbContext.SaveChanges();
@@ -94,7 +94,7 @@ namespace Anteproyecto.Aplication.Test.DataBase.Usuario
             var response = _inicioDeSesionService.IniciosDeSesion(request);
 
             //ASSERT //AFIRMACION //ENTONCES //THEN
-            Assert.AreEqual("Inicio de Seción existoso.", response.Mensaje);
+            Assert.AreEqual("Inicio de Seción existoso.", response.Message);
 
             _dbContext.Usuarios.Remove(estudiante);
             _dbContext.SaveChanges();

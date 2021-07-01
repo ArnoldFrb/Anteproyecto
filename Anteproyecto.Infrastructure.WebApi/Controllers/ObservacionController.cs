@@ -46,5 +46,15 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
 
             return response;
         }
+
+        [HttpGet("ListProyectoObservaciones")]
+        public ListObservacionResponse PostList(int request)
+        {
+            var servicio = new ListObservacionService(_unitOfWork, _proyectoRepository, _observacionRepository, _mailServer);
+            var response = servicio.listarProyectoObservaciones(request); 
+            return response;
+        }
+
+
     }
 }

@@ -46,5 +46,16 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
 
             return response;
         }
+
+
+        [HttpGet("ListProyectoEvaluados")]
+        public ListEvaluacionResponse getProyectosEvaluado(int request)
+        {
+            var servicio = new ListEvaluacionService(_unitOfWork, _proyectoRepository, _evaluacionRepository, _mailServer);
+            var response = servicio.ProyectosEvaluados(request);
+
+            return response;
+        }
+
     }
 }

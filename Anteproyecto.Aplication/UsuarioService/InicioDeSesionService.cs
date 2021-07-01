@@ -25,30 +25,44 @@ namespace Anteproyecto.Aplication.UsuarioService
         public InicioDeSesionResponse IniciosDeSesion(InicioDeSesionRequest request)
         {
             var user = _usuarioRepository.FindFirstOrDefault(t => t.Correo == request.Correo.ToString());
+            string tipo = "";
             if (user != null)
             {
-                if (user.Contraseña == request.Contraseña.ToString())
+                 tipo = user.GetType().Name;
+                if (user.Contraseña == request.Contrasena.ToString())
                 {
-                    return new InicioDeSesionResponse(user, "Inicio de Seción existoso.");
+                    
+                    return new InicioDeSesionResponse(user.Id.ToString(),tipo,user.Nombres,user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222","Inicio de Seción existoso.");
                 }
                 else
                 {
-                    return new InicioDeSesionResponse(user, "Contrasena Incorrecta.");
+                    return new InicioDeSesionResponse(user.Id.ToString(), tipo, user.Nombres, user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222", "Contrasena Incorrecta.");
+                    
                 }
             }
             else
             {
-                return new InicioDeSesionResponse(user, $"El correo {request.Correo} no fue encontrado");
+                user = null;
+                return new InicioDeSesionResponse(user.Id.ToString(), tipo, user.Nombres, user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222", $"El correo {request.Correo} no fue encontrado");
+                
             }
         }
 
         public record InicioDeSesionRequest
         (
             string Correo,
-            string Contraseña
+            string Contrasena
         );
 
-        public record InicioDeSesionResponse(Usuario Usuario, string Mensaje);
+        public record InicioDeSesionResponse(
+            string Id,
+            string Type,
+            string Name,
+            string Email,
+            string Idetification,
+            string Telephone,
+            string Message
+            );
 
     }
 }
