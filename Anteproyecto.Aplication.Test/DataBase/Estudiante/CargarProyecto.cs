@@ -107,7 +107,6 @@ namespace Anteproyecto.Aplication.Test.DataBase.Estudiante
             var request2 = new ActualizarProyectoRequest(
                 proyecto.Id,
                 archivo
-
             );
             var response = _ActualizarProyectoService.ActualizarProyecto(request2);
 
