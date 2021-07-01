@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Anteproyecto.Infrastructure.Data.Migrations
 {
-    public partial class InitialCreaste : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -139,72 +139,87 @@ namespace Anteproyecto.Infrastructure.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 9, "Santander Pimienta", "123344444", "hola@gmail.com", "AsesorMetodologico", 23, true, "Santiago ramirez", "3222233299", 9 });
+                values: new object[] { 9, "Santander Pimienta", "123344444", "AsesorM1@gmail.com", "AsesorMetodologico", 23, false, "Santiago ramirez", "3222233299", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 10, "Santander Pimienta", "123344444", "hola@gmail.com", "AsesorMetodologico", 23, true, "velen lopez", "3222233200", 9 });
+                values: new object[] { 10, "Santander Pimienta", "123344444", "AsesorM2@gmail.com", "AsesorMetodologico", 23, true, "velen lopez", "3222233200", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 11, "Santander Pimienta", "123344444", "hola@gmail.com", "AsesorMetodologico", 23, true, "rico rico domingo", "3222233012", 9 });
+                values: new object[] { 11, "Santander Pimienta", "123344444", "AsesorM3@gmail.com", "AsesorMetodologico", 23, true, "rico rico domingo", "3222233012", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 12, "Santander Pimienta", "123344444", "hola@gmail.com", "AsesorTematico", 23, true, "pedro ramirez", "5222232229", 9 });
+                values: new object[] { 12, "Santander Pimienta", "123344444", "AsesorTm1@gmail.com", "AsesorTematico", 23, false, "pedro ramirez", "5222232229", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 13, "Santander Pimienta", "123344444", "hola@gmail.com", "AsesorTematico", 23, true, "reminro lopez", "5222221200", 9 });
+                values: new object[] { 13, "Santander Pimienta", "123344444", "AsesorT2@gmail.com", "AsesorTematico", 23, true, "reminro lopez", "5222221200", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 14, "Santander Pimienta", "123344444", "hola@gmail.com", "AsesorTematico", 23, true, "osvaldo  domingo", "5211233012", 9 });
+                values: new object[] { 14, "Santander Pimienta", "123344444", "AsesorT3@gmail.com", "AsesorTematico", 23, true, "osvaldo  domingo", "5211233012", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 1, "Santander Pimienta", "123344444", "hola@gmail.com", "Estudiante", 13, true, "Jose Carlo", "1222222212", 5 });
+                values: new object[] { 1, "Santander Pimienta", "123344444", "estudiante1@gmail.com", "Estudiante", 13, false, "Jose Carlo", "1222222212", 5 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 2, "espinosa Pimienta", "123344444", "hola@gmail.com", "Estudiante", 13, true, "Andres alejandro", "1222222231", 2 });
+                values: new object[] { 2, "espinosa Pimienta", "123344444", "estudiante2@gmail.com", "Estudiante", 13, false, "Andres alejandro", "1222222231", 2 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 3, "romulo salamandra", "123344444", "hola@gmail.com", "Estudiante", 43, true, "Pedro pepi", "1222222246", 5 });
+                values: new object[] { 3, "romulo salamandra", "123344444", "estudiante3@gmail.com", "Estudiante", 43, true, "Pedro pepi", "1222222246", 5 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 4, "papeleta Piña", "123344444", "hola@gmail.com", "Estudiante", 53, true, "rodoldo pepi", "3556222246", 4 });
+                values: new object[] { 4, "papeleta Piña", "123344444", "hoestudiante4la@gmail.com", "Estudiante", 53, true, "rodoldo pepi", "3556222246", 4 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 5, "pepe de la hoz", "123344444", "hola@gmail.com", "Estudiante", 33, true, "san francisco", "2346222246", 3 });
+                values: new object[] { 5, "pepe de la hoz", "123344444", "estudiante5@gmail.com", "Estudiante", 33, true, "san francisco", "2346222246", 3 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 6, "Santander Pimienta", "123344444", "hola@gmail.com", "MiembroComite", 23, true, "Santiago ramirez", "2222233233", 9 });
+                values: new object[] { 6, "Santander Pimienta", "123344444", "Miembroc1@gmail.com", "MiembroComite", 23, false, "Santiago ramirez", "2222233233", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 7, "Santander Pimienta", "123344444", "hola@gmail.com", "MiembroComite", 23, true, "ivan lopez", "2222233222", 9 });
+                values: new object[] { 7, "Santander Pimienta", "123344444", "Miembroc2@gmail.com", "MiembroComite", 23, true, "ivan lopez", "2222233222", 9 });
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
                 columns: new[] { "Id", "Apellidos", "Contraseña", "Correo", "Discriminator", "Edad", "Estado", "Nombres", "NumeroIdentificacion", "Semestre" },
-                values: new object[] { 8, "Santander Pimienta", "123344444", "hola@gmail.com", "MiembroComite", 23, true, "felipe domingo", "2222233345", 9 });
+                values: new object[] { 8, "Santander Pimienta", "123344444", "Miembroc3@gmail.com", "MiembroComite", 23, true, "felipe domingo", "2222233345", 9 });
+
+            migrationBuilder.InsertData(
+                table: "Proyectos",
+                columns: new[] { "Id", "AsesorMetodologicoId", "AsesorTematicoId", "Cut", "Date", "Estudiante1Id", "Estudiante2Id", "Focus", "Line", "Nombre", "Resumen", "State", "Url_Archive" },
+                values: new object[] { 1, 9, 12, 2, new DateTime(2021, 7, 1, 9, 9, 17, 719, DateTimeKind.Local).AddTicks(2915), 1, 2, "arriva", "investigacion", "El proyecto de ley", "resumen del proyecto", 1, "arriba/pero" });
+
+            migrationBuilder.InsertData(
+                table: "Evaluacion",
+                columns: new[] { "Id", "Comentario", "Date", "Estado", "Nombre", "ProyectoId" },
+                values: new object[] { 1, "holaa mudnooo aqui", new DateTime(2021, 7, 1, 0, 0, 0, 0, DateTimeKind.Local), true, "Correccion de objetivos", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Observacion",
+                columns: new[] { "Id", "Comentario", "Date", "Nombre", "ProyectoId" },
+                values: new object[] { 1, "holaa mudnooo aqui", new DateTime(2021, 7, 1, 9, 9, 17, 721, DateTimeKind.Local).AddTicks(4808), "Correccion de objetivos", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluacion_ProyectoId",
