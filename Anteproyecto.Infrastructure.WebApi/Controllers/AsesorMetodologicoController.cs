@@ -1,4 +1,5 @@
 ﻿using Anteproyecto.Aplication.AsesorMetodologicoService;
+using Anteproyecto.Aplication.UsuarioService;
 using Anteproyecto.Domain.Contracts;
 using Anteproyecto.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using static Anteproyecto.Aplication.AsesorMetodologicoService.ActualizarAsesorM
 using static Anteproyecto.Aplication.AsesorMetodologicoService.ConsultarAsesorMetodologicoService;
 using static Anteproyecto.Aplication.AsesorMetodologicoService.EliminarAsesorMetodologicoService;
 using static Anteproyecto.Aplication.AsesorMetodologicoService.ListarAsesoresMetodologicosService;
+using static Anteproyecto.Aplication.UsuarioService.ListarProyectosAsignadosService;
 using static Anteproyecto.Aplication.AsesorMetodologicoService.RegistrarAsesorMetodologicoService;
 
 namespace Anteproyecto.Infrastructure.WebApi.Controllers
@@ -21,11 +23,13 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IProyectoRepository _proyectoRepository;
         private readonly IMailServer _mailServer;
-        public AsesorMetodologicoController(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IMailServer mailServer)
+        public AsesorMetodologicoController(IUnitOfWork unitOfWork, IUsuarioRepository usuarioRepository, IProyectoRepository proyectoRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _usuarioRepository = usuarioRepository;
+            _proyectoRepository = proyectoRepository;
             _mailServer = mailServer;
         }
 
@@ -66,6 +70,14 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         {
             var service = new ListarAsesoresMetodologicosService(_unitOfWork, _usuarioRepository, _mailServer);
             var response = service.ListarAsesoresMetodologicos();
+            return response;
+        }
+
+        [HttpPost("ProyectosAsignados")]
+        public ListarProyectosAsignadosResponse GetListarProyectosAsignados(ListarProyectosAsignadosRequest request)
+        {
+            var service = new ListarProyectosAsignadosService(_unitOfWork, _proyectoRepository);
+            var response = service.List(request, Request.Host.ToString());
             return response;
         }
     }
