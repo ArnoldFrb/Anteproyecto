@@ -74,7 +74,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         }
 
         [HttpPost("ProyectosAsignados")]
-        public ListarProyectosAsignadosResponse GetListarProyectosAsignados(ListarProyectosAsignadosRequest request)
+        public ListarProyectosAsignadosResponse GetListarProyectosAsignados(int request)
         {
             var service = new ListarProyectosAsignadosService(_unitOfWork, _proyectoRepository);
             var response = service.List(request, Request.Host.ToString());

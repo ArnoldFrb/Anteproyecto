@@ -20,14 +20,14 @@ namespace Anteproyecto.Aplication.UsuarioService
             _proyectoRepository = proyectoRepository;
         }
 
-        public ListarProyectosAsignadosResponse List(ListarProyectosAsignadosRequest request, string Host)
+        public ListarProyectosAsignadosResponse List(int request, string Host)
         {
-            var proyecto = _proyectoRepository.FindBy(doc => doc.AsesorMetodologico.Id == request.Id);
+            var proyecto = _proyectoRepository.FindBy(doc => doc.AsesorMetodologico.Id == request);
             if (proyecto.Count() != 0)
             {
                 proyecto.ToList().ForEach(x =>
                 {
-                    x.asignarArchivo(request + "/" + x.Url_Archive);
+                    x.asignarArchivo(Host + "/" + x.Url_Archive);
                 });
 
                 return new ListarProyectosAsignadosResponse(proyecto, "Proyecto asignados");
