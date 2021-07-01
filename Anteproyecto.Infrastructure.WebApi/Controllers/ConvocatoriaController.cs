@@ -19,12 +19,14 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConvocatoriaRepository _convocatoriaRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMailServer _mailServer;
 
-        public ConvocatoriaController(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IMailServer mailServer)
+        public ConvocatoriaController(IUnitOfWork unitOfWork, IConvocatoriaRepository convocatoriaRepository, IUsuarioRepository usuarioRepository, IMailServer mailServer)
         {
             _unitOfWork = unitOfWork;
             _convocatoriaRepository = convocatoriaRepository;
+            _usuarioRepository = usuarioRepository;
             _mailServer = mailServer;
         }
 
@@ -40,7 +42,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         [HttpPost("ActivarCargaProyectos")]
         public ActivarCargaProyectosResponse PostActivarCargaProyectos(ActivarCargaProyectosRequest request)
         {
-            var service = new ActivarCargaProyectosService(_unitOfWork, _convocatoriaRepository, _mailServer);
+            var service = new ActivarCargaProyectosService(_unitOfWork, _convocatoriaRepository, _usuarioRepository, _mailServer);
             var response = service.ActivarCargaProyectos(request);
 
             return response;
@@ -49,7 +51,7 @@ namespace Anteproyecto.Infrastructure.WebApi.Controllers
         [HttpPost("DesactivarCargaProyectos")]
         public DesactivarCargaProyectosResponse PostDesactivarCargaProyectos(DesactivarCargaProyectosRequest request)
         {
-            var service = new DesactivarCargaProyectosService(_unitOfWork, _convocatoriaRepository, _mailServer);
+            var service = new DesactivarCargaProyectosService(_unitOfWork, _convocatoriaRepository, _usuarioRepository, _mailServer);
             var response = service.DesactivarCargaProyectos(request);
 
             return response;

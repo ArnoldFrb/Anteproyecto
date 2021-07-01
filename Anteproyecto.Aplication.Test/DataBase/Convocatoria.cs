@@ -40,12 +40,12 @@ namespace Anteproyecto.Aplication.Test.DataBase
             var convocatoria = CrearConvocatoriaMother.CrearConvocatoria();
 
              //Act
-            var _convocatoria = new CrearConvocatoriaRequest (new DateTime(2021,5,1,12,0,0), new DateTime(2021,7,1,12,0,0), true );
+            var _convocatoria = new CrearConvocatoriaRequest (convocatoria.FechaInicio, convocatoria.FechaCierre, convocatoria.CargarProyectos);
             var response = _crearconvocatoriaService.CrearConvocatoria(_convocatoria);
 
             //Assert 01 / 01 / 2021 12:00:00 p.m.
 
-            Assert.AreEqual($"Se ha creado la convocatoria para las fechas: Inicio: {new DateTime(2021, 5, 1, 12, 0, 0)} / Cierre: {new DateTime(2021, 7, 1, 12, 0, 0)}", response.Mensaje);
+            Assert.AreEqual($"Se ha creado la convocatoria para las fechas: Inicio: {convocatoria.FechaInicio} / Cierre: {convocatoria.FechaCierre}", response.Mensaje);
 
         } 
     }

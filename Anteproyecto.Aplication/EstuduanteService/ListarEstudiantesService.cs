@@ -31,7 +31,6 @@ namespace Anteproyecto.Aplication.EstuduanteService
                     {
                         res.Add((Estudiante)doc);
                     }
-                    
                 }
                 if (res.Count != 0)
                 {

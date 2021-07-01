@@ -15,7 +15,6 @@ namespace Anteproyecto.Aplication.Mail
         public MailServer(IOptions<SmtpSettings> smtpSettings)
         {
             _smtpSettings = smtpSettings.Value;
-           
         }
 
         public async Task Send(string email, string subject, string body)
