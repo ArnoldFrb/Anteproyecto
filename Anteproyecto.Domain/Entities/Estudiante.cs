@@ -61,15 +61,10 @@ namespace Anteproyecto.Domain.Entities
             else
             {
                 var res_1 = ModificarCorreo(usuario.Correo);
-                var res_2 = ModificarContrasena(usuario.Correo);
 
                 if (!res_1.Equals("El correo ingresado es valido"))
                 {
                     return res_1;
-                }
-                if (!res_2.Equals("Su nueva contraseña es correcta"))
-                {
-                    return res_2;
                 }
                 return $"El Usuario {usuario.Nombres} ha sido registrado correctamente";
             }
@@ -93,7 +88,6 @@ namespace Anteproyecto.Domain.Entities
                 Nombres = nombres;
                 Apellidos = apellidos;
                 NumeroIdentificacion = numeroIdentificacion;
-                Correo = correo;
                 Semestre = semestre;
                 Edad = edad;
                 Estado = estado;

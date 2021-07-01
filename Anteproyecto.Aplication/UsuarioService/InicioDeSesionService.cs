@@ -32,19 +32,17 @@ namespace Anteproyecto.Aplication.UsuarioService
                 if (user.Contraseña == request.Contrasena.ToString())
                 {
                     
-                    return new InicioDeSesionResponse(user.Id.ToString(),tipo,user.Nombres,user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222","Inicio de Seción existoso.");
+                    return new InicioDeSesionResponse(user.Id.ToString(),tipo,user.Nombres,user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222", "Inicio de Seción existoso.");
                 }
                 else
                 {
                     return new InicioDeSesionResponse(user.Id.ToString(), tipo, user.Nombres, user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222", "Contrasena Incorrecta.");
-                    
                 }
             }
             else
             {
                 user = null;
                 return new InicioDeSesionResponse(user.Id.ToString(), tipo, user.Nombres, user.Correo.ToString(), user.NumeroIdentificacion.ToString(), "2212222", $"El correo {request.Correo} no fue encontrado");
-                
             }
         }
 
@@ -62,7 +60,7 @@ namespace Anteproyecto.Aplication.UsuarioService
             string Idetification,
             string Telephone,
             string Message
-            );
+        );
 
     }
 }

@@ -31,7 +31,6 @@ namespace Anteproyecto.Aplication.Test.DataBase.Usuario
         [Test]
         public void IniciarSesionConCorreoIncorrecto()
         {
-
             //ARRANGE //PREPARAR // DADO // GIVEN
             var estudiante = UsuarioMother.crearUsuarioEstudiante("123456678");
 
