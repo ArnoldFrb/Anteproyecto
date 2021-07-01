@@ -45,7 +45,7 @@ namespace Anteproyecto.Aplication.Test
 
             //Assert
 
-            Assert.AreEqual("Se ha anadido la sigiente convocatoria, Inicio: viernes, 1 de enero de 2021 / Fin: lunes, 1 de marzo de 2021", response);
+            Assert.AreEqual($"Se ha anadido la sigiente convocatoria, Inicio: {new DateTime(2021, 1, 1, 12, 0, 0).ToLongDateString()} / Fin: {new DateTime(2021,3,1,12,0,0).ToLongDateString()}", response);
 
             _dbContext.Convocatorias.Remove(convocatoria);
             _dbContext.SaveChanges();
